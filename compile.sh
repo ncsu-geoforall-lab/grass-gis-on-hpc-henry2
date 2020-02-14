@@ -25,7 +25,11 @@ cd grass
     --with-proj-share=$PREFIX/share \
     --with-gdal=$PREFIX/bin/gdal-config
 
-setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
+if ( ${?LD_LIBRARY_PATH} ) then
+    setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
+else
+    setenv LD_LIBRARY_PATH $PREFIX/lib\:$PREFIX/lib64
+endif
 
 make
 make install
