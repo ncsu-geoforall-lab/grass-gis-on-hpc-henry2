@@ -1,0 +1,20 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get basic dependencies
+      run: |
+        apt update -y
+        apt install -y wget git cmake tcsh
+        apt install -y build-essential
+    - name: Create installation directory
+      run: mkdir install
+    - name: Get and compile dependencies
+      run: tcsh ./dependencies.sh ~/install
