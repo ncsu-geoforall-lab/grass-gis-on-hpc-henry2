@@ -1,6 +1,11 @@
 #!/usr/bin/tcsh
 
-set PREFIX=/usr/local/usrapps/mitasova/bin
+if ($#argv != 1) then
+    echo "Usage: $0 PREFIX"
+    exit 1
+endif
+
+set PREFIX=$argv[1]
 
 # SQLite
 
