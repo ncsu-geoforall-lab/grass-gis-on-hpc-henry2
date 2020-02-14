@@ -32,9 +32,9 @@ make install
 
 setenv PATH $PATH\:$PREFIX/bin
 
-grass79 --tmp-location EPSG:4326 --exec g.region res=0.1 -p
-
 # additional runtime dependencies
 # conda create --prefix bin/conda --clone /usr/local/apps/miniconda
 # conda install --prefix bin/conda numpy
-# conda activate --prefix bin/conda
+# for scripts:
+# eval "$(conda shell.bash hook)"
+# conda activate bin/conda
