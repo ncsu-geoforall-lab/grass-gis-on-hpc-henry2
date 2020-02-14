@@ -16,6 +16,8 @@ cd sqlite-autoconf-3310100
 make
 make install
 
+cd ..
+
 # libTIFF
 
 git clone https://gitlab.com/libtiff/libtiff.git
@@ -24,6 +26,8 @@ git checkout v4.1.0
 ./configure --prefix=$PREFIX
 make
 make install
+
+cd ..
 
 # PROJ
 
@@ -42,6 +46,8 @@ cmake \
     ..
 make
 make install
+
+cd ..
 
 # GDAL
 
@@ -62,3 +68,5 @@ cd gdal
     --with-libtiff=internal
 make
 make install
+
+cd ..
