@@ -17,4 +17,9 @@ jobs:
     - name: Create installation directory
       run: mkdir install
     - name: Get and compile dependencies
-      run: tcsh ./dependencies.sh ~/install
+      run: tcsh ./dependencies.sh $HOME/install
+    - name: Get GRASS GIS compile time dependencies
+      run: |
+        sudo apt-get install -y flex bison zlib1g-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev libfftw3-dev libcairo-dev python3-six
+    - name: Get and compile GRASS GIS
+      run: tcsh ./compile.sh $HOME/install
