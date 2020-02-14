@@ -26,5 +26,7 @@ jobs:
         sudo apt-get install -y flex bison zlib1g-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev libfftw3-dev libcairo-dev python3-six
     - name: Get and compile GRASS GIS
       run: tcsh ./compile.sh $HOME/install
-    - name: Test GRASS GIS
+    - name: Basic test of GRASS GIS
       run: tcsh ./test.sh
+    - name: Thorough test of GRASS GIS
+      run: tcsh ./test-thorough.sh
