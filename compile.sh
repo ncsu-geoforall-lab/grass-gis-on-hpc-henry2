@@ -1,5 +1,10 @@
 #!/usr/bin/tcsh
 
+# The make step requires something like:
+# setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
+# further steps additionally require:
+# setenv PATH $PATH\:$PREFIX/bin
+
 if ($#argv != 1) then
     echo "Usage: $0 PREFIX"
     exit 1
@@ -25,16 +30,8 @@ cd grass
     --with-proj-share=$PREFIX/share \
     --with-gdal=$PREFIX/bin/gdal-config
 
-if ( ${?LD_LIBRARY_PATH} ) then
-    setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
-else
-    setenv LD_LIBRARY_PATH $PREFIX/lib\:$PREFIX/lib64
-endif
-
 make
 make install
-
-setenv PATH $PATH\:$PREFIX/bin
 
 # additional runtime dependencies
 # conda create --prefix bin/conda --clone /usr/local/apps/miniconda

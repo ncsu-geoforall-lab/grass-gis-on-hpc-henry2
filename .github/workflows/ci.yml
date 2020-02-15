@@ -24,6 +24,9 @@ jobs:
     - name: Get GRASS GIS compile time dependencies
       run: |
         sudo apt-get install -y flex bison zlib1g-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev libfftw3-dev libcairo-dev python3-six
+    - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
+      run: |
+        echo "::set-env name=LD_LIBRARY_PATH::$HOME/install/lib"
     - name: Get and compile GRASS GIS
       run: tcsh ./compile.sh $HOME/install
     - name: Add the bin directory to PATH
