@@ -10,11 +10,27 @@ Set the the prefix variable to be used throughout the workflow:
 set PREFIX=/usr/local/usrapps/.../bin/
 ```
 
+```
+mkdir $PREFIX
+```
+
+Get and compile dependencies:
+
+```
+./dependencies.sh $PREFIX
+```
+
 To make GRASS GIS compile and run, set:
 
 ```
 setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
 setenv PATH $PATH\:$PREFIX/bin
+```
+
+Get and compile GRASS GIS:
+
+```
+./compile.sh $PREFIX
 ```
 
 Activate conda:
@@ -39,6 +55,13 @@ Install these dependencies:
 
 ```
 conda install -c anaconda numpy wxpython
+```
+
+Test:
+
+```
+./test.sh
+./test-thorough.sh
 ```
 
 ## Ubuntu 18.04 dependencies for testing
