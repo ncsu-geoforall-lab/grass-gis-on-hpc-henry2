@@ -88,6 +88,40 @@ Run:
 grass79 ...
 ```
 
+## Setup for use
+
+Create a file to be sourced (place it into `$PREFIX`):
+
+```
+# This file must be used with "source bin/activate" from tcsh.
+# It is not useful for anything to run it directly.
+set PREFIX=/usr/local/usrapps/.../bin/
+setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
+setenv PATH $PATH\:$PREFIX/bin
+module load conda
+conda activate $PREFIX/../conda-for-wx
+```
+
+Create a symlink to the executable to make the command version-independent:
+
+```
+ln -s ${PREFIX}bin/grass79 ${PREFIX}bin/grass
+```
+
+## For users
+
+Activate GRASS GIS in *tcsh* shell (this will currently run on Henry2 as is):
+
+```
+source /usr/local/usrapps/mitasova/bin/activate-grass.tcsh
+```
+
+Run GRASS GIS:
+
+```
+grass
+```
+
 ## Ubuntu 18.04 dependencies for testing
 
 ```
