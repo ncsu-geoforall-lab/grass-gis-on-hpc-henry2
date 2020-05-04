@@ -18,6 +18,9 @@ git clone https://github.com/OSGeo/grass.git
 
 cd grass
 
+setenv CFLAGS "-std=gnu99 -O0"
+setenv CXXFLAGS "-std=c++11 -O0"
+
 ./configure \
     --prefix=$PREFIX/ \
     --without-zstd \
