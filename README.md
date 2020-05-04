@@ -1,8 +1,26 @@
-# grass-gis-on-hpc-henry2
+# GRASS GIS on HPC Henry2
 
-Repository for instructions for compiling GRASS GIS on NCSU HPC Henry2
+This is a repository with instructions for compiling and running GRASS GIS on NCSU HPC Henry2.
 
-## Steps on Henry2
+## Running GRASS GIS
+
+These are instructions for users of Henry2 on how to run GRASS GIS.
+
+Activate GRASS GIS in *tcsh* shell (as of May 2020, this will run on Henry2 as is):
+
+```
+source /usr/local/usrapps/mitasova/bin/activate-grass.tcsh
+```
+
+Run GRASS GIS:
+
+```
+grass
+```
+
+The rest of this document is about compiling GRASS GIS and making sure the above works.
+
+## Compile
 
 Set the the prefix variable to be used throughout the workflow:
 
@@ -106,20 +124,6 @@ Create a symlink to the executable to make the command version-independent:
 
 ```
 ln -s ${PREFIX}bin/grass79 ${PREFIX}bin/grass
-```
-
-## For users
-
-Activate GRASS GIS in *tcsh* shell (this will currently run on Henry2 as is):
-
-```
-source /usr/local/usrapps/mitasova/bin/activate-grass.tcsh
-```
-
-Run GRASS GIS:
-
-```
-grass
 ```
 
 ## Ubuntu 18.04 dependencies for testing
