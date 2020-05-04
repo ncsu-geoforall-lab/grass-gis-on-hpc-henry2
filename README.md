@@ -27,12 +27,6 @@ setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
 setenv PATH $PATH\:$PREFIX/bin
 ```
 
-Get and compile GRASS GIS:
-
-```
-./compile.sh $PREFIX
-```
-
 Activate conda:
 
 ```
@@ -55,6 +49,12 @@ Install these dependencies:
 
 ```
 conda install -c anaconda numpy wxpython
+```
+
+Get and compile GRASS GIS:
+
+```
+./compile.sh $PREFIX
 ```
 
 Test:
