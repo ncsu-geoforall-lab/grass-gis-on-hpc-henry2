@@ -27,7 +27,7 @@ setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
 setenv PATH $PATH\:$PREFIX/bin
 ```
 
-Activate conda:
+Activate conda (at least Python 3 needs to be enabled):
 
 ```
 module load conda
@@ -62,6 +62,30 @@ Test:
 ```
 ./test.sh
 ./test-thorough.sh
+```
+
+## Run
+
+
+Set the environmental variables:
+
+```
+set PREFIX=/usr/local/usrapps/.../bin/
+setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
+setenv PATH $PATH\:$PREFIX/bin
+```
+
+Activate conda and the conda environment:
+
+```
+module load conda
+conda activate /usr/local/usrapps/.../conda-for-wx
+```
+
+Run:
+
+```
+grass79 ...
 ```
 
 ## Ubuntu 18.04 dependencies for testing
