@@ -51,10 +51,13 @@ make install
 
 cd ..
 
-# We put all libraries in one place, so we don't have to make
-# a distinction later.
-# The subdirectories are copied just to simplify the command.
-cp -r $PREFIX/lib64/* $PREFIX/lib
+# If the lib64 directory exists (created by PROJ),
+# we put all libraries in one place, so we don't have to make
+# any distinction later on.
+if ( -d folder ) then
+    # The subdirectories are copied just to simplify the command.
+    cp -r $PREFIX/lib64/* $PREFIX/lib
+endif
 
 # GDAL
 
