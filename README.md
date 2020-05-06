@@ -95,7 +95,7 @@ Set the environmental variables:
 
 ```
 set PREFIX=/usr/local/usrapps/.../bin/
-setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
+setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64\:/usr/local/usrapps/mitasova/conda-for-wx/lib/
 setenv PATH $PATH\:$PREFIX/bin
 ```
 
