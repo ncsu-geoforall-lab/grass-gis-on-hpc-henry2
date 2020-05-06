@@ -1,0 +1,40 @@
+name: CI in Docker on CentOS
+
+on: [push]
+
+jobs:
+  build:
+
+    name: Build on CentOS 7
+    runs-on: ubuntu-18.04
+    container: centos:7
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get basic dependencies
+      run: |
+        yum update -y
+        yum install -y wget git cmake tcsh
+        yum groupinstall -y 'Development Tools'
+    - name: Create installation directory
+      run: mkdir install
+    - name: Set number of cores for compilation
+      run: |
+        echo "::set-env name=MAKEFLAGS::-j$(nproc)"
+    - name: Get and compile dependencies
+      run: tcsh -xe ./dependencies.sh $HOME/install
+    - name: Get GRASS GIS compile time dependencies
+      run: |
+        sudo apt-get install -y flex bison zlib1g-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev libfftw3-dev libcairo-dev python3-six
+    - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
+      run: |
+        echo "::set-env name=LD_LIBRARY_PATH::$HOME/install/lib"
+    - name: Get and compile GRASS GIS
+      run: tcsh -xe ./compile.sh $HOME/install
+    - name: Add the bin directory to PATH
+      run: |
+        echo "::add-path::$HOME/install/bin"
+    - name: Basic test of GRASS GIS
+      run: tcsh -xe ./test.sh
+    - name: Thorough test of GRASS GIS
+      run: tcsh -xe ./test-thorough.sh
