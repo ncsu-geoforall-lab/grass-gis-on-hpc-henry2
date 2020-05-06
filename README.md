@@ -41,7 +41,7 @@ module load cmake
 Get and compile dependencies:
 
 ```
-./dependencies.sh $PREFIX
+tcsh -e ./dependencies.sh $PREFIX
 ```
 
 To make GRASS GIS compile and run, set:
@@ -78,14 +78,14 @@ conda install -c anaconda numpy wxpython
 Get and compile GRASS GIS:
 
 ```
-./compile.sh $PREFIX
+tcsh -e ./compile.sh $PREFIX
 ```
 
 Test:
 
 ```
-./test.sh
-./test-thorough.sh
+tcsh -e ./test.sh
+tcsh -e ./test-thorough.sh
 ```
 
 ## Run
