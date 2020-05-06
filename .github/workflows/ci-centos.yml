@@ -41,10 +41,10 @@ jobs:
     - name: Get GRASS GIS compile time yum dependencies
       run: |
         yum install -y zlib-devel gcc-c++ \
-             sqlite-devel mesa-libGL-devel mesa-libGLU-devel \
-             libXmu-devel libX11-devel fftw-devel libtiff-devel \
+             mesa-libGL-devel mesa-libGLU-devel \
+             libXmu-devel libX11-devel fftw-devel \
              lesstif-devel wxGTK-devel \
-             proj proj-devel proj-epsg proj-nad libxml2 gdal gdal-devel geos geos-devel \
+             libxml2 geos geos-devel \
              netcdf netcdf-devel blas-devel lapack-devel atlas-devel \
              libpng-devel
     - name: Get GRASS GIS compile time conda dependencies
