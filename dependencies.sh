@@ -54,7 +54,7 @@ cd ..
 # If the lib64 directory exists (created by PROJ),
 # we put all libraries in one place, so we don't have to make
 # any distinction later on.
-if ( -d folder ) then
+if ( -d $PREFIX/lib64/ ) then
     # The subdirectories are copied just to simplify the command.
     cp -r $PREFIX/lib64/* $PREFIX/lib
 endif
