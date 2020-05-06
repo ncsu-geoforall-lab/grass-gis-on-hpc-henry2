@@ -23,6 +23,11 @@ jobs:
         wget https://github.com/Kitware/CMake/releases/download/v3.16.6/cmake-3.16.6-Linux-x86_64.sh
         chmod u+x cmake-3.16.6-Linux-x86_64.sh
         ./cmake-3.16.6-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license
+    - name: Install conda
+      run: |
+        wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+        chmod u+x Anaconda3-2020.02-Linux-x86_64.sh
+        ./Anaconda3-2020.02-Linux-x86_64.sh -b
     - name: Create installation directory
       run: mkdir install
     - name: Set number of cores for compilation
@@ -30,24 +35,27 @@ jobs:
         echo "::set-env name=MAKEFLAGS::-j$(nproc)"
     - name: Get and compile dependencies
       run: tcsh -xe ./dependencies.sh $HOME/install
-    - name: Get GRASS GIS compile time dependencies
+    - name: Get GRASS GIS compile time yum dependencies
       run: |
-        yum install -y flex bison make zlib-devel gcc-c++ gettext \
+        yum install -y zlib-devel gcc-c++ \
              sqlite-devel mesa-libGL-devel mesa-libGLU-devel \
              libXmu-devel libX11-devel fftw-devel libtiff-devel \
-             lesstif-devel python-devel numpy wxPython wxGTK-devel \
+             lesstif-devel wxGTK-devel \
              proj proj-devel proj-epsg proj-nad libxml2 gdal gdal-devel geos geos-devel \
              netcdf netcdf-devel blas-devel lapack-devel atlas-devel \
-             python-dateutil python-imaging python-matplotlib python-sphinx
+             libpng-devel
+    - name: Get GRASS GIS compile time conda dependencies
+      run: |
+        /root/anaconda3/bin/conda install -y -c anaconda numpy wxpython
     - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
       run: |
         echo "::set-env name=LD_LIBRARY_PATH::$HOME/install/lib"
     - name: Get and compile GRASS GIS
-      run: tcsh -xe ./compile.sh $HOME/install
+      run: /root/anaconda3/bin/conda run tcsh -xe ./compile.sh $HOME/install
     - name: Add the bin directory to PATH
       run: |
         echo "::add-path::$HOME/install/bin"
     - name: Basic test of GRASS GIS
-      run: tcsh -xe ./test.sh
+      run: /root/anaconda3/bin/conda run tcsh -xe ./test.sh
     - name: Thorough test of GRASS GIS
-      run: tcsh -xe ./test-thorough.sh
+      run: /root/anaconda3/bin/conda run tcsh -xe ./test-thorough.sh
