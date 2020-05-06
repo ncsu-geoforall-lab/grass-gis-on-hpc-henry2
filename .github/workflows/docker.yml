@@ -14,8 +14,12 @@ jobs:
     - name: Get basic dependencies
       run: |
         yum update -y
-        yum install -y wget git cmake tcsh
+        yum install -y wget git tcsh
         yum groupinstall -y 'Development Tools'
+    - name: Install more recent CMake
+      run: |
+        wget https://github.com/Kitware/CMake/releases/download/v3.16.6/cmake-3.16.6-Linux-x86_64.sh
+        ./cmake-3.16.6-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license
     - name: Create installation directory
       run: mkdir install
     - name: Set number of cores for compilation
