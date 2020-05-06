@@ -32,6 +32,12 @@ set PREFIX=/usr/local/usrapps/.../bin/
 mkdir $PREFIX
 ```
 
+Some dependencies use cmake, so load it:
+
+```
+module load cmake
+```
+
 Get and compile dependencies:
 
 ```
