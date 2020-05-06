@@ -1,10 +1,11 @@
-name: CI
+name: CI in VM on Ubuntu
 
 on: [push]
 
 jobs:
   build:
 
+    name: Build on Ubuntu 18.04
     runs-on: ubuntu-18.04
 
     steps:
