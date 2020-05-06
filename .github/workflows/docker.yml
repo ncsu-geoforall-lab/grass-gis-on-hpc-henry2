@@ -30,7 +30,13 @@ jobs:
       run: tcsh -xe ./dependencies.sh $HOME/install
     - name: Get GRASS GIS compile time dependencies
       run: |
-        sudo apt-get install -y flex bison zlib1g-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev libfftw3-dev libcairo-dev python3-six
+        yum install -y flex bison make zlib-devel gcc-c++ gettext \
+             sqlite-devel mesa-libGL-devel mesa-libGLU-devel \
+             libXmu-devel libX11-devel fftw-devel libtiff-devel \
+             lesstif-devel python-devel numpy wxPython wxGTK-devel \
+             proj proj-devel proj-epsg proj-nad libxml2 gdal gdal-devel geos geos-devel \
+             netcdf netcdf-devel blas-devel lapack-devel atlas-devel \
+             python-dateutil python-imaging python-matplotlib python-sphinx
     - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
       run: |
         echo "::set-env name=LD_LIBRARY_PATH::$HOME/install/lib"
