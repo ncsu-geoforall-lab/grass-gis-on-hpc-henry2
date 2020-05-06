@@ -1,6 +1,8 @@
 name: CI in VM on Ubuntu
 
-on: [push]
+on:
+- push
+- pull_request
 
 jobs:
   build:

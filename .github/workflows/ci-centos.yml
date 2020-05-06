@@ -1,6 +1,8 @@
 name: CI in Docker on CentOS
 
-on: [push]
+on:
+- push
+- pull_request
 
 jobs:
   build:
