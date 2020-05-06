@@ -20,7 +20,7 @@ jobs:
       run: |
         echo "::set-env name=MAKEFLAGS::-j$(nproc)"
     - name: Get and compile dependencies
-      run: tcsh -e ./dependencies.sh $HOME/install
+      run: tcsh -xe ./dependencies.sh $HOME/install
     - name: Get GRASS GIS compile time dependencies
       run: |
         sudo apt-get install -y flex bison zlib1g-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev libfftw3-dev libcairo-dev python3-six
@@ -28,11 +28,11 @@ jobs:
       run: |
         echo "::set-env name=LD_LIBRARY_PATH::$HOME/install/lib"
     - name: Get and compile GRASS GIS
-      run: tcsh -e ./compile.sh $HOME/install
+      run: tcsh -xe ./compile.sh $HOME/install
     - name: Add the bin directory to PATH
       run: |
         echo "::add-path::$HOME/install/bin"
     - name: Basic test of GRASS GIS
-      run: tcsh -e ./test.sh
+      run: tcsh -xe ./test.sh
     - name: Thorough test of GRASS GIS
-      run: tcsh -e ./test-thorough.sh
+      run: tcsh -xe ./test-thorough.sh
