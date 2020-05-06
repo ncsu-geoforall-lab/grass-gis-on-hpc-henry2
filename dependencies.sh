@@ -5,6 +5,8 @@ if ($#argv != 1) then
     exit 1
 endif
 
+set verbose
+
 set PREFIX=$argv[1]
 
 # SQLite
@@ -51,7 +53,7 @@ cd ..
 
 # GDAL
 
-cp ../../bin/lib64/* ../../bin/lib
+cp $PREFIX/bin/lib64/* $PREFIX/bin/lib
 
 git clone https://github.com/OSGeo/gdal.git
 cd gdal
