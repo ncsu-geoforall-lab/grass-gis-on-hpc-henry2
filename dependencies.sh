@@ -22,6 +22,7 @@ cd ..
 
 # libTIFF
 
+# --branch can get a tag too
 git clone --depth=1 --branch v4.1.0 https://gitlab.com/libtiff/libtiff.git
 cd libtiff
 ./autogen.sh
@@ -61,11 +62,10 @@ endif
 
 # GDAL
 
-git clone https://github.com/OSGeo/gdal.git
-cd gdal
-git checkout v3.0.4
+git clone --depth=1 --branch v3.0.4 https://github.com/OSGeo/gdal.git
 
-cd gdal
+# The code is in a subdirectory.
+cd gdal/gdal
 
 ./configure \
     --prefix=$PREFIX/ \
@@ -77,4 +77,4 @@ cd gdal
 make
 make install
 
-cd ..
+cd ../..
