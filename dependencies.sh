@@ -20,8 +20,8 @@ cd ..
 
 # libTIFF
 
-git clone https://gitlab.com/libtiff/libtiff.git
-git checkout v4.1.0
+git clone --depth=1 --branch v4.1.0 https://gitlab.com/libtiff/libtiff.git
+cd libtiff
 ./autogen.sh
 ./configure --prefix=$PREFIX
 make
