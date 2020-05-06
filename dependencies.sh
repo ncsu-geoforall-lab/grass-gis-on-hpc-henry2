@@ -53,7 +53,7 @@ cd ..
 
 # GDAL
 
-cp $PREFIX/bin/lib64/* $PREFIX/bin/lib
+cp $PREFIX/lib64/* $PREFIX/lib
 
 git clone https://github.com/OSGeo/gdal.git
 cd gdal
