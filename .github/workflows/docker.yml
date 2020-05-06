@@ -19,6 +19,7 @@ jobs:
     - name: Install more recent CMake
       run: |
         wget https://github.com/Kitware/CMake/releases/download/v3.16.6/cmake-3.16.6-Linux-x86_64.sh
+        chmod u+x cmake-3.16.6-Linux-x86_64.sh
         ./cmake-3.16.6-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license
     - name: Create installation directory
       run: mkdir install
