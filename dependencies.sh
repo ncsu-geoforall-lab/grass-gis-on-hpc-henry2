@@ -51,9 +51,12 @@ make install
 
 cd ..
 
-# GDAL
+# We put all libraries in one place, so we don't have to make
+# a distinction later.
+# The subdirectories are copied just to simplify the command.
+cp -r $PREFIX/lib64/* $PREFIX/lib
 
-cp $PREFIX/lib64/* $PREFIX/lib
+# GDAL
 
 git clone https://github.com/OSGeo/gdal.git
 cd gdal
