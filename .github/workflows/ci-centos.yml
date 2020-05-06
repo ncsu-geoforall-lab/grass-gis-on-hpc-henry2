@@ -28,6 +28,9 @@ jobs:
         wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
         chmod u+x Anaconda3-2020.02-Linux-x86_64.sh
         ./Anaconda3-2020.02-Linux-x86_64.sh -b
+    - name: Set variable with conda executable
+      run: |
+        echo "::set-env name=CONDA::/github/home/anaconda3/bin/conda"
     - name: Create installation directory
       run: mkdir install
     - name: Set number of cores for compilation
@@ -46,16 +49,19 @@ jobs:
              libpng-devel
     - name: Get GRASS GIS compile time conda dependencies
       run: |
-        /root/anaconda3/bin/conda install -y -c anaconda numpy wxpython
+        $CONDA install -y -c anaconda numpy wxpython
     - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
       run: |
         echo "::set-env name=LD_LIBRARY_PATH::$HOME/install/lib"
     - name: Get and compile GRASS GIS
-      run: /root/anaconda3/bin/conda run tcsh -xe ./compile.sh $HOME/install
+      run: |
+        $CONDA run tcsh -xe ./compile.sh $HOME/install
     - name: Add the bin directory to PATH
       run: |
         echo "::add-path::$HOME/install/bin"
     - name: Basic test of GRASS GIS
-      run: /root/anaconda3/bin/conda run tcsh -xe ./test.sh
+      run: |
+        $CONDA run tcsh -xe ./test.sh
     - name: Thorough test of GRASS GIS
-      run: /root/anaconda3/bin/conda run tcsh -xe ./test-thorough.sh
+      run: |
+        $CONDA run tcsh -xe ./test-thorough.sh
