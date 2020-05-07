@@ -27,6 +27,9 @@ jobs:
     - name: Get GRASS GIS compile time dependencies
       run: |
         sudo apt-get install -y flex bison zlib1g-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev libfftw3-dev libcairo-dev python3-six
+    - name: Get GRASS GIS runtime time dependencies
+      run: |
+        sudo apt-get install -y python3-dateutil python3-numpy python3-ply python3-termcolor
     - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
       run: |
         echo "::set-env name=LD_LIBRARY_PATH::$HOME/install/lib"
