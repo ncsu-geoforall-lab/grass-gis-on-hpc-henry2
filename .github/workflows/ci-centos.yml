@@ -52,7 +52,7 @@ jobs:
     - name: Get GRASS GIS runtime conda dependencies
       run: |
         source $CONDA_ACTIVATE
-        $CONDA install -y -c anaconda numpy wxpython dateutil ply termcolor
+        $CONDA install -y -c anaconda numpy wxpython python-dateutil ply termcolor
     - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
       run: |
         echo "::set-env name=LD_LIBRARY_PATH::$HOME/install/lib"
