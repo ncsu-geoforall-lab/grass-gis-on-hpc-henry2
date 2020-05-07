@@ -72,7 +72,7 @@ conda activate /usr/local/usrapps/.../conda-for-wx
 Install these dependencies:
 
 ```
-conda install -c anaconda numpy wxpython
+conda install -c anaconda numpy wxpython python-dateutil ply termcolor
 ```
 
 Get and compile GRASS GIS:
@@ -95,7 +95,7 @@ Set the environmental variables:
 
 ```
 set PREFIX=/usr/local/usrapps/.../bin/
-setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64\:/usr/local/usrapps/mitasova/conda-for-wx/lib/
+setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
 setenv PATH $PATH\:$PREFIX/bin
 ```
 
@@ -130,16 +130,4 @@ Create a symlink to the executable to make the command version-independent:
 
 ```
 ln -s ${PREFIX}bin/grass79 ${PREFIX}bin/grass
-```
-
-## Ubuntu 18.04 dependencies for testing
-
-```
-apt update -y
-# tools for compilation
-apt install -y build-essential
-# or: apt install -y gcc g++ make
-apt install -y wget git cmake tcsh
-# GRASS GIS dependencies available at Henry2
-apt install -y flex bison zlib1g-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev libfftw3-dev libcairo-dev python3-six
 ```
