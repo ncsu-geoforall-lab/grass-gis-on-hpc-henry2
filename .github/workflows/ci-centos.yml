@@ -47,6 +47,7 @@ jobs:
              lesstif-devel wxGTK-devel \
              libxml2 geos geos-devel \
              netcdf netcdf-devel \
+             cairo-devel \
              libpng-devel
     - name: Get GRASS GIS compile time conda dependencies
       run: |

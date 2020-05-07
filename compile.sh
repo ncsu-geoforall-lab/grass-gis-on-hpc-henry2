@@ -26,6 +26,7 @@ setenv CXXFLAGS "-std=c++11 -O0"
     --without-zstd \
     --without-tiff \
     --without-freetype \
+    --with-cairo-ldflags=-lfontconfig \
     --with-sqlite-includes=$PREFIX/include \
     --with-sqlite-libs=$PREFIX/lib \
     --with-proj-includes=$PREFIX/include \
