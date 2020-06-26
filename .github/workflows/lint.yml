@@ -16,3 +16,5 @@ jobs:
     - uses: actions/checkout@v2
     -  name: Lint code base
        uses: docker://github/super-linter:v2.2.0
+       env:
+         VALIDATE_BASH: false
