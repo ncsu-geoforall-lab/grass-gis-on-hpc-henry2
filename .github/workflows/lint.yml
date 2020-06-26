@@ -1,0 +1,20 @@
+name: Linting
+
+on:
+- push
+- pull_request
+
+jobs:
+
+  super-linter:
+
+    name: GitHub Super Linter
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    -  name: Lint code base
+       uses: docker://github/super-linter:v2.2.0
+       env:
+         VALIDATE_BASH: false
