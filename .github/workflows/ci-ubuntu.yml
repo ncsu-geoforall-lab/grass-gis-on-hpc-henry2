@@ -6,8 +6,12 @@ on:
     - 'docs/**'
     - README.md
   pull_request:
+    paths-ignore:
     - 'docs/**'
     - README.md
+  schedule:
+    # At 03:30 on Wednesday.
+    - cron:  '30 3 * * 3'
 
 jobs:
   build:
