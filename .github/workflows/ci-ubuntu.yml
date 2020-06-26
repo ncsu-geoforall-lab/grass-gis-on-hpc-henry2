@@ -1,8 +1,13 @@
 name: CI in VM on Ubuntu
 
 on:
-- push
-- pull_request
+  push:
+    paths-ignore:
+    - 'docs/**'
+    - README.md
+  pull_request:
+    - 'docs/**'
+    - README.md
 
 jobs:
   build:

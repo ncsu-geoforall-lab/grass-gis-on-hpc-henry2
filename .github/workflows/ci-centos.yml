@@ -1,8 +1,16 @@
 name: CI in Docker on CentOS
 
 on:
-- push
-- pull_request
+  push:
+    paths-ignore:
+    - 'docs/**'
+    - README.md
+  pull_request:
+    - 'docs/**'
+    - README.md
+  schedule:
+    # At 03:30 on Wednesday.
+    - cron:  '30 3 * * 3'
 
 jobs:
   build:
