@@ -18,3 +18,4 @@ jobs:
        uses: docker://github/super-linter:v2.2.0
        env:
          VALIDATE_BASH: false
+         VALIDATE_MD: true
