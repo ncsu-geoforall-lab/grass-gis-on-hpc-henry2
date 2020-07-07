@@ -14,7 +14,7 @@ Always create a new mapset (with -c flag). In this example we compute slope rast
 module use --append /usr/local/usrapps/gis/modulefiles/
 module load grass/79
 
-grass -c /path/to/grassdata/albers/newmapset --exec r.slope.aspect elevation=DEM@PERMANENT slope=slope
-grass /path/to/grassdata/albers/newmapset --exec r.out.gdal input=slope output=/share/path/to/slope.tif type=Float32 createopt="COMPRESS=LZW,PREDICTOR=3,BIGTIFF=YES"
+grass79 -c /path/to/grassdata/albers/newmapset --exec r.slope.aspect elevation=DEM@PERMANENT slope=slope
+grass79 /path/to/grassdata/albers/newmapset --exec r.out.gdal input=slope output=/share/path/to/slope.tif type=Float32 createopt="COMPRESS=LZW,PREDICTOR=3,BIGTIFF=YES"
 
 ```
