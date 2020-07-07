@@ -52,7 +52,7 @@ In the directory you want to have your GRASS GIS spatial database do:
 mkdir grassdata
 ```
 
-Then, create the empty directory for the location called `albers` do: 
+Then, create the empty directory for the location called `albers` do:
 
 ```sh
 mkdir grassdata/albers
