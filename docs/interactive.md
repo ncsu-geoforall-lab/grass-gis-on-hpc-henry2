@@ -14,6 +14,14 @@ documentation for your platform):
 ssh login.hpc.ncsu.edu -X
 ```
 
+Start GRASS with:
+```sh
+module use --append /usr/local/usrapps/gis/modulefiles/
+module load grass/79
+grass79 /path/to/grassdata/mylocation/mymapset
+```
+
+
 Once you start GRASS GIS and the GRASS shell appears, you can start
 the graphical user interface (GUI) using the following command
 if it does not start automatically (depends on your settings):
@@ -21,3 +29,5 @@ if it does not start automatically (depends on your settings):
 ```sh
 g.gui
 ```
+
+Do not run any computations on the login node.
