@@ -11,7 +11,7 @@ Adjust this script (tiling width/height/overlap based on region and cores,
 use different module and parameters)
 and then save as tiling.py in your home folder.
 
-```
+```python
 import sys
 from grass.pygrass.modules.grid.grid import GridModule
 
@@ -46,11 +46,11 @@ if __name__ == '__main__':
 ```
 
 In the BSUB script call this script with parameters (in this case input vector name and output raster name
-```
+```sh
 grass /share/path/to/grassdata/albers/mymapset --exec python ~/tiling.py roads roads_rasterized
 ```
 Make sure the number of cores you specify match the number of processes in the script.
-Review [GridMoudle documentation](https://grass.osgeo.org/grass78/manuals/libpython/pygrass.modules.grid.html) and the documentation of the specific module you plan to use. Note that not all algorithms are suitable for this type of parallelization (e.g. flow accumulation can't be computed like that).
+Review [GridModule documentation](https://grass.osgeo.org/grass78/manuals/libpython/pygrass.modules.grid.html) and the documentation of the specific module you plan to use. Note that not all algorithms are suitable for this type of parallelization (e.g. flow accumulation can't be computed like that).
 
 If something goes wrong during the computation, there will remain temporary mapsets in your location, please remove them before trying again.
 
