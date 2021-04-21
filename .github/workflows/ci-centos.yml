@@ -3,19 +3,18 @@ name: CI in Docker on CentOS
 on:
   push:
     paths-ignore:
-      - 'docs/**'
+      - "docs/**"
       - README.md
   pull_request:
     paths-ignore:
-      - 'docs/**'
+      - "docs/**"
       - README.md
   schedule:
     # At 03:30 on Wednesday.
-    - cron:  '30 3 * * 3'
+    - cron: "30 3 * * 3"
 
 jobs:
   build:
-
     name: Build on CentOS 7
     runs-on: ubuntu-18.04
     container: centos:7

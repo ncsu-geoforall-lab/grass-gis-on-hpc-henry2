@@ -3,19 +3,18 @@ name: CI in VM on Ubuntu
 on:
   push:
     paths-ignore:
-      - 'docs/**'
+      - "docs/**"
       - README.md
   pull_request:
     paths-ignore:
-      - 'docs/**'
+      - "docs/**"
       - README.md
   schedule:
     # At 03:30 on Wednesday.
-    - cron:  '30 3 * * 3'
+    - cron: "30 3 * * 3"
 
 jobs:
   build:
-
     name: Build on Ubuntu 18.04
     runs-on: ubuntu-18.04
 
