@@ -1,5 +1,7 @@
 #!/usr/bin/tcsh
 
+# shellcheck disable=SC1071
+
 grass79 --tmp-location XY --exec \
     g.extension g.download.location
 grass79 --tmp-location XY --exec \

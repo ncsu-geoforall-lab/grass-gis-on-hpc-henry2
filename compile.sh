@@ -1,4 +1,5 @@
 #!/usr/bin/tcsh
+# shellcheck disable=SC1071
 
 # The make step requires something like:
 # setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
