@@ -1,7 +1,5 @@
 #!/usr/bin/tcsh
 
-# shellcheck disable=SC1071
-
 if ($#argv != 1) then
     echo "Usage: $0 PREFIX"
     exit 1
