@@ -3,7 +3,7 @@
 if ($#argv != 1) then
     echo "Usage: $0 PREFIX"
     exit 1
-endif
+fi
 
 set verbose
 

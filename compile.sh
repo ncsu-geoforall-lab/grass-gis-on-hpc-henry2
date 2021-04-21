@@ -5,10 +5,10 @@
 # further steps additionally require:
 # setenv PATH $PATH\:$PREFIX/bin
 
-if ($#argv != 1) then
+if ($#argv != 1); then
     echo "Usage: $0 PREFIX"
     exit 1
-endif
+fi
 
 set PREFIX=$argv[1]
 

@@ -7,5 +7,5 @@ grass79 --tmp-location XY --exec \
 
 grass79 --tmp-location XY --exec \
     python3 -m grass.gunittest.main \
-        --grassdata $HOME --location nc_spm_full_v2alpha2 --location-type nc \
-        --min-success 50
+    --grassdata $HOME --location nc_spm_full_v2alpha2 --location-type nc \
+    --min-success 50
