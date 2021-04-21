@@ -4,6 +4,6 @@
 
 Start here: [Activating](activating.md)
 
-## Conrtibute
+## Contribute
 
 If you encounter an problem, unclear wording, etc., open an issue or pull request.

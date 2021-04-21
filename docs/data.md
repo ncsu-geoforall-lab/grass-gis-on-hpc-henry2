@@ -29,9 +29,9 @@ File > Import raster data > Import of common formats... [r.import]
 ## Sharing a database between different users
 
 Often, it is advantageous to share data computed in GRASS GIS by one user among other users working on the same project.
-On some systems, it is possible to have one GRASS GIS spatial database directory or one location (directory in the databse directory)
-shared and used by more than one person. Given how the users, user groups, and permisions work on Henry2, this not possible
-to achive using a set of permissions on the directories and a different approach involving symlinks and sharing parts of the database
+On some systems, it is possible to have one GRASS GIS spatial database directory or one location (directory in the database directory)
+shared and used by more than one person. Given how the users, user groups, and permission work on Henry2, this not possible
+to achieve using a set of permissions on the directories and a different approach involving symlinks and sharing parts of the database
 needs to be employed.
 
 ### Location based on another user's location
@@ -92,8 +92,8 @@ will influence you as well. This is usually desired because when the other user 
 to your right away. However, the other user should be aware of you using their PERMANENT mapset this way in case
 some changes in CRS, name, or directory structure are needed.
 
-All the mapsets you create in this location are yours and yours only. The other users may access them depending on unix permisions,
-but from the point of view of GRASS GIS there is nothing else shared except for PERMAMENT beween your location
+All the mapsets you create in this location are yours and yours only. The other users may access them depending on unix permission,
+but from the point of view of GRASS GIS there is nothing else shared except for PERMAMENT between your location
 and the location of the other user. This means, for example, that a mapset in your location can have the same name
-as a mapset in the other user's location and you don't have to be woried about stepping on each other toes when doing parallel computing.
+as a mapset in the other user's location and you don't have to be worried about stepping on each other toes when doing parallel computing.
 
