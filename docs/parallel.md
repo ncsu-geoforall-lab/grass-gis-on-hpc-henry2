@@ -4,6 +4,40 @@
 
 ### Modules which allow parallel processing
 
+Some core modules, e.g., r.sun, r.sim.water, or v.surf.rst, and some addon modules, e.g.,
+modules r.sun.hourly and r.sun.daily, allow parallel processing internally,
+i.e., are parallelized.
+
+These modules usually have a parameter called `nprocs` which determines how many cores
+it will use for the parallel part of the computation. All core GRASS GIS modules use only
+one core by default to ensure they don't use more resources than expected
+(if you think that's not the case, open an issue).
+
+To take advantage of this parallelism, you need to request one node, exclusive use of that node,
+and one process per node using:
+
+```sh
+#BSUB -n 1
+#BSUB -x
+#BSUB -R span[ptile=1]
+```
+
+Many modules also allow you to set memory they will using using parameter `memory`
+(often in MiB).
+
+```sh
+#BSUB -n 1
+#BSUB -x
+#BSUB -R span[ptile=1]
+#BSUB -R "rusage[mem=50GB]"
+```
+
+For those modules which don't allow specifying memory, you need to consult
+the documentation and test the computation with your data so that you know
+the memory requirements. Most modules keep the memory requirements minimal,
+but often raster modules load at least one row of data into memory.
+Some modules need to load all data into memory.
+
 ### The GridModule Python API
 
 This example shows how to rasterize vector layer by in parallel by tiling it (within 1 node).
