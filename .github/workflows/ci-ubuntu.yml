@@ -29,7 +29,7 @@ jobs:
         run: mkdir install
       - name: Set number of cores for compilation
         run: |
-          echo "::set-env name=MAKEFLAGS::-j$(nproc)"
+          echo "MAKEFLAGS=-j$(nproc)" >> $GITHUB_ENV
       - name: Get and compile dependencies
         run: tcsh -xe ./dependencies.sh $HOME/install
       - name: Get GRASS GIS compile time dependencies
@@ -40,7 +40,7 @@ jobs:
           sudo apt-get install -y python3-dateutil python3-numpy python3-ply python3-termcolor
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
-          echo "::set-env name=LD_LIBRARY_PATH::$HOME/install/lib"
+          echo "LD_LIBRARY_PATH=$HOME/install/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
         run: tcsh -xe ./compile.sh $HOME/install
       - name: Add the bin directory to PATH

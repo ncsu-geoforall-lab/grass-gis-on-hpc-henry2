@@ -38,13 +38,13 @@ jobs:
           ./Anaconda3-2020.02-Linux-x86_64.sh -b
       - name: Set variables with conda executable and activate
         run: |
-          echo "::set-env name=CONDA::/github/home/anaconda3/bin/conda"
-          echo "::set-env name=CONDA_ACTIVATE::/github/home/anaconda3/bin/activate"
+          echo "CONDA=/github/home/anaconda3/bin/conda" >> $GITHUB_ENV
+          echo "CONDA_ACTIVATE=/github/home/anaconda3/bin/activate" >> $GITHUB_ENV
       - name: Create installation directory
         run: mkdir install
       - name: Set number of cores for compilation
         run: |
-          echo "::set-env name=MAKEFLAGS::-j$(nproc)"
+          echo "MAKEFLAGS=-j$(nproc)" >> $GITHUB_ENV
       - name: Get and compile dependencies
         run: tcsh -xe ./dependencies.sh $HOME/install
       - name: Get GRASS GIS compile time yum dependencies
@@ -63,7 +63,7 @@ jobs:
           $CONDA install -y -c anaconda numpy wxpython python-dateutil ply termcolor
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
-          echo "::set-env name=LD_LIBRARY_PATH::$HOME/install/lib"
+          echo "LD_LIBRARY_PATH=$HOME/install/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
         run: |
           source $CONDA_ACTIVATE
