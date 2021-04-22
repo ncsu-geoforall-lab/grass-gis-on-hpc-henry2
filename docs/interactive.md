@@ -18,7 +18,7 @@ Start GRASS with:
 ```sh
 module use --append /usr/local/usrapps/gis/modulefiles/
 module load grass/79
-grass79 /path/to/grassdata/mylocation/mymapset
+grass79 /path/to/grassdata/my_location/my_mapset
 ```
 
 
