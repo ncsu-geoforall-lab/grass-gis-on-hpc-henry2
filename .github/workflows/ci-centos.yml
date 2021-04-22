@@ -70,7 +70,7 @@ jobs:
           tcsh -xe ./compile.sh $HOME/install
       - name: Add the bin directory to PATH
         run: |
-          echo "::add-path::$HOME/install/bin"
+          echo "$HOME/install/bin" >> $GITHUB_PATH
       - name: Basic test of GRASS GIS
         run: |
           source $CONDA_ACTIVATE
