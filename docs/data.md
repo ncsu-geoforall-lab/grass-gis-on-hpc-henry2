@@ -1,5 +1,12 @@
 # Managing data
 
+## Preparing the data locally
+
+You can prepare a GRASS Location locally, create an archive (e.g., ZIP), and upload to HPC
+or you can use the GeoTIFF -> GRASS GIS -> GeoTIFF workflow, i.e., what you bring to and
+out of HPC is GeoTIFF rather than the GRASS Location and you create a one on HPC and
+delete it later.
+
 ## Importing data to the GRASS GIS database
 
 Similarly to loading or importing data into R, Python NumPy, or PostgreSQL,
