@@ -130,7 +130,7 @@ mapset at the end. Creating and deleting a mapset is done automatically when you
 the `--tmp-mapset` option, so you just need to use it together with path to the
 location, `--exec` option and path to your script.
 
-```
+```sh
 grass --tmp-mapset .../grassdata/project --exec python .../scripts/single_task.py output=out_1.txt coordinates=518205,3485625
 grass --tmp-mapset .../grassdata/project --exec python .../scripts/single_task.py output=out_2.txt coordinates=518235,3485625
 grass --tmp-mapset .../grassdata/project --exec python .../scripts/single_task.py output=out_3.txt coordinates=518265,3485625
@@ -151,7 +151,7 @@ the standard `rm` command. The `-c` option can be used together with `--exec`.
 However, you will need to execute the `rm` command(s) only later, after you gather
 the data from the individual mapsets. The `tasks.txt` file may look like this:
 
-```
+```sh
 grass -c .../grassdata/project/temp_1 --exec python .../scripts/single_task.py coordinates=518265,3485625
 grass -c .../grassdata/project/temp_2 --exec python .../scripts/single_task.py coordinates=518235,3485625
 grass -c .../grassdata/project/temp_3 --exec python .../scripts/single_task.py coordinates=518265,3485625
