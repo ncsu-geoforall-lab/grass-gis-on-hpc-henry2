@@ -1,11 +1,35 @@
 # Managing data
 
+## GRASS GIS as part of a larger workflow
+
+When you are using GRASS GIS as part of a larger workflow in R or Python,
+you may want to just create the GRASS location in your script right before
+you import data there and start processing. Once the processing is done, you export
+the data and delete the location.
+
+## GRASS GIS as a primary tool used
+
+If you are doing a lot of processing in GRASS GIS or it is your primary geospatial
+processing tool, you probably keep the data in GRASS Location or multiple Locations.
+On Henry2, this workflow is best achieved by using Research Storage for the data,
+but it can be also achieved by simply copying the data around.
+In any case, you create a separate mapset for your processing and multiple
+mapsets for parallel processing and you delete these mapsets once you are finished
+post-processing or aggregating the data in these mapsets.
+
 ## Preparing the data locally
 
 You can prepare a GRASS Location locally, create an archive (e.g., ZIP), and upload to HPC
 or you can use the GeoTIFF -> GRASS GIS -> GeoTIFF workflow, i.e., what you bring to and
 out of HPC is GeoTIFF rather than the GRASS Location and you create a one on HPC and
 delete it later.
+
+The version (the build to be exact) of GRASS GIS you will use locally likely uses the
+new ZSTD compression by default, but GRASS on HPC does not support it yet.
+To be able to transfer the dataset as is to HPC, you need to change the compression on
+your local machine. It is a combination of setting environmental variables and
+running r.compress module. The [r.compress manual](https://grass.osgeo.org/grass78/manuals/r.compress.html#applying-zlib-compression)
+covers the steps how to change to ZLIB compression.
 
 ## Importing data to the GRASS GIS database
 
@@ -27,11 +51,11 @@ File > Import raster data > Import of common formats... [r.import]
 
 ## Exporting data from the GRASS GIS database
 
-## Computational region
+Export a GeoTIFF using:
 
-## GRASS GIS as part of a larger processing workflow
-
-## GRASS GIS as a primary tool used
+```sh
+r.out.gdal input=dem output=/.../dem.tif
+```
 
 ## Sharing a database between different users
 
@@ -104,3 +128,26 @@ but from the point of view of GRASS GIS there is nothing else shared except for 
 and the location of the other user. This means, for example, that a mapset in your location can have the same name
 as a mapset in the other user's location and you don't have to be worried about stepping on each other toes when doing parallel computing.
 
+## Computational region
+
+For most formats, the data is imported in their full extend.
+However, the subsequent computations use extend and resolution from the
+(current) computational region if extend or resolution are needed.
+Most raster operations depend on the computational region while
+most vector operations do not.
+Sometimes, the import can be limited to only the current computational region.
+Export is usually limited to the current computational region only for rasters.
+
+The computational region needs to be set before the computation begins
+and it is associated with one mapset. However, there are tools to change
+computational region only for part of the computation. This is used for
+parallelizing or optimizing the computations or for testing.
+
+For large datasets, computational region allows to perform the computation for only
+part of the dataset. The individual results can be patched together later.
+
+It is generally a good idea to make the code region-independent as much as possible,
+i.e., push the computation region settings high in the code structure.
+However, for running a job, the computational region should be somewhere
+otherwise it will rely on whatever is the (last set) computational region in the
+current mapset.
