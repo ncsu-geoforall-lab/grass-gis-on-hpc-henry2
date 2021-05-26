@@ -3,7 +3,9 @@
 # The make step requires something access to dynamically linked libraries:
 # LD_LIBRARY_PATH=$PREFIX/lib:$LD_LIBRARY_PATH
 
-if [[ $# -ne 3 ]] then
+set -o errexit
+
+if [[ $# -ne 3 ]]; then
     echo >&2 "Usage: $0 GRASS_VERSION LIB_PREFIX INSTALL_PREFIX"
     exit 1
 fi
@@ -14,7 +16,7 @@ INSTALL_PREFIX=$3
 
 # Get the code
 
-git clone --depth=1 --branch GRASS_VERSION https://github.com/OSGeo/grass.git grass-code
+git clone --depth=1 --branch $GRASS_VERSION https://github.com/OSGeo/grass.git grass-code
 
 cd grass-code
 
