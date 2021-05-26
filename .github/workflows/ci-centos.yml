@@ -40,8 +40,6 @@ jobs:
       - name: Set number of cores for compilation
         run: |
           echo "MAKEFLAGS=-j$(nproc)" >> $GITHUB_ENV
-      - name: Get and compile dependencies
-        run: tcsh -xe ./dependencies.sh $HOME/install
       - name: Get GRASS GIS compile time yum dependencies
         run: |
           yum install -y zlib-devel gcc-c++ \
