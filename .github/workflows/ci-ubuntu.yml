@@ -29,16 +29,19 @@ jobs:
       - name: Set number of cores for compilation
         run: |
           echo "MAKEFLAGS=-j$(nproc)" >> $GITHUB_ENV
+      - name: Set directory for the conda environment
+        run: |
+          echo "CONDA_PREFIX=$HOME/conda-env" >> $GITHUB_ENV
       - uses: conda-incubator/setup-miniconda@v2
         with:
-          activate-environment: ${{ env.HOME }}/conda-env
+          activate-environment: ${{ env.CONDA_PREFIX }}
       - name: Get and compile dependencies
-        run: conda create --yes --file environment.yml --prefix $HOME/conda-env
+        run: conda create --yes --file environment.yml --prefix $CONDA_PREFIX
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
-          echo "LD_LIBRARY_PATH=$HOME/conda-env/lib" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
-        run: bash ./compile.sh master $HOME/conda-env $HOME/install
+        run: bash ./compile.sh master $CONDA_PREFIX $HOME/install
       - name: Add the bin directory to PATH
         run: |
           echo "$HOME/install/bin" >> $GITHUB_PATH
