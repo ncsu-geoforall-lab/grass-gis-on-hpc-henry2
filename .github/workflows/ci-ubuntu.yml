@@ -31,7 +31,7 @@ jobs:
           echo "MAKEFLAGS=-j$(nproc)" >> $GITHUB_ENV
       - name: Set directory for the conda environment
         run: |
-          echo "CONDA_PREFIX=$HOME/conda-env" >> $GITHUB_ENV
+          echo "CONDA_PREFIX=$HOME/grass-conda-env" >> $GITHUB_ENV
       - uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: ${{ env.CONDA_PREFIX }}
