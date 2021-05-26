@@ -15,38 +15,34 @@ on:
 
 jobs:
   build:
-    name: Build on Ubuntu 18.04
-    runs-on: ubuntu-18.04
+    name: Build on Ubuntu 20.04
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
       - name: Get basic dependencies
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y wget git cmake tcsh
-          sudo apt-get install -y build-essential
+          sudo apt-get install -y wget git build-essential
       - name: Create installation directory
         run: mkdir install
       - name: Set number of cores for compilation
         run: |
           echo "MAKEFLAGS=-j$(nproc)" >> $GITHUB_ENV
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: ${{ env.HOME }}/conda-env
       - name: Get and compile dependencies
-        run: tcsh -xe ./dependencies.sh $HOME/install
-      - name: Get GRASS GIS compile time dependencies
-        run: |
-          sudo apt-get install -y flex bison zlib1g-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev libfftw3-dev libcairo-dev python3-six
-      - name: Get GRASS GIS runtime time dependencies
-        run: |
-          sudo apt-get install -y python3-dateutil python3-numpy python3-ply python3-termcolor
+        run: conda create --yes --file environment.yml --prefix $HOME/conda-env
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
-          echo "LD_LIBRARY_PATH=$HOME/install/lib" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH=$HOME/conda-env/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
-        run: tcsh -xe ./compile.sh $HOME/install
+        run: bash ./compile.sh master $HOME/conda-env $HOME/install
       - name: Add the bin directory to PATH
         run: |
           echo "$HOME/install/bin" >> $GITHUB_PATH
       - name: Basic test of GRASS GIS
-        run: tcsh -xe ./test.sh
+        run: bash ./test.sh
       - name: Thorough test of GRASS GIS
-        run: tcsh -xe ./test-thorough.sh
+        run: bash ./test-thorough.sh

@@ -24,13 +24,8 @@ jobs:
       - name: Get basic dependencies
         run: |
           yum update -y
-          yum install -y wget git tcsh
+          yum install -y wget git
           yum groupinstall -y 'Development Tools'
-      - name: Install more recent CMake
-        run: |
-          wget https://github.com/Kitware/CMake/releases/download/v3.16.6/cmake-3.16.6-Linux-x86_64.sh
-          chmod u+x cmake-3.16.6-Linux-x86_64.sh
-          ./cmake-3.16.6-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir --skip-license
       - name: Install conda
         run: |
           wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
@@ -60,22 +55,22 @@ jobs:
       - name: Get GRASS GIS runtime conda dependencies
         run: |
           source $CONDA_ACTIVATE
-          $CONDA install -y -c anaconda numpy wxpython python-dateutil ply termcolor
+          conda install --yes --file environment.yml --prefix $HOME/conda-env
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
-          echo "LD_LIBRARY_PATH=$HOME/install/lib" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH=$HOME/conda-env/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
         run: |
           source $CONDA_ACTIVATE
-          tcsh -xe ./compile.sh $HOME/install
+          bash ./compile.sh $HOME/install
       - name: Add the bin directory to PATH
         run: |
           echo "$HOME/install/bin" >> $GITHUB_PATH
       - name: Basic test of GRASS GIS
         run: |
           source $CONDA_ACTIVATE
-          tcsh -xe ./test.sh
+          bash ./test.sh
       - name: Thorough test of GRASS GIS
         run: |
           source $CONDA_ACTIVATE
-          tcsh -xe ./test-thorough.sh
+          bash ./test-thorough.sh
