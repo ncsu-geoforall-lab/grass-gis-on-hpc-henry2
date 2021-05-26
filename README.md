@@ -52,7 +52,7 @@ module load conda
 Get and compile dependencies using conda:
 
 ```bash
-conda create --yes --file environment.yml --prefix $CONDA_PREFIX
+conda env create --yes --file environment.yml --prefix $CONDA_PREFIX
 ```
 
 To make GRASS GIS compile and run, set:

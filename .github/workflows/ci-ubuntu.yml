@@ -36,7 +36,7 @@ jobs:
         with:
           activate-environment: ${{ env.CONDA_PREFIX }}
       - name: Get and compile dependencies
-        run: conda create --yes --file environment.yml --prefix $CONDA_PREFIX
+        run: conda env create --yes --file environment.yml --prefix $CONDA_PREFIX
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
