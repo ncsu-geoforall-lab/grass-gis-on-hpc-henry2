@@ -81,6 +81,7 @@
     "pthread",
     "ptile",
     "pygrass",
+    "pyyaml",
     "rast",
     "rasterize",
     "rasterized",
