@@ -35,15 +35,21 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: ${{ env.CONDA_PREFIX }}
+      - name: Test conda environment
+        run: |
+          ls $CONDA_PREFIX
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
+        shell: bash -l {0}
         run: bash ./compile.sh master $CONDA_PREFIX $HOME/install
       - name: Add the bin directory to PATH
         run: |
           echo "$HOME/install/bin" >> $GITHUB_PATH
       - name: Basic test of GRASS GIS
+        shell: bash -l {0}
         run: bash ./test.sh
       - name: Thorough test of GRASS GIS
+        shell: bash -l {0}
         run: bash ./test-thorough.sh
