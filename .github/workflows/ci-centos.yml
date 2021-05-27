@@ -31,12 +31,14 @@ jobs:
           wget https://repo.anaconda.com/archive/$CONDA_INSTALLER
           chmod u+x $CONDA_INSTALLER
           ./$CONDA_INSTALLER -b
-          $CONDA update -n base -c defaults conda
       - name: Set variables with conda executable and activate
         run: |
           echo "CONDA=/github/home/anaconda3/bin/conda" >> $GITHUB_ENV
           echo "CONDA_PREFIX=$HOME/conda-env" >> $GITHUB_ENV
           echo "CONDA_BUILD=1" >> $GITHUB_ENV
+      - name: Ensure latest conda
+        run: |
+          $CONDA update -n base -c defaults conda
       - name: Create installation directory
         run: mkdir install
       - name: Set number of cores for compilation
