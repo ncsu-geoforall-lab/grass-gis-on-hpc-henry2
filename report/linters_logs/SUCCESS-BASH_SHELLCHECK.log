@@ -1,8 +1,0 @@
-Results of shellcheck linter (version 0.7.2)
-See documentation on https://nvuillam.github.io/mega-linter/descriptors/bash_shellcheck/
------------------------------------------------
-
-✅ [SUCCESS] compile.sh
-✅ [SUCCESS] dependencies.sh
-✅ [SUCCESS] test-quick.sh
-✅ [SUCCESS] test-thorough.sh
