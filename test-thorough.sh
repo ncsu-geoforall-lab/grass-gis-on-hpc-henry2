@@ -1,11 +1,23 @@
 #!/usr/bin/bash
 
-grass79 --tmp-location XY --exec \
+set -o errexit
+
+if [[ $# -ne 2 ]]; then
+    echo >&2 "Usage: $0 GRASS_COMMAND GRASS_SOURCE_CODE"
+    exit 1
+fi
+
+GRASS_COMMAND="$1"
+GRASS_SOURCE_CODE="$2"
+
+"$GRASS_COMMAND" --tmp-location XY --exec \
     g.extension g.download.location
-grass79 --tmp-location XY --exec \
+"$GRASS_COMMAND" --tmp-location XY --exec \
     g.download.location url=http://fatra.cnr.ncsu.edu/data/nc_spm_full_v2alpha2.tar.gz dbase="$HOME"
 
-grass79 --tmp-location XY --exec \
+cd "$GRASS_SOURCE_CODE"
+
+"$GRASS_COMMAND" --tmp-location XY --exec \
     python3 -m grass.gunittest.main \
     --grassdata "$HOME" --location nc_spm_full_v2alpha2 --location-type nc \
     --min-success 50

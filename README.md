@@ -70,9 +70,11 @@ bash ./compile.sh master $CONDA_PREFIX $INSTALL_PREFIX
 Test:
 
 ```bash
-bash ./test-quick.sh
-bash ./test-thorough.sh
+bash ./test-quick.sh grass79
+bash ./test-thorough.sh grass79 grass-code
 ```
+
+(`grass-code` is hardcoded in the `compile.sh` script.)
 
 Test interactively, possibly with GUI (assuming you can run GUI applications):
 

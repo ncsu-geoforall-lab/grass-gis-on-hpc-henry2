@@ -70,7 +70,7 @@ jobs:
           echo "$HOME/install/bin" >> $GITHUB_PATH
       - name: Basic test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test-quick.sh
+        run: bash ./test-quick.sh grass79
       - name: Thorough test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test-thorough.sh
+        run: bash ./test-thorough.sh grass79 grass-code
