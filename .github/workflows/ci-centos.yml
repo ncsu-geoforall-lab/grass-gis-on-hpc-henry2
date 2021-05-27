@@ -53,6 +53,12 @@ jobs:
       - name: Get GRASS GIS runtime conda dependencies
         run: |
           $CONDA env create --file environment.yml --prefix $CONDA_PREFIX
+      - name: Examine the new conda environment
+        run: |
+          ls $CONDA_PREFIX
+          ls $CONDA_PREFIX/bin
+          ls $CONDA_PREFIX/include
+          ls $CONDA_PREFIX/lib
       - name: Set variables with conda executable and activate
         run: |
           echo "CONDA_ACTIVATE=$CONDA_PREFIX/lib/python*/venv/scripts/common/activate" >> $GITHUB_ENV

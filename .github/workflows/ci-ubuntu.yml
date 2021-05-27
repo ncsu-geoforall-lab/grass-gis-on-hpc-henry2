@@ -34,10 +34,14 @@ jobs:
           echo "CONDA_PREFIX=$HOME/grass-conda-env" >> $GITHUB_ENV
       - uses: conda-incubator/setup-miniconda@v2
         with:
+          environment-file: environment.yml
           activate-environment: ${{ env.CONDA_PREFIX }}
-      - name: Test conda environment
+      - name: Examine the new conda environment
         run: |
           ls $CONDA_PREFIX
+          ls $CONDA_PREFIX/bin
+          ls $CONDA_PREFIX/include
+          ls $CONDA_PREFIX/lib
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
