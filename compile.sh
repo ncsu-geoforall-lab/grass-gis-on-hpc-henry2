@@ -20,6 +20,12 @@ git clone --depth=1 --branch "$GRASS_VERSION" https://github.com/OSGeo/grass.git
 
 cd grass-code
 
+# Apply patches to GRASS GIS source code
+
+for FILE in ../patches/*.patch; do
+    patch -p0 < "$FILE"
+done
+
 # Configure with dependencies
 
 ./configure \
