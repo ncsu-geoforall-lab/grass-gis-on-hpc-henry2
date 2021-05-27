@@ -40,11 +40,6 @@ jobs:
       - name: Set number of cores for compilation
         run: |
           echo "MAKEFLAGS=-j$(nproc)" >> $GITHUB_ENV
-      - name: Install more recent GCC
-        run: |
-          yum install -y centos-release-scl
-          yum-config-manager --enable rhel-server-rhscl-7-rpms
-          yum install -y devtoolset-7
       - name: Get GRASS GIS compile time yum dependencies
         run: |
           yum install -y zlib-devel \
@@ -58,6 +53,13 @@ jobs:
       - name: Get GRASS GIS runtime conda dependencies
         run: |
           $CONDA env create --file environment.yml --prefix $CONDA_PREFIX
+      - name: Set variables with conda executable and activate
+        run: |
+          echo "CONDA_ACTIVATE=$CONDA_PREFIX/lib/python*/venv/scripts/common/activate" >> $GITHUB_ENV
+      - name: Install more recent GCC
+        run: |
+          source $CONDA_ACTIVATE
+          conda install --yes gcc
       - name: Examine the new conda environment
         run: |
           echo "In environment:"
@@ -70,16 +72,12 @@ jobs:
           ls $CONDA_PREFIX/include
           echo "In environment's lib:"
           ls $CONDA_PREFIX/lib
-      - name: Set variables with conda executable and activate
-        run: |
-          echo "CONDA_ACTIVATE=$CONDA_PREFIX/lib/python*/venv/scripts/common/activate" >> $GITHUB_ENV
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
         run: |
           source $CONDA_ACTIVATE
-          source /opt/rh/devtoolset-7/enable
           bash ./compile.sh master $CONDA_PREFIX $HOME/install
       - name: Add the bin directory to PATH
         run: |
