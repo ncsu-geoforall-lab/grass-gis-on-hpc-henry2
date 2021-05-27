@@ -10,74 +10,74 @@ if [[ $# -ne 3 ]]; then
     exit 1
 fi
 
-GRASS_VERSION=$1
-LIBS=$2
-INSTALL_PREFIX=$3
+GRASS_VERSION="$1"
+LIBS="$2"
+INSTALL_PREFIX="$3"
 
 # Get the code
 
-git clone --depth=1 --branch $GRASS_VERSION https://github.com/OSGeo/grass.git grass-code
+git clone --depth=1 --branch "$GRASS_VERSION" https://github.com/OSGeo/grass.git grass-code
 
 cd grass-code
 
 # Configure with dependencies
 
 ./configure \
-    --prefix=$INSTALL_PREFIX/ \
+    --prefix="$INSTALL_PREFIX"/ \
     --with-openmp \
     --with-pthread \
     --with-freetype \
-    --with-freetype-includes=$LIBS/include/freetype2 \
-    --with-freetype-libs=$LIBS/lib \
-    --with-gdal=$LIBS/bin/gdal-config \
-    --with-gdal-libs=$LIBS/lib \
-    --with-proj=$LIBS/bin/proj \
-    --with-proj-includes=$LIBS/include \
-    --with-proj-libs=$LIBS/lib \
-    --with-proj-share=$LIBS/share/proj \
-    --with-geos=$LIBS/bin/geos-config \
-    --with-jpeg-includes=$LIBS/include \
-    --with-jpeg-libs=/$LIBS/lib \
-    --with-png-includes=$LIBS/include \
-    --with-png-libs=$LIBS/lib \
-    --with-tiff-includes=$LIBS/include \
-    --with-tiff-libs=$LIBS/lib \
+    --with-freetype-includes="$LIBS"/include/freetype2 \
+    --with-freetype-libs="$LIBS"/lib \
+    --with-gdal="$LIBS"/bin/gdal-config \
+    --with-gdal-libs="$LIBS"/lib \
+    --with-proj="$LIBS"/bin/proj \
+    --with-proj-includes="$LIBS"/include \
+    --with-proj-libs="$LIBS"/lib \
+    --with-proj-share="$LIBS"/share/proj \
+    --with-geos="$LIBS"/bin/geos-config \
+    --with-jpeg-includes="$LIBS"/include \
+    --with-jpeg-libs="$LIBS"/lib \
+    --with-png-includes="$LIBS"/include \
+    --with-png-libs="$LIBS"/lib \
+    --with-tiff-includes="$LIBS"/include \
+    --with-tiff-libs="$LIBS"/lib \
     --with-postgres=yes \
-    --with-postgres-includes=$LIBS/include \
-    --with-postgres-libs=$LIBS/lib \
+    --with-postgres-includes="$LIBS"/include \
+    --with-postgres-libs="$LIBS"/lib \
     --without-mysql \
     --with-sqlite \
-    --with-sqlite-libs=$LIBS/lib \
-    --with-sqlite-includes=$LIBS/include \
-    --with-fftw-includes=$LIBS/include \
-    --with-fftw-libs=$LIBS/lib \
+    --with-sqlite-libs="$LIBS"/lib \
+    --with-sqlite-includes="$LIBS"/include \
+    --with-fftw-includes="$LIBS"/include \
+    --with-fftw-libs="$LIBS"/lib \
     --with-cxx \
     --with-cairo \
-    --with-cairo-includes=$LIBS/include/cairo \
-    --with-cairo-libs=$LIBS/lib \
+    --with-cairo-includes="$LIBS"/include/cairo \
+    --with-cairo-libs="$LIBS"/lib \
     --with-cairo-ldflags="-lcairo" \
     --with-zstd \
-    --with-zstd-libs=$LIBS/lib \
-    --with-zstd-includes=$LIBS/include \
+    --with-zstd-libs="$LIBS"/lib \
+    --with-zstd-includes="$LIBS"/include \
     --with-bzlib \
-    --with-bzlib-libs=$LIBS/lib \
-    --with-bzlib-includes=$LIBS/include \
-    --with-netcdf=$LIBS/bin/nc-config \
+    --with-bzlib-libs="$LIBS"/lib \
+    --with-bzlib-includes="$LIBS"/include \
+    --with-netcdf="$LIBS"/bin/nc-config \
     --with-blas \
-    --with-blas-libs=$LIBS/lib \
-    --with-blas-includes=$LIBS/include \
+    --with-blas-libs="$LIBS"/lib \
+    --with-blas-includes="$LIBS"/include \
     --with-lapack \
-    --with-lapack-includes=$LIBS/include \
-    --with-lapack-libs=$LIBS/lib \
-    --with-netcdf=$LIBS/bin/nc-config \
+    --with-lapack-includes="$LIBS"/include \
+    --with-lapack-libs="$LIBS"/lib \
+    --with-netcdf="$LIBS"/bin/nc-config \
     --with-nls \
-    --with-libs=$LIBS/lib \
-    --with-includes=$LIBS/include \
-    --with-pdal=$LIBS/bin/pdal-config \
-    --with-pdal-libs=$LIBS/lib \
+    --with-libs="$LIBS"/lib \
+    --with-includes="$LIBS"/include \
+    --with-pdal="$LIBS"/bin/pdal-config \
+    --with-pdal-libs="$LIBS"/lib \
     --with-readline \
-    --with-readline-includes=$LIBS/include/readline \
-    --with-readline-libs=$LIBS/lib
+    --with-readline-includes="$LIBS"/include/readline \
+    --with-readline-libs="$LIBS"/lib
 
 # Compile and install
 
