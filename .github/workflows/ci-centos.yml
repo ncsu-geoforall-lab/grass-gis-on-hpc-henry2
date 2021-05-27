@@ -69,7 +69,7 @@ jobs:
       - name: Basic test of GRASS GIS
         run: |
           source $CONDA_ACTIVATE
-          bash ./test.sh
+          bash ./test-quick.sh
       - name: Thorough test of GRASS GIS
         run: |
           source $CONDA_ACTIVATE

@@ -1,4 +1,4 @@
-#!/usr/bin/tcsh
+#!/usr/bin/bash
 
 grass79 --tmp-location XY --exec \
     g.extension g.download.location
