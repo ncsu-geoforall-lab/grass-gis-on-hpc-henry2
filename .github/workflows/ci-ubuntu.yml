@@ -24,6 +24,17 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y wget git build-essential
+      - name: Install dependencies which are on Henry2, so not in conda environment
+        run: |
+          sudo apt-get install -y \
+            flex \
+            bison \
+            zlib1g-dev \
+            libpng-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev \
+            libfftw3-dev \
+            libcairo-dev
       - name: Create installation directory
         run: mkdir install
       - name: Set number of cores for compilation
