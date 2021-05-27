@@ -59,7 +59,7 @@ jobs:
       - name: Install more recent GCC
         run: |
           source $CONDA_ACTIVATE
-          $CONDA install --yes gcc
+          $CONDA install --yes -c conda-forge gcc
       - name: Examine the new conda environment
         run: |
           echo "In environment:"
