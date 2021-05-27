@@ -42,7 +42,7 @@ jobs:
           echo "MAKEFLAGS=-j$(nproc)" >> $GITHUB_ENV
       - name: Install more recent GCC
         run: |
-          sudo yum install devtoolset-7
+          yum install devtoolset-7
       - name: Get GRASS GIS compile time yum dependencies
         run: |
           yum install -y zlib-devel \
