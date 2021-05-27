@@ -35,7 +35,6 @@ jobs:
         run: |
           echo "CONDA=/github/home/anaconda3/bin/conda" >> $GITHUB_ENV
           echo "CONDA_PREFIX=$HOME/conda-env" >> $GITHUB_ENV
-          echo "CONDA_ACTIVATE=$HOME/conda-env/bin/activate" >> $GITHUB_ENV
       - name: Create installation directory
         run: mkdir install
       - name: Set number of cores for compilation
@@ -54,6 +53,9 @@ jobs:
       - name: Get GRASS GIS runtime conda dependencies
         run: |
           $CONDA env create --file environment.yml --prefix $CONDA_PREFIX
+      - name: Set variables with conda executable and activate
+        run: |
+          echo "CONDA_ACTIVATE=$CONDA_PREFIX/lib/python*/venv/scripts/common/activate" >> $GITHUB_ENV
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
