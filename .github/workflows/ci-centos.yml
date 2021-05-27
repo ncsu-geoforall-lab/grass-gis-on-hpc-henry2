@@ -25,12 +25,12 @@ jobs:
         run: |
           yum update -y
           yum install -y wget git
-          yum groupinstall -y 'Development Tools'
       - name: Install conda
         run: |
-          wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-          chmod u+x Anaconda3-2020.02-Linux-x86_64.sh
+          wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh
+          chmod u+x Anaconda3-2021.05-Linux-x86_64.sh
           ./Anaconda3-2020.02-Linux-x86_64.sh -b
+          $CONDA update -n base -c defaults conda
       - name: Set variables with conda executable and activate
         run: |
           echo "CONDA=/github/home/anaconda3/bin/conda" >> $GITHUB_ENV
@@ -60,7 +60,7 @@ jobs:
       - name: Install more recent GCC
         run: |
           source $CONDA_ACTIVATE
-          $CONDA install --yes -c conda-forge gcc_linux-64 gxx_linux-64
+          $CONDA install --yes -c conda-forge gcc_linux-64 gxx_linux-64 --prefix $CONDA_PREFIX
       - name: Examine the new conda environment
         run: |
           echo "In environment:"
