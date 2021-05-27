@@ -1,5 +1,5 @@
---- a/include/Make/Platform.make.in
-+++ b/include/Make/Platform.make.in
+--- include/Make/Platform.make.in
++++ include/Make/Platform.make.in
 @@ -62,7 +62,7 @@ STLIB_SUFFIX        = @STLIB_SUFFIX@
  
  #shared libs
