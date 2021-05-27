@@ -36,6 +36,7 @@
     "dateutil",
     "dbase",
     "devel",
+    "devtoolset",
     "eval",
     "fftw",
     "fkirc",
