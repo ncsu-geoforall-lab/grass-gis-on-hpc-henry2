@@ -25,6 +25,7 @@ jobs:
         run: |
           yum update -y
           yum install -y wget git
+          yum groupinstall -y 'Development Tools'
       - name: Install conda
         run: |
           CONDA_INSTALLER=Anaconda3-2021.05-Linux-x86_64.sh
