@@ -77,7 +77,10 @@ cd grass-code
     --with-pdal-libs="$LIBS"/lib \
     --with-readline \
     --with-readline-includes="$LIBS"/include/readline \
-    --with-readline-libs="$LIBS"/lib
+    --with-readline-libs="$LIBS"/lib \
+    || (cat "config.log" && \
+    echo "ERROR in configure step. Log printed after the configure output" && \
+    exit 1)
 
 # Compile and install
 
