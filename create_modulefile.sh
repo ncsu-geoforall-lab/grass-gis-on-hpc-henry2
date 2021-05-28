@@ -2,7 +2,7 @@
 
 set -o errexit
 
-if [[ $# -ne 3 ]]; then
+if [[ $# -ne 5 ]]; then
     echo >&2 "Usage: $0 SYSTEM_CONDA_BIN CONDA_ENV_PREFIX GRASS_INSTALL_PREFIX GRASS_VERSION GRASS_SYMLINK_BASE"
     exit 1
 fi
