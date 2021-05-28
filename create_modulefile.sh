@@ -21,7 +21,7 @@ prepend-path PATH {$GRASS_INSTALL_PREFIX/bin};
 EOF
 
 if [ -f "$GRASS_SYMLINK_BASE/$GRASS_VERSION" ]; then
-    echo prepend-path PATH {$GRASS_SYMLINK_BASE/$GRASS_VERSION};
+    echo prepend-path PATH "{$GRASS_SYMLINK_BASE/$GRASS_VERSION};"
 fi
 
 cat <<EOF
