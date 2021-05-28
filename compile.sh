@@ -16,7 +16,7 @@ INSTALL_PREFIX="$3"
 
 # Get the code
 
-git clone --depth=1 --branch "$GRASS_VERSION" https://github.com/OSGeo/grass.git grass-code
+git clone --depth=1 --branch "$GRASS_VERSION" https://github.com/OSGeo/grass.git grass-code-"$GRASS_VERSION"
 
 cd grass-code
 
