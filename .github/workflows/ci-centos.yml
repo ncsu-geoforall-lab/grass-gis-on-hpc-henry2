@@ -76,6 +76,10 @@ jobs:
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
+      - name: "Make sh into bash"
+        run: |
+          rm /bin/sh
+          ln -s /usr/bin/bash /bin/sh
       - name: Get and compile GRASS GIS
         run: |
           source $CONDA_ACTIVATE
