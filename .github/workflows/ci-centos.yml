@@ -62,8 +62,8 @@ jobs:
           echo "CONDA_ACTIVATE=$CONDA_PREFIX/lib/python*/venv/scripts/common/activate" >> $GITHUB_ENV
       - name: Install more recent GCC
         run: |
-          yum install centos-release-scl
-          yum install devtoolset-8-gcc devtoolset-8-gcc-c++
+          yum install -y centos-release-scl
+          yum install -y devtoolset-8-gcc devtoolset-8-gcc-c++
       - name: Examine the new conda environment
         run: |
           echo "In environment:"
