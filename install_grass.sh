@@ -35,6 +35,7 @@ install_version() {
 
     conda env create --file $GRASS_INSTALL_REPO/environment.yml --prefix $CONDA_PREFIX
     export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
+    conda activate "$CONDA_PREFIX"
     ./compile.sh "$GRASS_GIT_VERSION" "$CONDA_PREFIX" "$INSTALL_PREFIX"
 
     if [ ! -f "$INSTALL_PREFIX/bin/grass" ]; then
@@ -56,6 +57,10 @@ install_version() {
 module load gcc
 module load conda
 
+eval "$(conda shell.bash hook)"
+
+mkdir -p $BASE_DIR
+mkdir -p $MODULE_FILES_DIR
 mkdir -p $GRASS_SYMLINK_BASE
 
 install_version "$1" "$2" "$3"
