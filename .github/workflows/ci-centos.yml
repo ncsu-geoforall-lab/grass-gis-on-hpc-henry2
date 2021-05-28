@@ -16,8 +16,8 @@ on:
 jobs:
   build:
     name: Build on CentOS 7
-    runs-on: ubuntu-18.04
-    container: centos:7
+    runs-on: ubuntu-20.04
+    container: centos:8
 
     steps:
       - uses: actions/checkout@v2
@@ -60,10 +60,6 @@ jobs:
       - name: Set variables with conda executable and activate
         run: |
           echo "CONDA_ACTIVATE=$CONDA_PREFIX/lib/python*/venv/scripts/common/activate" >> $GITHUB_ENV
-      - name: Install more recent GCC
-        run: |
-          yum install -y centos-release-scl
-          yum install -y devtoolset-8-gcc devtoolset-8-gcc-c++
       - name: Examine the new conda environment
         run: |
           echo "In environment:"
@@ -85,7 +81,7 @@ jobs:
       - name: Get and compile GRASS GIS
         run: |
           source $CONDA_ACTIVATE
-          scl enable devtoolset-8 -- bash ./compile.sh master $CONDA_PREFIX $HOME/install
+          bash ./compile.sh master $CONDA_PREFIX $HOME/install
       - name: Add the bin directory to PATH
         run: |
           echo "$HOME/install/bin" >> $GITHUB_PATH
