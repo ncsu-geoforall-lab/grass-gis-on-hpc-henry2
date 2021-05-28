@@ -77,6 +77,9 @@ jobs:
           ls $CONDA_PREFIX/include
           echo "In environment's lib:"
           ls $CONDA_PREFIX/lib
+          echo "Find compilers:"
+          find /root/anaconda3/ -name "x86_64-conda-linux-gnu-gcc"
+          find /root/anaconda3/ -name "x86_64-conda-linux-gnu-g++"
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
@@ -85,6 +88,10 @@ jobs:
           source $CONDA_ACTIVATE
           export CC=$(find /root/anaconda3/ -name "x86_64-conda-linux-gnu-gcc")
           export CXX=$(find /root/anaconda3/ -name "x86_64-conda-linux-gnu-g++")
+          echo CC=$CC
+          echo CXX=$CXX
+          $CC --version
+          $CXX --version
           bash ./compile.sh master $CONDA_PREFIX $HOME/install
       - name: Add the bin directory to PATH
         run: |
