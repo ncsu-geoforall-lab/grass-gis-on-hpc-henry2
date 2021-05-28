@@ -18,9 +18,9 @@ fi
 # Hardcoded paths
 GRASS_INSTALL_REPO=/usr/local/usrapps/mitasova/grass-gis-on-hpc-henry2
 BASE_DIR=/usr/local/usrapps/mitasova/grass_installs/
-MODULE_FILES_DIR=/usr/local/usrapps/mitasova/grass_installs/modulefiles
+MODULE_FILES_DIR=$BASE_DIR/modulefiles
 SYSTEM_CONDA_BIN=/usr/local/apps/miniconda/condabin
-GRASS_SYMLINK_BASE=/usr/local/usrapps/mitasova/grass_versions
+GRASS_SYMLINK_BASE=$BASE_DIR/grass_versions
 
 # The version-specific code is in a function with arguments being the version-specific
 # parts and global variables the common ones. This is mostly for documentation
@@ -30,7 +30,7 @@ install_version() {
     local GRASS_COLLAPSED_VERSION="$2"
     local GRASS_GIT_VERSION="$3"
 
-    local CONDA_PREFIX="$BASE_DIR"/grass
+    local CONDA_PREFIX="$BASE_DIR/grass/$GRASS_DOT_VERSION"
     local INSTALL_PREFIX="$CONDA_PREFIX"
 
     conda env create --file $GRASS_INSTALL_REPO/environment.yml --prefix $CONDA_PREFIX
