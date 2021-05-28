@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # The make step requires something access to dynamically linked libraries:
 # LD_LIBRARY_PATH=$PREFIX/lib:$LD_LIBRARY_PATH
