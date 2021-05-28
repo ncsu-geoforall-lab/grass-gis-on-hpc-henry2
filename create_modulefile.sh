@@ -18,7 +18,13 @@ cat <<EOF
 prepend-path PATH {$CONDA_ENV_PREFIX/bin};
 prepend-path PATH {$SYSTEM_CONDA_BIN};
 prepend-path PATH {$GRASS_INSTALL_PREFIX/bin};
-prepend-path PATH {$GRASS_SYMLINK_BASE/$GRASS_VERSION};
+EOF
+
+if [ -f "$GRASS_SYMLINK_BASE/$GRASS_VERSION" ]; then
+    echo prepend-path PATH {$GRASS_SYMLINK_BASE/$GRASS_VERSION};
+fi
+
+cat <<EOF
 prepend-path LD_LIBRARY_PATH {$GRASS_INSTALL_PREFIX/lib};
 prepend-path LD_LIBRARY_PATH {$GRASS_INSTALL_PREFIX/lib64};
 setenv CONDA_SHLVL 1;
