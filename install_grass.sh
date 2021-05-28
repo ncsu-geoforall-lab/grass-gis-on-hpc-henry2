@@ -30,7 +30,7 @@ install_version() {
     local GRASS_COLLAPSED_VERSION="$2"
     local GRASS_GIT_VERSION="$3"
 
-    local CONDA_PREFIX="$BASE_DIR/grass/$GRASS_DOT_VERSION"
+    local CONDA_PREFIX="$BASE_DIR/grass-$GRASS_DOT_VERSION"
     local INSTALL_PREFIX="$CONDA_PREFIX"
 
     conda env create --file $GRASS_INSTALL_REPO/environment.yml --prefix $CONDA_PREFIX
