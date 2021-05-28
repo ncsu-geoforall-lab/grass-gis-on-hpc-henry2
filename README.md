@@ -82,6 +82,15 @@ Test interactively, possibly with GUI (assuming you can run GUI applications):
 grass79
 ```
 
+## Install using a script
+
+Install various versions using:
+
+```bash
+./install_grass.sh 7.9 79 master
+./install_grass.sh 7.8 78 7.8.5
+```
+
 ## Run
 
 Set the environmental variables:
