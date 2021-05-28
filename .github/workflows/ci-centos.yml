@@ -49,9 +49,7 @@ jobs:
           yum install -y zlib-devel \
               mesa-libGL-devel mesa-libGLU-devel \
               libXmu-devel libX11-devel fftw-devel \
-              lesstif-devel wxGTK-devel \
-              libxml2 geos geos-devel \
-              netcdf netcdf-devel \
+              libxml2 \
               cairo-devel \
               libpng-devel
       - name: Get GRASS GIS runtime conda dependencies
