@@ -101,6 +101,7 @@
     "rasterize",
     "rasterized",
     "readline",
+    "realpath",
     "releasebranch",
     "rusage",
     "setenv",
