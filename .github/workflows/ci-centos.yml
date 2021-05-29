@@ -18,6 +18,7 @@ jobs:
     name: Build on CentOS 7
     runs-on: ubuntu-20.04
     container: centos:8
+    continue-on-error: true
 
     steps:
       - uses: actions/checkout@v2
