@@ -39,17 +39,20 @@ install_version() {
     ./compile.sh "$GRASS_GIT_VERSION" "$CONDA_PREFIX" "$INSTALL_PREFIX"
 
     if [ ! -f "$INSTALL_PREFIX/bin/grass" ]; then
+        echo >&2 "Plain grass command not in bin, creating symlink"
         mkdir -p "$GRASS_SYMLINK_BASE/$GRASS_DOT_VERSION"
         ln -sfn \
             "$(realpath -sm "$INSTALL_PREFIX/bin/grass$GRASS_COLLAPSED_VERSION")" \
             "$GRASS_SYMLINK_BASE/$GRASS_DOT_VERSION/grass"
+    else
+        echo >&2 "Plain grass command is in bin, assuming symlink is not needed"
     fi
 
     ./create_modulefile.sh \
         "$SYSTEM_CONDA_BIN" \
         "$CONDA_PREFIX" \
         "$INSTALL_PREFIX" \
-        "$GRASS_COLLAPSED_VERSION" \
+        "$GRASS_DOT_VERSION" \
         "$GRASS_SYMLINK_BASE" \
         >"$MODULE_FILES_DIR/$GRASS_DOT_VERSION"
 }

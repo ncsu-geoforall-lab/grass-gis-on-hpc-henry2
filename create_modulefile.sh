@@ -20,8 +20,13 @@ prepend-path PATH {$SYSTEM_CONDA_BIN};
 prepend-path PATH {$GRASS_INSTALL_PREFIX/bin};
 EOF
 
-if [ -f "$GRASS_SYMLINK_BASE/$GRASS_VERSION" ]; then
-    echo prepend-path PATH "{$GRASS_SYMLINK_BASE/$GRASS_VERSION};"
+
+SYMLINK_DIR="$GRASS_SYMLINK_BASE/$GRASS_VERSION"
+if [ -d "$SYMLINK_DIR" ]; then
+    echo >&2 "Adding symlink directory '$SYMLINK_DIR' to path"
+    echo prepend-path PATH "{$SYMLINK_DIR};"
+else
+    echo >&2 "Symlink directory '$SYMLINK_DIR' does not exist, assuming it is not needed"
 fi
 
 cat <<EOF
