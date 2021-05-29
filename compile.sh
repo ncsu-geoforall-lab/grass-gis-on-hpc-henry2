@@ -15,10 +15,9 @@ LIBS="$2"
 INSTALL_PREFIX="$3"
 
 # Get the code
-
-git clone --depth=1 --branch "$GRASS_VERSION" https://github.com/OSGeo/grass.git grass-code-"$GRASS_VERSION"
-
-cd grass-code
+CODE_DIR="grass-code-$GRASS_VERSION"
+git clone --depth=1 --branch "$GRASS_VERSION" https://github.com/OSGeo/grass.git $CODE_DIR
+cd $CODE_DIR
 
 # Apply patches to GRASS GIS source code
 
