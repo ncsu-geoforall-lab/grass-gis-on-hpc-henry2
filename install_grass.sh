@@ -18,7 +18,7 @@ fi
 # Hardcoded paths
 GRASS_INSTALL_REPO=/usr/local/usrapps/mitasova/grass-gis-on-hpc-henry2
 BASE_DIR=/usr/local/usrapps/mitasova/grass_installs/
-MODULE_FILES_DIR=$BASE_DIR/modulefiles
+MODULE_FILES_DIR=$BASE_DIR/modulefiles/grass
 SYSTEM_CONDA_BIN=/usr/local/apps/miniconda/condabin
 GRASS_SYMLINK_BASE=$BASE_DIR/grass_versions
 
