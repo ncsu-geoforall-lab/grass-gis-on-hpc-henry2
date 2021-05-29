@@ -1,0 +1,9 @@
+Results of shfmt linter (version 3.2.4)
+See documentation on https://nvuillam.github.io/mega-linter/descriptors/bash_shfmt/
+-----------------------------------------------
+
+✅ [SUCCESS] compile.sh
+✅ [SUCCESS] create_modulefile.sh - FIXED
+✅ [SUCCESS] install_grass.sh
+✅ [SUCCESS] test-quick.sh
+✅ [SUCCESS] test-thorough.sh
