@@ -41,7 +41,7 @@ install_version() {
     if [ ! -f "$INSTALL_PREFIX/bin/grass" ]; then
         mkdir -p "$GRASS_SYMLINK_BASE/$GRASS_DOT_VERSION"
         ln -sfn \
-            $(realpath -sm "$INSTALL_PREFIX/bin/grass$GRASS_COLLAPSED_VERSION") \
+            "$(realpath -sm "$INSTALL_PREFIX/bin/grass$GRASS_COLLAPSED_VERSION")" \
             "$GRASS_SYMLINK_BASE/$GRASS_DOT_VERSION/grass"
     fi
 
