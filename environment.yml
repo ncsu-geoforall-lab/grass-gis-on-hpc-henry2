@@ -1,0 +1,18 @@
+channels:
+  - conda-forge
+dependencies:
+  - gdal
+  - libnetcdf
+  - libtiff
+  - ncurses
+  - numpy
+  - pdal
+  - ply
+  - proj
+  - python
+  - python-dateutil
+  - readline
+  - sqlite
+  - termcolor
+  - wxpython
+  - zstd

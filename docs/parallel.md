@@ -80,9 +80,11 @@ if __name__ == '__main__':
 ```
 
 In the BSUB script call this script with parameters (in this case input vector name and output raster name
+
 ```sh
 grass /share/path/to/grassdata/albers/mymapset --exec python ~/tiling.py roads roads_rasterized
 ```
+
 Make sure the number of cores you specify match the number of processes in the script.
 Review [GridModule documentation](https://grass.osgeo.org/grass78/manuals/libpython/pygrass.modules.grid.html) and the documentation of the specific module you plan to use. Note that not all algorithms are suitable for this type of parallelization (e.g. flow accumulation can't be computed like that).
 
@@ -98,7 +100,7 @@ in GRASS Addons repository. For example, r.mapcalc is wrapped as r.mapcalc.tiled
 
 ## Multiple nodes
 
-First, get and compile the *launch* program from the
+First, get and compile the _launch_ program from the
 [NC State GitHub](https://github.ncsu.edu/lllowe/launch/).
 Here, we will assume you have a working launch program in
 directory `.../launch/`, so a full path to the program is `.../launch/launch`.

@@ -5,91 +5,93 @@ This is a repository with instructions for compiling and running GRASS GIS on NC
 ## Running GRASS GIS
 
 These are instructions for users of Henry2 on how to run GRASS GIS.
+See [docs](docs) for a complete guide.
 
-Activate GRASS GIS in *tcsh* shell (as of May 2020, this will run on Henry2 as is):
+Activate and run GRASS GIS (as of May 2021, this works on Henry2 as is):
 
-```tcsh
-source /usr/local/usrapps/mitasova/bin/activate-grass.tcsh
-```
-
-Run GRASS GIS:
-
-```tcsh
+```bash
+module use --append /usr/local/usrapps/gis/modulefiles
+module load grass/79
 grass
 ```
 
 The rest of this document is about compiling GRASS GIS and making sure the above works.
 
-## Compile
+## Compiling GRASS GIS
 
-Set the the prefix variable to be used throughout the workflow:
+These are instructions for users of Henry2 on how to compile (new or custom version of)
+GRASS GIS. This assumes you are using Bash.
 
-```tcsh
-set PREFIX=/usr/local/usrapps/.../bin/
+Set a "prefix" variable for conda environment to be used throughout the workflow:
+
+```bash
+CONDA_PREFIX=/usr/local/usrapps/.../grass-deps-conda-env
 ```
 
-```tcsh
-mkdir $PREFIX
+Set another "prefix" variable for a directory where GRASS GIS will be installed:
+
+```bash
+INSTALL_PREFIX=/usr/local/usrapps/.../grass-install
 ```
 
-Some dependencies use cmake, so load it:
+Potentially, these two variables can be the the same, i.e., you can install GRASS GIS
+into the conda environment.
 
-```tcsh
-module load cmake
+Get recent GCC version:
+
+```bash
+module load gcc
 ```
 
-Get and compile dependencies:
+Activate conda:
 
-```tcsh
-tcsh -e ./dependencies.sh $PREFIX
+```bash
+module load conda
+```
+
+Get and compile dependencies using conda:
+
+```bash
+conda env create --file environment.yml --prefix $CONDA_PREFIX
 ```
 
 To make GRASS GIS compile and run, set:
 
-```tcsh
-setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH\:$PREFIX/lib\:$PREFIX/lib64
-setenv PATH $PATH\:$PREFIX/bin
-```
-
-Activate conda (at least Python 3 needs to be enabled):
-
-```tcsh
-module load conda
-```
-
-Create environment for additional Python runtime dependencies:
-
-```tcsh
-conda create --prefix conda-for-wx python=3.7
-```
-
-Activate the environment in a specific directory:
-
-```tcsh
-conda activate /usr/local/usrapps/.../conda-for-wx
-```
-
-Install these dependencies:
-
-```tcsh
-conda install -c anaconda numpy wxpython python-dateutil ply termcolor
+```bash
+export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
 ```
 
 Get and compile GRASS GIS:
 
-```tcsh
-tcsh -e ./compile.sh $PREFIX
+```bash
+bash ./compile.sh master $CONDA_PREFIX $INSTALL_PREFIX
 ```
 
 Test:
 
-```tcsh
-tcsh -e ./test.sh
-tcsh -e ./test-thorough.sh
+```bash
+bash ./test-quick.sh grass79
+bash ./test-thorough.sh grass79 grass-code
+```
+
+(`grass-code` is hardcoded in the `compile.sh` script.)
+
+Test interactively, possibly with GUI (assuming you can run GUI applications):
+
+```bash
+grass79
+```
+
+## Install using a script
+
+Install various versions using:
+
+```bash
+./install_grass.sh 7.9 79 master
+./install_grass.sh 7.8 78 7.8.5
 ```
 
 ## Run
-
 
 Set the environmental variables:
 
