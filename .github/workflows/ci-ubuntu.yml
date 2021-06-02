@@ -17,6 +17,16 @@ jobs:
   build:
     name: Build on Ubuntu 20.04
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        include:
+          - version: master
+            command: grass
+          - version: "7.8.5"
+            command: grass78
+          - version: releasebranch_7_8
+            command: grass78
+      fail-fast: false
 
     steps:
       - uses: actions/checkout@v2
@@ -64,13 +74,13 @@ jobs:
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
         shell: bash -l {0}
-        run: bash ./compile.sh master $CONDA_PREFIX $HOME/install
+        run: bash ./compile.sh ${{ matrix.version }} $CONDA_PREFIX $HOME/install
       - name: Add the bin directory to PATH
         run: |
           echo "$HOME/install/bin" >> $GITHUB_PATH
       - name: Basic test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test-quick.sh grass79
+        run: bash ./test-quick.sh ${{ matrix.command }}
       - name: Thorough test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test-thorough.sh grass79 grass-code-master
+        run: bash ./test-thorough.sh ${{ matrix.command }} grass-code-${{ matrix.version }}
