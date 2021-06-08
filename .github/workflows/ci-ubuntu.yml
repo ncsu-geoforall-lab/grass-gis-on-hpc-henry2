@@ -22,8 +22,6 @@ jobs:
         include:
           - version: master
             command: grass
-          - version: "7.8.5"
-            command: grass78
           - version: releasebranch_7_8
             command: grass78
       fail-fast: false
