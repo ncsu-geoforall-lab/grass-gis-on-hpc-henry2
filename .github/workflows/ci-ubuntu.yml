@@ -5,10 +5,12 @@ on:
     paths-ignore:
       - "docs/**"
       - README.md
+      - .cspell.json
   pull_request:
     paths-ignore:
       - "docs/**"
       - README.md
+      - .cspell.json
   schedule:
     # At 03:30 on Wednesday.
     - cron: "30 3 * * 3"
