@@ -3,7 +3,7 @@
 set -o errexit
 
 if [[ $# -ne 3 ]]; then
-    echo >&2 "Usage: $0 GRASS_COMMAND GRASS_SOURCE_CODE DATA"
+    echo >&2 "Usage: $0 GRASS_COMMAND GRASS_SOURCE_CODE DATA_DIR"
     exit 1
 fi
 
