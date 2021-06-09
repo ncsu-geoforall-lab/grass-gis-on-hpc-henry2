@@ -4,36 +4,40 @@
 # specific paths used for the installation and be usable as is
 # with minimal parameters.
 
+# Assumes it is executed from the clone of the repository
+# (where the scripts and other files are).
+
 set -o errexit
 
-if [[ $# -ne 3 ]]; then
-    echo >&2 "Usage: $0 VERSION_WITH_DOTS COLLAPSED_VERSION BRANCH_OR_TAG"
+if [[ $# -ne 4 ]]; then
+    echo >&2 "Usage: $0 INSTALL_DIR VERSION_WITH_DOTS COLLAPSED_VERSION BRANCH_OR_TAG"
     echo >&2 "Examples:"
-    echo >&2 "  $0 7.8 78 7.8.5"
-    echo >&2 "  $0 7.9 79 master"
-    echo >&2 "  $0 7.8 78 releasebranch_7_8"
+    echo >&2 "  $0 /your/path 7.8.5 78 7.8.5"
+    echo >&2 "  $0 /your/path 7.9 79 master"
+    echo >&2 "  $0 /your/path 7.8-\$(date -I) 78 releasebranch_7_8"
+    echo >&2 "  $0 /your/path 8.0-$(date -I) 80 master"
     exit 1
 fi
 
+BASE_DIR="$1"
+
 # Hardcoded paths
-GRASS_INSTALL_REPO=/usr/local/usrapps/mitasova/grass-gis-on-hpc-henry2
-BASE_DIR=/usr/local/usrapps/mitasova/grass_installs/
 MODULE_FILES_DIR=$BASE_DIR/modulefiles/grass
-SYSTEM_CONDA_BIN=/usr/local/apps/miniconda/condabin
 GRASS_SYMLINK_BASE=$BASE_DIR/grass_versions
+SYSTEM_CONDA_BIN=/usr/local/apps/miniconda/condabin
 
 # The version-specific code is in a function with arguments being the version-specific
 # parts and global variables the common ones. This is mostly for documentation
 # purposes.
 install_version() {
-    local GRASS_DOT_VERSION="$1"
-    local GRASS_COLLAPSED_VERSION="$2"
-    local GRASS_GIT_VERSION="$3"
+    local GRASS_DOT_VERSION="$2"
+    local GRASS_COLLAPSED_VERSION="$3"
+    local GRASS_GIT_VERSION="$4"
 
     local CONDA_PREFIX="$BASE_DIR/grass-$GRASS_DOT_VERSION"
     local INSTALL_PREFIX="$CONDA_PREFIX"
 
-    conda env create --file $GRASS_INSTALL_REPO/environment.yml --prefix "$CONDA_PREFIX"
+    conda env create --file environment.yml --prefix "$CONDA_PREFIX"
     export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
     conda activate "$CONDA_PREFIX"
     ./compile.sh "$GRASS_GIT_VERSION" "$CONDA_PREFIX" "$INSTALL_PREFIX"
