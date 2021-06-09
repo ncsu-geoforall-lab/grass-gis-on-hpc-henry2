@@ -73,4 +73,4 @@ jobs:
         run: bash ./test_quick.sh grass79
       - name: Thorough test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test_thorough.sh grass79 grass-code-master
+        run: bash ./test_thorough.sh grass79 grass-code-master .
