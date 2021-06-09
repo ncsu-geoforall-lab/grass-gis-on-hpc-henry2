@@ -92,16 +92,13 @@ grass
 ## Modify the default module
 
 If you already have other installations available as modules, you
-may want to modify the default module. Edit a `.version` file
-which is in the `modulefiles/grass` subdirectory,
-e.g., `/usr/local/usrapps/mitasova/grass/modulefiles/grass/.version`.
+may want to modify the default version for the _grass_ module.
+Besides the desired version, you need the directory with module files
+which is `modulefiles/grass` under your installation directory.
+In this workflow we can run:
 
-The contents determines what is the default version for the module _grass_:
-
-```text
-#%Module
-
-set ModulesVersion 7.9
+```sh
+./set_default_module_version.sh /usr/local/usrapps/mitasova/grass/modulefiles/grass 7.9
 ```
 
 ## Compiling modified GRASS GIS source code
