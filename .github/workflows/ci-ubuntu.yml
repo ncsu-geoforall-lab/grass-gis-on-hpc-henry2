@@ -5,10 +5,12 @@ on:
     paths-ignore:
       - "docs/**"
       - README.md
+      - .cspell.json
   pull_request:
     paths-ignore:
       - "docs/**"
       - README.md
+      - .cspell.json
   schedule:
     # At 03:30 on Wednesday.
     - cron: "30 3 * * 3"
@@ -17,6 +19,14 @@ jobs:
   build:
     name: Build on Ubuntu 20.04
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        include:
+          - version: master
+            command: grass
+          - version: releasebranch_7_8
+            command: grass78
+      fail-fast: false
 
     steps:
       - uses: actions/checkout@v2
@@ -64,13 +74,13 @@ jobs:
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
         shell: bash -l {0}
-        run: bash ./compile.sh master $CONDA_PREFIX $HOME/install
+        run: bash ./compile.sh ${{ matrix.version }} $CONDA_PREFIX $HOME/install
       - name: Add the bin directory to PATH
         run: |
           echo "$HOME/install/bin" >> $GITHUB_PATH
       - name: Basic test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test_quick.sh grass79
+        run: bash ./test_quick.sh ${{ matrix.command }}
       - name: Thorough test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test_thorough.sh grass79 grass-code-master .
+        run: bash ./test_thorough.sh ${{ matrix.command }} grass-code-${{ matrix.version }} .
