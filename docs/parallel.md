@@ -100,11 +100,12 @@ in GRASS Addons repository. For example, r.mapcalc is wrapped as r.mapcalc.tiled
 
 ## Multiple nodes
 
-First, get and compile the _launch_ program from the
-[NC State GitHub](https://github.ncsu.edu/lllowe/launch/).
-Here, we will assume you have a working launch program in
-directory `.../launch/`, so a full path to the program is `.../launch/launch`.
-The `...` part may be your home directory.
+```
+module use --append /usr/local/usrapps/gis/modulefiles/
+module load grass/79
+module load PrgEnv-intel
+pip install git+https://github.com/ncsu-landscape-dynamics/pynodelauncher.git
+```
 
 Prepare your data in a GRASS location. Here we will refer to this location as
 `.../grassdata/project` where `.../grassdata/` would be a full path to the
@@ -212,12 +213,11 @@ Here is the example BSUB script with the assumptions made above:
 #BSUB -eo grass_task_err
 #BSUB -J grass_task
 
-
 module use --append /usr/local/usrapps/gis/modulefiles/
 module load grass/79
 module load PrgEnv-intel
 
-mpirun .../launch/launch .../scripts/tasks.txt
+mpiexec python -m mpi4py -m pynodelauncher .../scripts/tasks.txt
 ```
 
 ### Testing the workflow locally
