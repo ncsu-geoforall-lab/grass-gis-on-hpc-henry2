@@ -150,7 +150,7 @@ grass --tmp-mapset .../grassdata/project --exec python .../scripts/single_task.p
 ```
 
 When you have prepared this file, by hand, in a spreadsheet, or, ideally, by generating
-it with a script, you are ready to use with _pynodelaunch_ in a BSUB script.
+it with a script, you are ready to use with _pynodelauncher_ in a BSUB script.
 
 ### Process which creates geospatial outputs
 
