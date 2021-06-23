@@ -2,16 +2,21 @@ channels:
   - conda-forge
 dependencies:
   - gdal
+  - jupyterlab
   - libnetcdf
   - libtiff
   - ncurses
   - numpy
+  - pandas
   - pdal
   - ply
   - proj
   - python
   - python-dateutil
+  - pyyaml
   - readline
+  - scikit-learn
+  - scipy
   - sqlite
   - termcolor
   - wxpython
