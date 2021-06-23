@@ -100,11 +100,21 @@ in GRASS Addons repository. For example, r.mapcalc is wrapped as r.mapcalc.tiled
 
 ## Multiple nodes
 
-First, get and compile the _launch_ program from the
-[NC State GitHub](https://github.ncsu.edu/lllowe/launch/).
-Here, we will assume you have a working launch program in
-directory `.../launch/`, so a full path to the program is `.../launch/launch`.
-The `...` part may be your home directory.
+Executing on multiple nodes requires a special approach. The best approach
+for GRASS GIS on Henry2 is to distribute separate tasks (processes) on multiple
+nodes using MPI. The _pynodelauncher_ program provides a way how to easily
+automate creation of these jobs by providing an interface focused on independent
+processes while using MPI in the background. See the _pynodelauncher_ documentation
+for more information and use the following to set it up (if you already set it up
+based on the documentation, you can skip this step):
+
+```sh
+module use --append /usr/local/usrapps/gis/modulefiles/
+module load grass/79
+module load PrgEnv-intel
+
+pip install git+https://github.com/ncsu-landscape-dynamics/pynodelauncher.git
+```
 
 Prepare your data in a GRASS location. Here we will refer to this location as
 `.../grassdata/project` where `.../grassdata/` would be a full path to the
@@ -121,7 +131,7 @@ We will refer to the full path to this script as `.../scripts/single_task.py`.
 This applies to processes which create non-spatial data in files and geospatial data
 exported from GRASS GIS.
 
-Prepare a file with list of commands to be executed in parallel by the launch program.
+Prepare a file with list of commands to be executed in parallel by _pynodelauncher_.
 We will call this file `tasks.txt` because it contains all the small tasks in our big
 job we are submitting to the BSUB system.
 
@@ -140,12 +150,12 @@ grass --tmp-mapset .../grassdata/project --exec python .../scripts/single_task.p
 ```
 
 When you have prepared this file, by hand, in a spreadsheet, or, ideally, by generating
-it with a script, you are ready to use with the launch program in a BSUB script.
+it with a script, you are ready to use with _pynodelauncher_ in a BSUB script.
 
 ### Process which creates geospatial outputs
 
 If you want to post-process the outputs from individual tasks in GRASS GIS,
-you can't use --tmp-mapset. Instead, you need to control the creation and deletion
+you can't use `--tmp-mapset`. Instead, you need to control the creation and deletion
 of the temporary mapsets yourself.
 
 To create a mapset, you can use `-c` option and to delete it later, you can use
@@ -185,11 +195,27 @@ rm -r .../grassdata/project/temp_*
 
 ### Submitting job
 
-The BSUB script needs to include the `launch` program call
-which is done trough `mpirun`, so you need to load HPC modules
-for both GRASS GIS and MPI. The `tasks.txt` file is provided as a parameter
-to the `launch` program. Here, we assume your `tasks.txt` file is in
-directory `.../scripts`.
+The BSUB script needs to include the `pynodelauncher` program call
+which is done trough `mpiexec`, `python`, and the _mpi4py_ package.
+The `tasks.txt` file is provided as a parameter
+at the end of the whole call of the `pynodelauncher` program.
+Here, we assume your `tasks.txt` file is in directory `.../scripts`.
+The complete call putting all these together is:
+
+```sh
+mpiexec python -m mpi4py -m pynodelauncher .../scripts/tasks.txt
+```
+
+For this to work, you need to load HPC modules for both GRASS GIS and MPI
+as when installing `pynodelauncher`. A more complete usage then is:
+
+```sh
+module use --append /usr/local/usrapps/gis/modulefiles/
+module load grass/79
+module load PrgEnv-intel
+
+mpiexec python -m mpi4py -m pynodelauncher .../scripts/tasks.txt
+```
 
 Often, the modules in `single_task.py` will have significant memory requirements,
 esp., because you will want to take advantage of fast in-memory processing
@@ -208,29 +234,30 @@ Here is the example BSUB script with the assumptions made above:
 #BSUB -W 72:00
 #BSUB -R "rusage[mem=40GB]"
 #BSUB -R "span[ptile=1]"
-#BSUB -oo grass_task_out
-#BSUB -eo grass_task_err
-#BSUB -J grass_task
-
+#BSUB -oo grass_tasks_out
+#BSUB -eo grass_tasks_err
+#BSUB -J grass_tasks
 
 module use --append /usr/local/usrapps/gis/modulefiles/
 module load grass/79
 module load PrgEnv-intel
 
-mpirun .../launch/launch .../scripts/tasks.txt
+mpiexec python -m mpi4py -m pynodelauncher .../scripts/tasks.txt
 ```
 
 ### Testing the workflow locally
 
-You can try to run the individual commands in a file using GNU parallel
-(easy to install on Linux machines):
+If you want, you can actually test the tasks with the _pynodelauncher_
+locally on your machine as opposed to HPC.
+In standard Python installations, _pynodelauncher_ can be installed
+using the instructions in the readme of its GitHub repository.
+
+Alternatively, you can try to run the individual commands in a file
+using _GNU parallel_ (which is easy to install on Linux machines):
 
 ```sh
 parallel < tasks.txt
 ```
-
-If you want, you can actually test locally with the launch program too,
-but you may need to spend some time figuring out its compilation on your machine.
 
 Obviously, you need to select a really small subset of your data,
 i.e., small computational region and just a couple of commands in the
