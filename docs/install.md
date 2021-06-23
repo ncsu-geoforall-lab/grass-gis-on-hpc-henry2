@@ -73,8 +73,8 @@ with source code as parameters:
 
 ```bash
 grass --version
-./test-quick.sh grass
-./test-thorough.sh grass grass-code-e5379bbd7e534071eae392bf416865fdbf109f01
+./test_quick.sh grass
+./test_thorough.sh grass grass-code-e5379bbd7e534071eae392bf416865fdbf109f01
 ```
 
 The `grass-code-` part is hardcoded in the `compile.sh` script the second part is

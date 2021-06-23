@@ -19,12 +19,11 @@ if [[ $# -ne 4 ]]; then
     exit 1
 fi
 
+# Paths
+GRASS_INSTALL_REPO="$(pwd)"
 BASE_DIR="$1"
-
-# Hardcoded paths
-MODULE_FILES_DIR=$BASE_DIR/modulefiles/grass
-GRASS_SYMLINK_BASE=$BASE_DIR/grass_versions
-SYSTEM_CONDA_BIN=/usr/local/apps/miniconda/condabin
+MODULE_FILES_DIR="$BASE_DIR/modulefiles/grass"
+SYSTEM_CONDA_BIN="/usr/local/apps/miniconda/condabin"
 
 # The version-specific code is in a function with arguments being the version-specific
 # parts and global variables the common ones. This is mostly for documentation
@@ -37,27 +36,24 @@ install_version() {
     local CONDA_PREFIX="$BASE_DIR/grass-$GRASS_DOT_VERSION"
     local INSTALL_PREFIX="$CONDA_PREFIX"
 
-    conda env create --file environment.yml --prefix "$CONDA_PREFIX"
+    conda env create --file "$GRASS_INSTALL_REPO/environment.yml" --prefix "$CONDA_PREFIX"
     export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
     conda activate "$CONDA_PREFIX"
-    ./compile.sh "$GRASS_GIT_VERSION" "$CONDA_PREFIX" "$INSTALL_PREFIX"
+    "$GRASS_INSTALL_REPO/compile.sh" "$GRASS_GIT_VERSION" "$CONDA_PREFIX" "$INSTALL_PREFIX"
 
     if [ ! -f "$INSTALL_PREFIX/bin/grass" ]; then
         echo >&2 "Plain grass command not in bin, creating symlink"
-        mkdir -p "$GRASS_SYMLINK_BASE/$GRASS_DOT_VERSION"
         ln -sfn \
             "$(realpath -sm "$INSTALL_PREFIX/bin/grass$GRASS_COLLAPSED_VERSION")" \
-            "$GRASS_SYMLINK_BASE/$GRASS_DOT_VERSION/grass"
+            "$INSTALL_PREFIX/bin/grass"
     else
         echo >&2 "Plain grass command is in bin, assuming symlink is not needed"
     fi
 
-    ./create_modulefile.sh \
+    "$GRASS_INSTALL_REPO/create_modulefile.sh" \
         "$SYSTEM_CONDA_BIN" \
         "$CONDA_PREFIX" \
         "$INSTALL_PREFIX" \
-        "$GRASS_DOT_VERSION" \
-        "$GRASS_SYMLINK_BASE" \
         >"$MODULE_FILES_DIR/$GRASS_DOT_VERSION"
 }
 
@@ -66,8 +62,7 @@ module load conda
 
 eval "$(conda shell.bash hook)"
 
-mkdir -p $BASE_DIR
-mkdir -p $MODULE_FILES_DIR
-mkdir -p $GRASS_SYMLINK_BASE
+mkdir -p "$BASE_DIR"
+mkdir -p "$MODULE_FILES_DIR"
 
-install_version "$1" "$2" "$3"
+install_version "$2" "$3" "$4"

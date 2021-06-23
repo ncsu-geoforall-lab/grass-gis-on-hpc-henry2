@@ -1,5 +1,7 @@
 # GRASS GIS on HPC Henry2
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4973732.svg)](https://doi.org/10.5281/zenodo.4973732)
+
 This is a repository with instructions for using and compiling GRASS GIS
 on NC State University's HPC Henry2.
 
