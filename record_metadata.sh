@@ -19,7 +19,7 @@ MODULE_FILES_DIR=$(realpath -s "$MODULE_FILES_DIR")
 # We write to user's current directory, but use cd.
 RECORD_DIR=$(pwd)
 
-METADATA_DIR="$RECORD_DIR/installed/$MODULE_VERSION"
+METADATA_DIR="$RECORD_DIR/available/$MODULE_VERSION"
 METADATA_FILE="$METADATA_DIR/metadata.yml"
 
 mkdir -p "$METADATA_DIR"
