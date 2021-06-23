@@ -33,17 +33,21 @@ Then enter the directory created by the above command:
 cd grass-gis-on-hpc-henry2
 ```
 
-Use a text editor to modify these two lines in the `install_grass.sh` script:
+Pick a install directory and GRASS GIS version your want to use.
+For the version, you need:
+
+- version number used for the directories, e.g., the full version number,
+  e.g., 7.8.5, or, for development versions, two-number version number and
+  a current date or first characters from the commit date
+- version number as it appears in the main executable name,
+  i.e., first two version numbers without a dot (used only before 8.0,
+  ignored in the script for 8.0 and above)
+- identifier of the version in Git, i.e., a tag, branch name, or commit hash.
+
+When ready, run the `install_grass.sh` script:
 
 ```sh
-GRASS_INSTALL_REPO=/usr/local/usrapps/mitasova/grass-gis-on-hpc-henry2/
-BASE_DIR=/usr/local/usrapps/mitasova/grass/
-```
-
-Then run the script:
-
-```sh
-./install_grass.sh 7.9 79 e5379bbd7e534071eae392bf416865fdbf109f01
+./install_grass.sh /usr/local/usrapps/mitasova/grass/ 7.9 79 e5379bbd7e534071eae392bf416865fdbf109f01
 ```
 
 The process will take roughly 30 minutes and it is using only one core.
@@ -73,7 +77,9 @@ grass --version
 ./test_thorough.sh grass grass-code-e5379bbd7e534071eae392bf416865fdbf109f01
 ```
 
-(The `grass-code-` part is hardcoded in the `compile.sh` script.)
+The `grass-code-` part is hardcoded in the `compile.sh` script the second part is
+the identifier in Git. The `.` at the end is the directory where to download test
+data and run the tests. In this case, it is the current directory.
 
 Note that the tests may use multiple (or even all available cores).
 
@@ -86,16 +92,13 @@ grass
 ## Modify the default module
 
 If you already have other installations available as modules, you
-may want to modify the default module. Edit a `.version` file
-which is in the `modulefiles/grass` subdirectory,
-e.g., `/usr/local/usrapps/mitasova/grass/modulefiles/grass/.version`.
+may want to modify the default version for the _grass_ module.
+Besides the desired version, you need the directory with module files
+which is `modulefiles/grass` under your installation directory.
+In this workflow we can run:
 
-The contents determines what is the default version for the module _grass_:
-
-```text
-#%Module
-
-set ModulesVersion 7.9
+```sh
+./set_default_module_version.sh /usr/local/usrapps/mitasova/grass/modulefiles/grass 7.9
 ```
 
 ## Compiling modified GRASS GIS source code
