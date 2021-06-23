@@ -29,9 +29,9 @@ SYSTEM_CONDA_BIN="/usr/local/apps/miniconda/condabin"
 # parts and global variables the common ones. This is mostly for documentation
 # purposes.
 install_version() {
-    local GRASS_DOT_VERSION="$2"
-    local GRASS_COLLAPSED_VERSION="$3"
-    local GRASS_GIT_VERSION="$4"
+    local GRASS_DOT_VERSION="$1"
+    local GRASS_COLLAPSED_VERSION="$2"
+    local GRASS_GIT_VERSION="$3"
 
     local CONDA_PREFIX="$BASE_DIR/grass-$GRASS_DOT_VERSION"
     local INSTALL_PREFIX="$CONDA_PREFIX"
