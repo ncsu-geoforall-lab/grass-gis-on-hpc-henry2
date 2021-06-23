@@ -50,11 +50,18 @@ install_version() {
         echo >&2 "Plain grass command is in bin, assuming symlink is not needed"
     fi
 
-    "$GRASS_INSTALL_REPO/create_modulefile.sh" \
+    "$GRASS_INSTALL_REPO/create_module_file.sh" \
         "$SYSTEM_CONDA_BIN" \
         "$CONDA_PREFIX" \
         "$INSTALL_PREFIX" \
         >"$MODULE_FILES_DIR/$GRASS_DOT_VERSION"
+
+    "$GRASS_INSTALL_REPO/record_metadata.sh" \
+        "$CONDA_PREFIX" \
+        "$GRASS_INSTALL_REPO/grass-code-$GRASS_DOT_VERSION" \
+        "$MODULE_FILES_DIR" \
+        "$GRASS_DOT_VERSION" \
+        "$GRASS_GIT_VERSION"
 }
 
 module load gcc
