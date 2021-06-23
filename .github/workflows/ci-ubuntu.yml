@@ -80,7 +80,7 @@ jobs:
           echo "$HOME/install/bin" >> $GITHUB_PATH
       - name: Basic test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test-quick.sh ${{ matrix.command }}
+        run: bash ./test_quick.sh ${{ matrix.command }}
       - name: Thorough test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test-thorough.sh ${{ matrix.command }} grass-code-${{ matrix.version }}
+        run: bash ./test_thorough.sh ${{ matrix.command }} grass-code-${{ matrix.version }} $(pwd)
