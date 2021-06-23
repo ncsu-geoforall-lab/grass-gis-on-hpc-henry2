@@ -39,7 +39,8 @@ branch: $BRANCH
 commit: $COMMIT
 EOF
 
-LOCAL_CHANGES=$(git status --porcelain | sed 's/^/  /')
+# Get list of local changes and add a space to get two-space indent.
+LOCAL_CHANGES=$(git status --porcelain | sed 's/^/ /')
 
 if [[ "$LOCAL_CHANGES" ]]; then
     cat >>"$METADATA_FILE" <<EOF
