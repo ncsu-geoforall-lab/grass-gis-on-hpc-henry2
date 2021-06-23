@@ -6,12 +6,16 @@ dependencies:
   - libtiff
   - ncurses
   - numpy
+  - pandas
   - pdal
   - ply
   - proj
   - python
   - python-dateutil
+  - pyyaml
   - readline
+  - scipy
+  - scikit-learn
   - sqlite
   - termcolor
   - wxpython
