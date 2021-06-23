@@ -3,24 +3,30 @@
 set -o errexit
 
 if [[ $# -ne 5 ]]; then
-    echo >&2 "Usage: $0 CONDA_DIR REPO_DIR MODULE_FILES_DIR MODULE_VERSION CLONED_VERSION"
+    echo >&2 "Usage: $0 CONDA_DIR GRASS_REPO_DIR MODULE_FILES_DIR MODULE_VERSION CLONED_VERSION"
     exit 1
 fi
 
 CONDA_DIR="$1"
-REPO_DIR="$2"
+GRASS_REPO_DIR="$2"
 MODULE_FILES_DIR="$3"
 MODULE_VERSION="$4"
 CLONED_VERSION="$5"
 
-METADATA_DIR="installed/$INSTALL_VERSION"
+# Resolve paths
+# Record absolute path
+MODULE_FILES_DIR=$(realpath -s "$MODULE_FILES_DIR")
+# We write to user's current directory, but use cd.
+RECORD_DIR=$(pwd)
+
+METADATA_DIR="$RECORD_DIR/installed/$MODULE_VERSION"
 METADATA_FILE="$METADATA_DIR/metadata.yml"
 
 mkdir -p "$METADATA_DIR"
 
 conda env export --prefix "$CONDA_DIR" >"$METADATA_DIR/environment.yml"
 
-cd "$REPO_DIR"
+cd "$GRASS_REPO_DIR"
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 COMMIT=$(git rev-parse HEAD)
@@ -33,13 +39,14 @@ branch: $BRANCH
 commit: $COMMIT
 EOF
 
-LOCAL_CHANGES=$(git status --porcelain --untracked-files=no | sed 's/^/  /')
+LOCAL_CHANGES=$(git status --porcelain | sed 's/^/  /')
 
 if [[ "$LOCAL_CHANGES" ]]; then
     cat >>"$METADATA_FILE" <<EOF
 local_changes: |
 $LOCAL_CHANGES
 EOF
+    git diff >"$METADATA_DIR/local_changes.diff"
 else
     cat >>"$METADATA_FILE" <<EOF
 local_changes: null

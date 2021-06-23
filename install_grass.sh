@@ -50,7 +50,6 @@ install_version() {
         "$SYSTEM_CONDA_BIN" \
         "$CONDA_PREFIX" \
         "$INSTALL_PREFIX" \
-        "$GRASS_DOT_VERSION" \
         >"$MODULE_FILES_DIR/$GRASS_DOT_VERSION"
 }
 

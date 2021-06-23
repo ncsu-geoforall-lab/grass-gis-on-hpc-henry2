@@ -11,10 +11,14 @@ GRASS_COMMAND="$1"
 GRASS_SOURCE_CODE="$2"
 DATABASE="$3"
 
+DATABASE=$(realpath -s "$DATABASE")
+
 "$GRASS_COMMAND" --tmp-location XY --exec \
     g.extension g.download.location
-"$GRASS_COMMAND" --tmp-location XY --exec \
-    g.download.location url=http://fatra.cnr.ncsu.edu/data/nc_spm_full_v2alpha2.tar.gz dbase="$DATABASE"
+if [ ! -d "$DATABASE/nc_spm_full_v2alpha2" ]; then
+    "$GRASS_COMMAND" --tmp-location XY --exec \
+        g.download.location url=http://fatra.cnr.ncsu.edu/data/nc_spm_full_v2alpha2.tar.gz dbase="$DATABASE"
+fi
 
 cd "$GRASS_SOURCE_CODE"
 
