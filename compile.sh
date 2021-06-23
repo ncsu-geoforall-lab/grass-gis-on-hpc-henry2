@@ -5,17 +5,17 @@
 
 set -o errexit
 
-if [[ $# -ne 3 ]]; then
-    echo >&2 "Usage: $0 GRASS_VERSION LIB_PREFIX INSTALL_PREFIX"
+if [[ $# -ne 4 ]]; then
+    echo >&2 "Usage: $0 CODE_DIR GRASS_VERSION LIB_PREFIX INSTALL_PREFIX"
     exit 1
 fi
 
-GRASS_VERSION="$1"
-LIBS="$2"
-INSTALL_PREFIX="$3"
+CODE_DIR="$1"
+GRASS_VERSION="$2"
+LIBS="$3"
+INSTALL_PREFIX="$4"
 
 # Get the code
-CODE_DIR="grass-code-$GRASS_VERSION"
 git clone --depth=1 --branch "$GRASS_VERSION" https://github.com/OSGeo/grass.git "$CODE_DIR"
 cd "$CODE_DIR"
 

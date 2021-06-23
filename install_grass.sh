@@ -33,13 +33,14 @@ install_version() {
     local GRASS_COLLAPSED_VERSION="$2"
     local GRASS_GIT_VERSION="$3"
 
+    local CODE_DIR="$GRASS_INSTALL_REPO/grass-code-$GRASS_DOT_VERSION"
     local CONDA_PREFIX="$BASE_DIR/grass-$GRASS_DOT_VERSION"
     local INSTALL_PREFIX="$CONDA_PREFIX"
 
     conda env create --file "$GRASS_INSTALL_REPO/environment.yml" --prefix "$CONDA_PREFIX"
     export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
     conda activate "$CONDA_PREFIX"
-    "$GRASS_INSTALL_REPO/compile.sh" "$GRASS_GIT_VERSION" "$CONDA_PREFIX" "$INSTALL_PREFIX"
+    "$GRASS_INSTALL_REPO/compile.sh" "$CODE_DIR" "$GRASS_GIT_VERSION" "$CONDA_PREFIX" "$INSTALL_PREFIX"
 
     if [ ! -f "$INSTALL_PREFIX/bin/grass" ]; then
         echo >&2 "Plain grass command not in bin, creating symlink"
@@ -50,11 +51,18 @@ install_version() {
         echo >&2 "Plain grass command is in bin, assuming symlink is not needed"
     fi
 
-    "$GRASS_INSTALL_REPO/create_modulefile.sh" \
+    "$GRASS_INSTALL_REPO/create_module_file.sh" \
         "$SYSTEM_CONDA_BIN" \
         "$CONDA_PREFIX" \
         "$INSTALL_PREFIX" \
         >"$MODULE_FILES_DIR/$GRASS_DOT_VERSION"
+
+    "$GRASS_INSTALL_REPO/record_metadata.sh" \
+        "$CONDA_PREFIX" \
+        "$CODE_DIR" \
+        "$MODULE_FILES_DIR" \
+        "$GRASS_DOT_VERSION" \
+        "$GRASS_GIT_VERSION"
 }
 
 module load gcc
