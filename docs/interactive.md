@@ -17,9 +17,9 @@ ssh login.hpc.ncsu.edu -X
 Start GRASS with:
 
 ```sh
-module use --append /usr/local/usrapps/gis/modulefiles/
-module load grass/79
-grass79 /path/to/grassdata/my_location/my_mapset
+module use --append /usr/local/usrapps/geospatial/modulefiles/
+module load grass
+grass /path/to/grassdata/my_location/my_mapset
 ```
 
 Once you start GRASS GIS and the GRASS shell appears, you can start

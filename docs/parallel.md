@@ -109,8 +109,8 @@ for more information and use the following to set it up (if you already set it u
 based on the documentation, you can skip this step):
 
 ```sh
-module use --append /usr/local/usrapps/gis/modulefiles/
-module load grass/79
+module use --append /usr/local/usrapps/geospatial/modulefiles/
+module load grass
 module load PrgEnv-intel
 
 pip install git+https://github.com/ncsu-landscape-dynamics/pynodelauncher.git
@@ -210,8 +210,8 @@ For this to work, you need to load HPC modules for both GRASS GIS and MPI
 as when installing `pynodelauncher`. A more complete usage then is:
 
 ```sh
-module use --append /usr/local/usrapps/gis/modulefiles/
-module load grass/79
+module use --append /usr/local/usrapps/geospatial/modulefiles/
+module load grass
 module load PrgEnv-intel
 
 mpiexec python -m mpi4py -m pynodelauncher .../scripts/tasks.txt
@@ -238,8 +238,8 @@ Here is the example BSUB script with the assumptions made above:
 #BSUB -eo grass_tasks_err
 #BSUB -J grass_tasks
 
-module use --append /usr/local/usrapps/gis/modulefiles/
-module load grass/79
+module use --append /usr/local/usrapps/geospatial/modulefiles/
+module load grass
 module load PrgEnv-intel
 
 mpiexec python -m mpi4py -m pynodelauncher .../scripts/tasks.txt

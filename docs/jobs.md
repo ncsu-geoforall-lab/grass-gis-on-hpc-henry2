@@ -17,9 +17,9 @@ See r.out.gdal for other options. The tif file should be exported to a scratch f
 #BSUB -eo comp1_err
 #BSUB -J comp1
 
-module use --append /usr/local/usrapps/gis/modulefiles/
-module load grass/79
+module use --append /usr/local/usrapps/geospatial/modulefiles/
+module load grass
 
-grass79 -c /path/to/grassdata/albers/new_mapset --exec r.slope.aspect elevation=DEM@PERMANENT slope=slope
-grass79 /path/to/grassdata/albers/new_mapset --exec r.out.gdal input=slope output=/share/path/to/slope.tif type=Float32 createopt="COMPRESS=LZW,PREDICTOR=3,BIGTIFF=YES"
+grass -c /path/to/grassdata/albers/new_mapset --exec r.slope.aspect elevation=DEM@PERMANENT slope=slope
+grass /path/to/grassdata/albers/new_mapset --exec r.out.gdal input=slope output=/share/path/to/slope.tif type=Float32 createopt="COMPRESS=LZW,PREDICTOR=3,BIGTIFF=YES"
 ```

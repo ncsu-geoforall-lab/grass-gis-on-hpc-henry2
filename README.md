@@ -12,11 +12,11 @@ See [docs](docs) for a complete guide.
 
 ## Quick start
 
-Activate and run GRASS GIS (as of June 2021, this works on Henry2 as is):
+Activate and run GRASS GIS:
 
 ```bash
-module use --append /usr/local/usrapps/gis/modulefiles
-module load grass/79
+module use --append /usr/local/usrapps/geospatial/modulefiles
+module load grass
 grass
 ```
 
