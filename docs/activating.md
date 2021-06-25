@@ -40,5 +40,8 @@ To load a specific version, use:
 module load grass/7.8-2021-06-24
 ```
 
-Use `g.version -g` to get additional version information about the
-GRASS version you are using.
+For publication related-reproducibility and citation,
+get additional version information about the
+GRASS version you are using and to get specifics by calling `g.version -g`.
+Additionally, see the specifics of the Henry2 installation in the
+[available](../available) directory of this repository.
