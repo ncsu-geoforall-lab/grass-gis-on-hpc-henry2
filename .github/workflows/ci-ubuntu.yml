@@ -25,7 +25,7 @@ jobs:
           - version: master
             command: grass
           - version: releasebranch_7_8
-            command: grass78
+            command: grass
       fail-fast: false
 
     steps:
@@ -74,7 +74,7 @@ jobs:
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
         shell: bash -l {0}
-        run: bash ./compile.sh ${{ matrix.version }} $CONDA_PREFIX $HOME/install
+        run: bash ./compile.sh grass-code ${{ matrix.version }} $CONDA_PREFIX $HOME/install
       - name: Add the bin directory to PATH
         run: |
           echo "$HOME/install/bin" >> $GITHUB_PATH
@@ -83,4 +83,4 @@ jobs:
         run: bash ./test_quick.sh ${{ matrix.command }}
       - name: Thorough test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test_thorough.sh ${{ matrix.command }} grass-code-${{ matrix.version }} $(pwd)
+        run: bash ./test_thorough.sh ${{ matrix.command }} grass-code .
