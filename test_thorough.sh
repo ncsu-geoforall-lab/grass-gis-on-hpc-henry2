@@ -13,11 +13,15 @@ DATABASE="$3"
 
 DATABASE=$(realpath -s "$DATABASE")
 
-"$GRASS_COMMAND" --tmp-location XY --exec \
-    g.extension g.download.location
+# Install module from addons if not available (as in v7).
+if ! "$GRASS_COMMAND" --tmp-location XY --exec g.download.location --help; then
+    "$GRASS_COMMAND" --tmp-location XY --exec \
+        g.extension g.download.location
+fi
+# Download only if the directory does not exist.
 if [ ! -d "$DATABASE/nc_spm_full_v2alpha2" ]; then
     "$GRASS_COMMAND" --tmp-location XY --exec \
-        g.download.location url=http://fatra.cnr.ncsu.edu/data/nc_spm_full_v2alpha2.tar.gz dbase="$DATABASE"
+        g.download.location url=http://fatra.cnr.ncsu.edu/data/nc_spm_full_v2alpha2.tar.gz path="$DATABASE"
 fi
 
 cd "$GRASS_SOURCE_CODE"
