@@ -22,8 +22,12 @@ fi
 # Paths
 GRASS_INSTALL_REPO="$(pwd)"
 BASE_DIR="$1"
-MODULE_FILES_DIR="$BASE_DIR/modulefiles/grass"
+MODULE_FILES_BASE_DIR="$BASE_DIR/modulefiles"
+MODULE_NAME="grass"
+MODULE_FILES_DIR="$MODULE_FILES_BASE_DIR/$MODULE_NAME"
 SYSTEM_CONDA_BIN="/usr/local/apps/miniconda/condabin"
+
+SOURCE_REPO="https://github.com/OSGeo/grass.git"
 
 # The version-specific code is in a function with arguments being the version-specific
 # parts and global variables the common ones. This is mostly for documentation
@@ -40,7 +44,12 @@ install_version() {
     conda env create --file "$GRASS_INSTALL_REPO/environment.yml" --prefix "$CONDA_PREFIX"
     export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
     conda activate "$CONDA_PREFIX"
-    "$GRASS_INSTALL_REPO/compile.sh" "$CODE_DIR" "$GRASS_GIT_VERSION" "$CONDA_PREFIX" "$INSTALL_PREFIX"
+    "$GRASS_INSTALL_REPO/compile.sh" \
+        "$CODE_DIR" \
+        "$SOURCE_REPO" \
+        "$GRASS_GIT_VERSION" \
+        "$CONDA_PREFIX" \
+        "$INSTALL_PREFIX"
 
     if [ ! -f "$INSTALL_PREFIX/bin/grass" ]; then
         echo >&2 "Plain grass command not in bin, creating symlink"
@@ -60,8 +69,10 @@ install_version() {
     "$GRASS_INSTALL_REPO/record_metadata.sh" \
         "$CONDA_PREFIX" \
         "$CODE_DIR" \
-        "$MODULE_FILES_DIR" \
+        "$MODULE_FILES_BASE_DIR" \
+        "$MODULE_NAME" \
         "$GRASS_DOT_VERSION" \
+        "$SOURCE_REPO" \
         "$GRASS_GIT_VERSION"
 }
 
