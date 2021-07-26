@@ -2,16 +2,18 @@
 
 set -o errexit
 
-if [[ $# -ne 5 ]]; then
-    echo >&2 "Usage: $0 CONDA_DIR GRASS_REPO_DIR MODULE_FILES_DIR MODULE_VERSION CLONED_VERSION"
+if [[ $# -ne 7 ]]; then
+    echo >&2 "Usage: $0 CONDA_DIR GRASS_REPO_DIR MODULE_FILES_DIR MODULE_NAME MODULE_VERSION SOURCE_REPO CLONED_VERSION"
     exit 1
 fi
 
 CONDA_DIR="$1"
 GRASS_REPO_DIR="$2"
 MODULE_FILES_DIR="$3"
-MODULE_VERSION="$4"
-CLONED_VERSION="$5"
+MODULE_NAME="$4"
+MODULE_VERSION="$5"
+SOURCE_REPO="$6"
+CLONED_VERSION="$7"
 
 # Resolve paths
 # Record absolute path
@@ -31,12 +33,22 @@ cd "$GRASS_REPO_DIR"
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 COMMIT=$(git rev-parse HEAD)
 
+# One level of indent in YAML.
+# Mostly for editorconfig-checker which doesn't know about the nested YAML file.
+INDENT="  "
+
 cat >"$METADATA_FILE" <<EOF
+module_name: $MODULE_NAME
 module_version: $MODULE_VERSION
 module_use: $MODULE_FILES_DIR
+module_load: $MODULE_NAME/$MODULE_VERSION
+module_example: |
+${INDENT}module use --append $MODULE_FILES_DIR
+${INDENT}module load $MODULE_NAME/$MODULE_VERSION
 cloned_version: $CLONED_VERSION
 branch: $BRANCH
 commit: $COMMIT
+repo: $SOURCE_REPO
 EOF
 
 # Get list of local changes and add a space to get two-space indent.

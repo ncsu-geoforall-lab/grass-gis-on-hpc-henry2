@@ -5,18 +5,19 @@
 
 set -o errexit
 
-if [[ $# -ne 4 ]]; then
-    echo >&2 "Usage: $0 CODE_DIR GRASS_VERSION LIB_PREFIX INSTALL_PREFIX"
+if [[ $# -ne 5 ]]; then
+    echo >&2 "Usage: $0 CODE_DIR SOURCE_REPO GRASS_VERSION LIB_PREFIX INSTALL_PREFIX"
     exit 1
 fi
 
 CODE_DIR="$1"
-GRASS_VERSION="$2"
-LIBS="$3"
-INSTALL_PREFIX="$4"
+SOURCE_REPO="$2"
+GRASS_VERSION="$3"
+LIBS="$4"
+INSTALL_PREFIX="$5"
 
 # Get the code
-git clone --depth=1 --branch "$GRASS_VERSION" https://github.com/OSGeo/grass.git "$CODE_DIR"
+git clone --depth=1 --branch "$GRASS_VERSION" "$SOURCE_REPO" "$CODE_DIR"
 cd "$CODE_DIR"
 
 # Apply patches to GRASS GIS source code
