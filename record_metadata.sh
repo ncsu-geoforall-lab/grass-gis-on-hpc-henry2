@@ -33,14 +33,18 @@ cd "$GRASS_REPO_DIR"
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 COMMIT=$(git rev-parse HEAD)
 
+# One level of indent in YAML.
+# Mostly for editorconfig-checker which doesn't know about the nested YAML file.
+INDENT="  "
+
 cat >"$METADATA_FILE" <<EOF
 module_name: $MODULE_NAME
 module_version: $MODULE_VERSION
 module_use: $MODULE_FILES_DIR
 module_load: $MODULE_NAME/$MODULE_VERSION
 module_example: |
-  module use --append $MODULE_FILES_DIR
-  module load $MODULE_NAME/$MODULE_VERSION
+${INDENT}module use --append $MODULE_FILES_DIR
+${INDENT}module load $MODULE_NAME/$MODULE_VERSION
 cloned_version: $CLONED_VERSION
 branch: $BRANCH
 commit: $COMMIT
