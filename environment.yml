@@ -5,6 +5,7 @@ dependencies:
   - jupyterlab
   - libnetcdf
   - libtiff
+  - matplotlib
   - ncurses
   - numpy
   - pandas
