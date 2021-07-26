@@ -74,13 +74,18 @@ jobs:
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> $GITHUB_ENV
       - name: Get and compile GRASS GIS
         shell: bash -l {0}
-        run: bash ./compile.sh grass-code ${{ matrix.version }} $CONDA_PREFIX $HOME/install
+        run: ./compile.sh \
+          grass-code \
+          https://github.com/OSGeo/grass.git \
+          ${{ matrix.version }} \
+          $CONDA_PREFIX \
+          $HOME/install
       - name: Add the bin directory to PATH
         run: |
           echo "$HOME/install/bin" >> $GITHUB_PATH
       - name: Basic test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test_quick.sh ${{ matrix.command }}
+        run: ./test_quick.sh ${{ matrix.command }}
       - name: Thorough test of GRASS GIS
         shell: bash -l {0}
-        run: bash ./test_thorough.sh ${{ matrix.command }} grass-code .
+        run: ./test_thorough.sh ${{ matrix.command }} grass-code .
