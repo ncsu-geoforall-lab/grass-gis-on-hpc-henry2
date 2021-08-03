@@ -1,0 +1,7 @@
+date: 2021-08-03
+default: 8.0-2021-07-26
+symbolic_links:
+  - name: 7.8
+    points_to: 7.8-2021-07-29
+  - name: 8.0
+    points_to: 8.0-2021-07-26
