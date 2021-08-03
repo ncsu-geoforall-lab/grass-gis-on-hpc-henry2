@@ -4,6 +4,7 @@ import sys
 import os
 from pathlib import Path
 import re
+from datetime import datetime
 
 def read_and_record_shortcuts(path, filename):
     path = Path(path)
@@ -22,6 +23,8 @@ def read_and_record_shortcuts(path, filename):
             exit(f"Module .version file exists, but version '{default_version}' does not")
 
     with open(filename, "w") as record:
+        date = datetime.today().strftime('%Y-%m-%d')
+        record.write(f"date: {date}\n")
         if default_version:
             record.write(f"default: {default_version}\n")
         if symlinks:
