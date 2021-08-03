@@ -36,7 +36,7 @@ def read_and_record_shortcuts(path, filename):
         date = datetime.today().strftime("%Y-%m-%d")
         record.write(f"date: {date}\n")
         if default_version:
-            record.write(f"default: {default_version}\n")
+            record.write(f'default: "{default_version}"\n')
         if symlinks:
             record.write("symbolic_links:\n")
             for symlink in symlinks:
@@ -46,8 +46,8 @@ def read_and_record_shortcuts(path, filename):
                         f"Symlink '{symlink}' exists,"
                         f" but the target '{target}' does not"
                     )
-                record.write(f"  - name: {symlink.name}\n")
-                record.write(f"    points_to: {target}\n")
+                record.write(f'  - name: "{symlink.name}"\n')
+                record.write(f'    points_to: "{target}"\n')
 
 
 def main():
