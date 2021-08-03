@@ -2,12 +2,16 @@ name: CI in VM on Ubuntu
 
 on:
   push:
+    branches:
+      - main
     paths-ignore:
+      - "available/**"
       - "docs/**"
       - README.md
       - .cspell.json
   pull_request:
     paths-ignore:
+      - "available/**"
       - "docs/**"
       - README.md
       - .cspell.json
