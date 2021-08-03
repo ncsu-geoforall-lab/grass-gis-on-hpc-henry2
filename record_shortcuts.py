@@ -40,7 +40,9 @@ def read_and_record_shortcuts(path, filename):
 def main():
     if len(sys.argv) != 2:
         exit(f"Usage: {sys.argv[0]} MODULE_DIR")
-    read_and_record_shortcuts(sys.argv[1], "shortcuts/shortcuts.yml")
+    metadata_dir = Path("available")
+    metadata_dir.mkdir(exist_ok=True)
+    read_and_record_shortcuts(sys.argv[1], metadata_dir / "shortcuts.yml")
 
 if __name__ == "__main__":
     main()
