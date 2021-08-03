@@ -41,8 +41,22 @@ def write_version_info(version, file):
         file.write(
             f"| {meta['module_version']} | "
             f"`module load {meta['module_load']}` | "
-            f"{meta['cloned_version']} |\n"
+            f"{meta['cloned_version']} | "
+            f"{meta['commit']} |\n"
         )
+
+
+def write_installed_versions(paths, file):
+    """Create documentation for all installed versions"""
+    file.write(
+        "## Installed versions\n\n"
+        "These are all the currently installed (available) versions. "
+        "(New versions are installed and added here as needed.)\n\n"
+    )
+    file.write("| Version | module load | Based On | Commit Hash (ID) |\n")
+    file.write("| --- | --- | --- | --- |\n")
+    for version in paths:
+        write_version_info(version, file)
 
 
 def meta_to_doc(path, filename):
@@ -53,23 +67,24 @@ def meta_to_doc(path, filename):
 
     with open(filename, "w") as file:
         file.write(
-            "# Available Versions\n\n"
+            "# Available versions\n\n"
             "There are GRASS GIS versions current available on Henry2.\n\n"
         )
         if shortcuts_file.exists():
             shortcuts = yaml.safe_load(shortcuts_file.read_text())
             write_shortcuts(shortcuts, file)
         dirs = sorted([x for x in path.iterdir() if x.is_dir()])
-
+        write_installed_versions(dirs, file)
+        file.write("\n")
+        file.write("## See also\n\n")
         file.write(
-            "## Installed Versions\n\n"
-            "These are all the currently installed (available) versions. "
-            "(New versions are installed and added here as needed.)\n\n"
+            "- [Activating](activating.md) "
+            "for information on activating specific versions\n"
         )
-        file.write("| Version | module load | Based On |\n")
-        file.write("| --- | --- | --- |\n")
-        for version in dirs:
-            write_version_info(version, file)
+        file.write(
+            "- [available](../available) "
+            "directory for all information about installed versions\n"
+        )
 
 
 def main():

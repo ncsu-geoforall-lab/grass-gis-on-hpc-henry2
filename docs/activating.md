@@ -27,6 +27,8 @@ and software available with:
 module avail
 ```
 
+See an overview of all available versions in [Available Versions](available.md).
+
 ## Use specific version for reproducibility
 
 To use a specific version to ensure reproducibility both in terms
@@ -45,3 +47,10 @@ get additional version information about the
 GRASS version you are using and to get specifics by calling `g.version -g`.
 Additionally, see the specifics of the Henry2 installation in the
 [available](../available) directory of this repository.
+
+## See also
+
+- [Available Versions](available.md) for all installed versions and available shortcuts
+- [available](../available) directory for detailed metadata on installed versions
+
+Next: [Running jobs](jobs.md)
