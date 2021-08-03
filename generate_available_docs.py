@@ -42,7 +42,7 @@ def write_version_info(version, file):
             f"| {meta['module_version']} | "
             f"`module load {meta['module_load']}` | "
             f"{meta['cloned_version']} | "
-            f"{meta['commit']} |\n"
+            f"`{meta['commit']}` |\n"
         )
 
 
