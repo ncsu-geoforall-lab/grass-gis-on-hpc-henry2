@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 
-"""Generate documentation from available directory"""
+"""Generate documentation from available directory
+
+The Markdown generating functions assumes that prettier will be executed
+afterwards to make stylistic changes.
+"""
 
 import sys
 from pathlib import Path
