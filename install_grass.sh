@@ -13,9 +13,9 @@ if [[ $# -ne 4 ]]; then
     echo >&2 "Usage: $0 INSTALL_DIR VERSION_WITH_DOTS COLLAPSED_VERSION BRANCH_OR_TAG"
     echo >&2 "Examples:"
     echo >&2 "  $0 /your/path 7.8.5 78 7.8.5"
-    echo >&2 "  $0 /your/path 7.9 79 master"
+    echo >&2 "  $0 /your/path 7.9 79 main"
     echo >&2 "  $0 /your/path 7.8-\$(date -I) 78 releasebranch_7_8"
-    echo >&2 "  $0 /your/path 8.0-$(date -I) 80 master"
+    echo >&2 "  $0 /your/path 8.0-$(date -I) 80 main"
     exit 1
 fi
 
