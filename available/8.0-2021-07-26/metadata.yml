@@ -5,8 +5,8 @@ module_load: grass/8.0-2021-07-26
 module_example: |
   module use --append /usr/local/usrapps/geospatial/modulefiles
   module load grass/8.0-2021-07-26
-cloned_version: master
-branch: master
+cloned_version: main
+branch: main
 commit: d03c8cb72e326a4ea421596b778304f7eafd4bea
 repo: https://github.com/OSGeo/grass.git
 local_changes: |
