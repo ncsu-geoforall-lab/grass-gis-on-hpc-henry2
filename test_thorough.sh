@@ -21,7 +21,7 @@ fi
 # Download only if the directory does not exist.
 if [ ! -d "$DATABASE/nc_spm_full_v2alpha2" ]; then
     "$GRASS_COMMAND" --tmp-location XY --exec \
-        g.download.location url=http://fatra.cnr.ncsu.edu/data/nc_spm_full_v2alpha2.tar.gz path="$DATABASE"
+        g.download.location url=https://grass.osgeo.org/sampledata/north_carolina/nc_spm_full_v2alpha2.tar.gz path="$DATABASE"
 fi
 
 cd "$GRASS_SOURCE_CODE"
