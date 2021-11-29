@@ -155,9 +155,9 @@ current mapset.
 ## Using local scratch space for temporary data
 
 ### Running a single job
-If you are processing a large number of temporary files with GRASS GIS, it can be useful to write the   
-temporary files to local scratch space on the compute node (can decrease run time). In your  
-[job submission script](https://github.com/ncsu-geoforall-lab/grass-gis-on-hpc-henry2/blob/main/docs/jobs.md#running-a-single-job-calling-a-grass-module) you will need to add the following code, e.g.:  
+If you are processing a large number of temporary files with GRASS GIS (e.g., temporary rasters or mapsets), it can be useful to write the   
+temporary files to local scratch space on the compute node (can decrease run time). In your
+[job submission script](jobs.md#running-a-single-job-calling-a-grass-module) you will need to add the following code, e.g.:  
 
 ```tcsh
 #!/bin/tcsh
@@ -168,11 +168,11 @@ temporary files to local scratch space on the compute node (can decrease run tim
 #BSUB -eo comp1_err
 #BSUB -J comp1
 
-#########   LOAD MODULES   #########
+# Load GRASS GIS
 module use --append /usr/local/usrapps/geospatial/modulefiles/
 module load grass
 
-#########   CODE TO WRITE TO LOCAL SCRATCH   #########
+# Code for writing to local scratch
 # Set the path for the temporary file directory
 # $LSB_JOBID will reference the job ID of the submission
 setenv TMPDIR /scratch/$LSB_JOBID
@@ -183,25 +183,26 @@ mkdir -p /scratch/$LSB_JOBID/grassdata/albers
 # Link the PERMANENT mapset of interest to the temporary file directory using a symlink
 ln -s /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/ /scratch/$LSB_JOBID/grassdata/albers/
 
-# The resulting directory tree should look something like this:
-tree /scratch/$LSB_JOBID/grassdata/
-/scratch/65834/grassdata/
-└── albers
-    └── PERMANENT -> /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/
-
-#########   GRASS CODE   #########
 # Run some GRASS code, e.g. a python script:
 grass --tmp-mapset /scratch/$LSB_JOBID/grassdata/albers --exec python script.py 
 
-
-#########   CODE TO REMOVE TEMPORARY FILE DIRECTORY   #########
 # Remove the temporary files and directory
 rm -fr /scratch/$LSB_JOBID
 ```
 
+The resulting directory tree should look something like this:  
+```tcsh
+$ tree /scratch/$LSB_JOBID/grassdata/
+/scratch/65834/grassdata/
+└── albers
+    └── PERMANENT -> /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/
+```
+Note that `tree /scratch/$LSB_JOBID/grassdata/` will need to be executed in the above script after linking the PERMANENT mapset.  
+
+
 ### Running a parallel job on multiple nodes using pynodelauncher
 Sometimes you will create a large number of temporary files in GRASS GIS using a [parallel job
-across multiple nodes with *pynodelauncher*.](https://github.com/ncsu-geoforall-lab/grass-gis-on-hpc-henry2/blob/main/docs/parallel.md#multiple-nodes)
+across multiple nodes with *pynodelauncher*](parallel.md#multiple-nodes).
 In this use case, you will need to create a wrapper script to write to local scratch.  
 
 Let's say you have the following submission script:  
@@ -246,22 +247,25 @@ mkdir -p /scratch/$LSB_JOBID/grassdata/albers
 # Link the PERMANENT mapset of interest to the temporary file directory using a symlink
 ln -s /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/ /scratch/$LSB_JOBID/grassdata/albers/
 
-# The resulting directory tree should look something like this:
-tree /scratch/$LSB_JOBID/grassdata/
-/scratch/65834/grassdata/
-└── albers
-    └── PERMANENT -> /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/
-
 # Run some GRASS code, e.g. a python script:
 grass --tmp-mapset /scratch/$LSB_JOBID/grassdata/albers --exec python script.py $argv:q
 
 # Remove the temporary files and directory
 rm -fr /scratch/$LSB_JOBID
 ```
-
 Note that `$argv:q` is required to pass the arguments from the `tasks.txt` file to GRASS code you are submitting.  
 
-### Increasing the open file limit
+The resulting directory tree should look something like this:  
+```tcsh
+$ tree /scratch/$LSB_JOBID/grassdata/
+/scratch/65834/grassdata/
+└── albers
+    └── PERMANENT -> /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/
+```
+Note that `tree /scratch/$LSB_JOBID/grassdata/` will need to be executed in the above script after linking the PERMANENT mapset.  
+
+
+## Increasing the open file limit
 
 If you have a large number of temporary files, you may also have issues with the number of files  
 that can be open at once. In order to increase the open file limit for a particular job (first check  
