@@ -197,7 +197,7 @@ $ tree /scratch/$LSB_JOBID/grassdata/
 └── albers
     └── PERMANENT -> /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/
 ```
-Note that `tree /scratch/$LSB_JOBID/grassdata/` will need to be executed in the above script after linking the PERMANENT mapset.  
+Note that `tree /scratch/$LSB_JOBID/grassdata/` would need to be executed in the above script after linking the PERMANENT mapset in order to get this output. However, it is not required to be included in the script. 
 
 
 ### Running a parallel job on multiple nodes using pynodelauncher
@@ -262,7 +262,7 @@ $ tree /scratch/$LSB_JOBID/grassdata/
 └── albers
     └── PERMANENT -> /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/
 ```
-Note that `tree /scratch/$LSB_JOBID/grassdata/` will need to be executed in the above script after linking the PERMANENT mapset.  
+Note that `tree /scratch/$LSB_JOBID/grassdata/` would need to be executed in the above script after linking the PERMANENT mapset in order to get this output. However, it is not required to be included in the script. 
 
 
 ## Increasing the open file limit
