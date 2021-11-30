@@ -155,9 +155,7 @@ current mapset.
 ## Using local scratch space for temporary data
 
 ### Running a single job
-If you are processing a large number of temporary files with GRASS GIS (e.g., temporary rasters or mapsets), it can be useful to write the   
-temporary files to local scratch space on the compute node (can decrease run time). In your
-[job submission script](jobs.md#running-a-single-job-calling-a-grass-module) you will need to add the following code, e.g.:  
+If you are processing a large number of temporary files with GRASS GIS (e.g., temporary rasters or mapsets), it can be useful to write the temporary files to local scratch space on the compute node (can decrease run time). In your [job submission script](jobs.md#running-a-single-job-calling-a-grass-module) you will need to add the following code, e.g.:  
 
 ```tcsh
 #!/bin/tcsh
@@ -177,14 +175,14 @@ module load grass
 # $LSB_JOBID will reference the job ID of the submission
 setenv TMPDIR /scratch/$LSB_JOBID
 
-# Create the directory 
+# Create the directory
 mkdir -p /scratch/$LSB_JOBID/grassdata/albers
 
 # Link the PERMANENT mapset of interest to the temporary file directory using a symlink
 ln -s /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/ /scratch/$LSB_JOBID/grassdata/albers/
 
 # Run some GRASS code, e.g. a python script:
-grass --tmp-mapset /scratch/$LSB_JOBID/grassdata/albers --exec python script.py 
+grass --tmp-mapset /scratch/$LSB_JOBID/grassdata/albers --exec python script.py
 
 # Remove the temporary files and directory
 rm -fr /scratch/$LSB_JOBID
@@ -197,13 +195,11 @@ $ tree /scratch/$LSB_JOBID/grassdata/
 └── albers
     └── PERMANENT -> /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/
 ```
-Note that `tree /scratch/$LSB_JOBID/grassdata/` would need to be executed in the above script after linking the PERMANENT mapset in order to get this output. However, it is not required to be included in the script. 
+Note that `tree /scratch/$LSB_JOBID/grassdata/` would need to be executed in the above script after linking the PERMANENT mapset in order to get this output. However, it is not required to be included in the script.
 
 
 ### Running a parallel job on multiple nodes using pynodelauncher
-Sometimes you will create a large number of temporary files in GRASS GIS using a [parallel job
-across multiple nodes with *pynodelauncher*](parallel.md#multiple-nodes).
-In this use case, you will need to create a wrapper script to write to local scratch.  
+Sometimes you will create a large number of temporary files in GRASS GIS using a [parallel job across multiple nodes with *pynodelauncher*](parallel.md#multiple-nodes). In this use case, you will need to create a wrapper script to write to local scratch.  
 
 Let's say you have the following submission script:  
 
@@ -241,7 +237,7 @@ where `1` and `2` are arguments to the code you are running.
 # $LSB_JOBID will reference the job ID of the submission
 setenv TMPDIR /scratch/$LSB_JOBID
 
-# Create the directory 
+# Create the directory
 mkdir -p /scratch/$LSB_JOBID/grassdata/albers
 
 # Link the PERMANENT mapset of interest to the temporary file directory using a symlink
@@ -262,16 +258,12 @@ $ tree /scratch/$LSB_JOBID/grassdata/
 └── albers
     └── PERMANENT -> /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/
 ```
-Note that `tree /scratch/$LSB_JOBID/grassdata/` would need to be executed in the above script after linking the PERMANENT mapset in order to get this output. However, it is not required to be included in the script. 
+Note that `tree /scratch/$LSB_JOBID/grassdata/` would need to be executed in the above script after linking the PERMANENT mapset in order to get this output. However, it is not required to be included in the script.
 
 
 ## Increasing the open file limit
 
-If you have a large number of temporary files, you may also have issues with the number of files  
-that can be open at once. In order to increase the open file limit for a particular job (first check  
-with HPC administrators what the hard limit is), you can add the following line of code to either the   
-submission script (for running a single job) or to the wrapper script (`wrapper_script.csh`) for  
-running a parallel job on multiple nodes using *pynodelauncher*:  
+If you have a large number of temporary files, you may also have issues with the number of files that can be open at once. In order to increase the open file limit for a particular job (first check with HPC administrators what the hard limit is), you can add the following line of code to either the submission script (for running a single job) or to the wrapper script (`wrapper_script.csh`) for running a parallel job on multiple nodes using *pynodelauncher*:  
 
 ```sh
 # Increase the open file limit to 8192
