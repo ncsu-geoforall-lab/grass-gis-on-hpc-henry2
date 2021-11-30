@@ -64,15 +64,15 @@ jobs:
       - name: Examine the new conda environment
         run: |
           echo "In environment:"
-          ls $CONDA_PREFIX
+          ls "$CONDA_PREFIX"
           echo "In environment's bin:"
-          ls $CONDA_PREFIX/bin
+          ls "$CONDA_PREFIX"/bin
           echo "In environment's bin - configs:"
-          ls $CONDA_PREFIX/bin/*config*
+          ls "$CONDA_PREFIX"/bin/*config*
           echo "In environment's include:"
-          ls $CONDA_PREFIX/include
+          ls "$CONDA_PREFIX"/include
           echo "In environment's lib:"
-          ls $CONDA_PREFIX/lib
+          ls "$CONDA_PREFIX"/lib
       - name: Set LD_LIBRARY_PATH for GRASS GIS compilation
         run: |
           echo "LD_LIBRARY_PATH=$CONDA_PREFIX/lib" >> "$GITHUB_ENV"
