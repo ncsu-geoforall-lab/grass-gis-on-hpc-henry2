@@ -275,6 +275,8 @@
     "xorg",
     "zeromq",
     "zipp",
-    "zstd"
+    "zstd",
+    "JOBID",
+    "TMPDIR"
   ]
 }
