@@ -16,4 +16,4 @@ jobs:
         uses: docker://github/super-linter:slim-v4
         env:
           VALIDATE_BASH: false
-          VALIDATE_MD: true
+          VALIDATE_NATURAL_LANGUAGE: false
