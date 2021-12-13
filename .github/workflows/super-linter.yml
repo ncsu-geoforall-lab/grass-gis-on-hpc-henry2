@@ -13,7 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Lint code base
-        uses: docker://github/super-linter:v2.2.0
+        uses: docker://github/super-linter:slim-v4
         env:
           VALIDATE_BASH: false
-          VALIDATE_MD: true
+          VALIDATE_JSCPD: false
+          VALIDATE_JSCPD_ALL_CODEBASE: false
+          VALIDATE_NATURAL_LANGUAGE: false
