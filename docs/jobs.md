@@ -23,3 +23,10 @@ module load grass
 grass -c /path/to/grassdata/albers/new_mapset --exec r.slope.aspect elevation=DEM@PERMANENT slope=slope
 grass /path/to/grassdata/albers/new_mapset --exec r.out.gdal input=slope output=/share/path/to/slope.tif type=Float32 createopt="COMPRESS=LZW,PREDICTOR=3,BIGTIFF=YES"
 ```
+
+## See also
+
+- [Running parallel processes](parallel.md) for running parallel processes
+- [Managing data](data.md) for options for data handling
+
+Next: [Running interactive jobs](interactive.md)
