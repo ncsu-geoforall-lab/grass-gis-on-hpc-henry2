@@ -1,12 +1,13 @@
-name: Linting
+name: Super-Linter
 
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+    - main
+  pull_request:
 
 jobs:
   super-linter:
-    name: GitHub Super Linter
 
     runs-on: ubuntu-latest
 
