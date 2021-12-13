@@ -1,7 +1,9 @@
-date: 2021-08-11
-default: "8.0-2021-08-11"
+date: 2021-12-13
+default: "8.0-2021-12-10"
 symbolic_links:
   - name: "7.8"
     points_to: "7.8-2021-07-29"
   - name: "8.0"
-    points_to: "8.0-2021-08-11"
+    points_to: "8.0-2021-12-10"
+  - name: "8.1"
+    points_to: "8.1-2021-12-10"
