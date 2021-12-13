@@ -30,3 +30,5 @@ grass --tmp-location XY --exec g.extension.all
 This will install recent versions of all addons from the official repository.
 If you installed some tools from other sources, you will need to reinstall them in the same way you
 originally installed them.
+
+Next: [Compiling and installing](install.md)

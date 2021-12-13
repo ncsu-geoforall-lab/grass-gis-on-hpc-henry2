@@ -155,7 +155,7 @@ current mapset.
 ## Using local scratch space for temporary data
 
 ### Running a single job
-If you are processing a large number of temporary files with GRASS GIS (e.g., temporary rasters or mapsets), it can be useful to write the temporary files to local scratch space on the compute node (can decrease run time). In your [job submission script](jobs.md#running-a-single-job-calling-a-grass-module) you will need to add the following code, e.g.:  
+If you are processing a large number of temporary files with GRASS GIS (e.g., temporary rasters or mapsets), it can be useful to write the temporary files to local scratch space on the compute node (can decrease run time). In your [job submission script](jobs.md#running-a-single-job-calling-a-grass-module) you will need to add the following code, e.g.:
 
 ```tcsh
 #!/bin/tcsh
@@ -188,7 +188,8 @@ grass --tmp-mapset /scratch/$LSB_JOBID/grassdata/albers --exec python script.py
 rm -fr /scratch/$LSB_JOBID
 ```
 
-The resulting directory tree should look something like this:  
+The resulting directory tree should look something like this:
+
 ```tcsh
 $ tree /scratch/$LSB_JOBID/grassdata/
 /scratch/65834/grassdata/
@@ -201,7 +202,7 @@ Note that `tree /scratch/$LSB_JOBID/grassdata/` would need to be executed in the
 ### Running a parallel job on multiple nodes using pynodelauncher
 Sometimes you will create a large number of temporary files in GRASS GIS using a [parallel job across multiple nodes with *pynodelauncher*](parallel.md#multiple-nodes). In this use case, you will need to create a wrapper script to write to local scratch.
 
-Let's say you have the following submission script:  
+Let's say you have the following submission script:
 
 ```tcsh
 #!/bin/tcsh
@@ -226,7 +227,7 @@ The `tasks.txt` will need to contain the list of wrapper script commands to be e
 ./wrapper_script.csh 1 2
 ```
 
-where `1` and `2` are arguments to the code you are running.  
+where `1` and `2` are arguments to the code you are running.
 
 `wrapper_script.csh` needs to contain the following code to write temporary files to local scratch space on the compute node:
 
@@ -249,9 +250,10 @@ grass --tmp-mapset /scratch/$LSB_JOBID/grassdata/albers --exec python script.py 
 # Remove the temporary files and directory
 rm -fr /scratch/$LSB_JOBID
 ```
-Note that `$argv:q` is required to pass the arguments from the `tasks.txt` file to GRASS code you are submitting.  
+Note that `$argv:q` is required to pass the arguments from the `tasks.txt` file to GRASS code you are submitting.
 
-The resulting directory tree should look something like this:  
+The resulting directory tree should look something like this:
+
 ```tcsh
 $ tree /scratch/$LSB_JOBID/grassdata/
 /scratch/65834/grassdata/
@@ -273,5 +275,6 @@ or to the wrapper script (`wrapper_script.csh`) for running a parallel job on mu
 limit descriptors 8192
 ```
 
-Note that this code will need to be added *before* executing the GRASS code!  
+Note that this code will need to be added *before* executing the GRASS code!
 
+Next: [Installing Addons](addons.md)
