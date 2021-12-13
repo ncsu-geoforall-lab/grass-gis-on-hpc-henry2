@@ -9,3 +9,4 @@ DISABLE:
   - COPYPASTE # Uncomment to enable checks of abusive copy-pastes
 SHOW_ELAPSED_TIME: true
 FILEIO_REPORTER: false
+GITHUB_STATUS_REPORTER: false
