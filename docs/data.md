@@ -155,6 +155,7 @@ current mapset.
 ## Using local scratch space for temporary data
 
 ### Running a single job
+
 If you are processing a large number of temporary files with GRASS GIS (e.g., temporary rasters or mapsets), it can be useful to write the temporary files to local scratch space on the compute node (can decrease run time). In your [job submission script](jobs.md#running-a-single-job-calling-a-grass-module) you will need to add the following code, e.g.:
 
 ```tcsh
@@ -196,11 +197,12 @@ $ tree /scratch/$LSB_JOBID/grassdata/
 └── albers
     └── PERMANENT -> /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/
 ```
+
 Note that `tree /scratch/$LSB_JOBID/grassdata/` would need to be executed in the above script after linking the PERMANENT mapset in order to get this output. However, it is not required to be included in the script.
 
-
 ### Running a parallel job on multiple nodes using pynodelauncher
-Sometimes you will create a large number of temporary files in GRASS GIS using a [parallel job across multiple nodes with *pynodelauncher*](parallel.md#multiple-nodes). In this use case, you will need to create a wrapper script to write to local scratch.
+
+Sometimes you will create a large number of temporary files in GRASS GIS using a [parallel job across multiple nodes with _pynodelauncher_](parallel.md#multiple-nodes). In this use case, you will need to create a wrapper script to write to local scratch.
 
 Let's say you have the following submission script:
 
@@ -221,7 +223,7 @@ module load PrgEnv-intel
 mpiexec python -m mpi4py -m pynodelauncher .../scripts/tasks.txt
 ```
 
-The `tasks.txt` will need to contain the list of wrapper script commands to be executed in parallel by *pynodelauncher*, e.g.:
+The `tasks.txt` will need to contain the list of wrapper script commands to be executed in parallel by _pynodelauncher_, e.g.:
 
 ```txt
 ./wrapper_script.csh 1 2
@@ -250,6 +252,7 @@ grass --tmp-mapset /scratch/$LSB_JOBID/grassdata/albers --exec python script.py 
 # Remove the temporary files and directory
 rm -fr /scratch/$LSB_JOBID
 ```
+
 Note that `$argv:q` is required to pass the arguments from the `tasks.txt` file to GRASS code you are submitting.
 
 The resulting directory tree should look something like this:
@@ -260,21 +263,21 @@ $ tree /scratch/$LSB_JOBID/grassdata/
 └── albers
     └── PERMANENT -> /rsstu/users/r/rkmeente/FUTURES/grassdata/albers/PERMANENT/
 ```
-Note that `tree /scratch/$LSB_JOBID/grassdata/` would need to be executed in the above script after linking the PERMANENT mapset in order to get this output. However, it is not required to be included in the script.
 
+Note that `tree /scratch/$LSB_JOBID/grassdata/` would need to be executed in the above script after linking the PERMANENT mapset in order to get this output. However, it is not required to be included in the script.
 
 ## Increasing the open file limit
 
 If you have a large number of temporary files, you may also have issues with the number of files that can be open at once.
 In order to increase the open file limit for a particular job (first check with HPC administrators what the hard limit is),
 you can add the following line of code to either the submission script (for running a single job)
-or to the wrapper script (`wrapper_script.csh`) for running a parallel job on multiple nodes using *pynodelauncher*:
+or to the wrapper script (`wrapper_script.csh`) for running a parallel job on multiple nodes using _pynodelauncher_:
 
 ```sh
 # Increase the open file limit to 8192
 limit descriptors 8192
 ```
 
-Note that this code will need to be added *before* executing the GRASS code!
+Note that this code will need to be added _before_ executing the GRASS code!
 
 Next: [Installing Addons](addons.md)
