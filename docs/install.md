@@ -101,6 +101,34 @@ Here, we would run:
 ./set_default_module_version.sh /usr/local/usrapps/geospatial/modulefiles/grass 7.9
 ```
 
+## Whole workflow
+
+```sh
+time ./install_grass.sh /usr/local/usrapps/geospatial 7.8.6 78 7.8.6
+module use --append /usr/local/usrapps/geospatial/modulefiles
+module load grass/7.8.6
+./test_quick.sh grass
+time ./test_thorough.sh grass grass-code-7.8.6/ .
+```
+
+```sh
+./set_default_module_version.sh /usr/local/usrapps/geospatial/modulefiles/grass 7.9
+```
+
+```bash
+(cd ../modulefiles/grass/ && ln -sf 7.8.6 7.8 && ls -la)
+./record_shortcuts.py ../modulefiles/grass/
+```
+
+```sh
+./record_software_versions.sh 8.0-2021-06-24
+```
+
+```sh
+./generate_available_docs.py
+npx prettier --write .
+```
+
 ## Compiling modified GRASS GIS source code
 
 See the necessary and some optional steps in the `install_grass.sh`
