@@ -21,7 +21,7 @@ record_software() {
         echo "    version: \"$2\""
         echo "    description: $3"
         echo "    interfaces: $4"
-    } >> "$METADATA_FILE"
+    } >>"$METADATA_FILE"
 }
 
 record_python_package() {
@@ -35,7 +35,7 @@ record_python_package() {
     record_software "$1" "$VERSION" "$3" "$INTERFACES"
 }
 
-echo "software:" > "$METADATA_FILE"
+echo "software:" >"$METADATA_FILE"
 
 record_software \
     "GRASS GIS" \

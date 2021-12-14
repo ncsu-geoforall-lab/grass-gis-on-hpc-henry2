@@ -10,7 +10,7 @@ module load grass/8.1-2021-12-10
 ```
 
 | Software     | Version | Description                                                      | Interfaces                  |
-| ------------ | ------- | ---------------------------------------------------------------- | --------------------------- |
+|--------------|---------|------------------------------------------------------------------|-----------------------------|
 | GRASS GIS    | 8.0.dev | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
 | PDAL         | 2.3.0   | Point cloud data translation and manipulation                    | command line                |
 | GDAL         | 3.4.0   | Raster and vector data translation and manipulation              | command line                |
@@ -34,7 +34,7 @@ module load grass/8.0-2021-12-10
 ```
 
 | Software     | Version | Description                                                      | Interfaces                  |
-| ------------ | ------- | ---------------------------------------------------------------- | --------------------------- |
+|--------------|---------|------------------------------------------------------------------|-----------------------------|
 | GRASS GIS    | 8.0.dev | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
 | PDAL         | 2.3.0   | Point cloud data translation and manipulation                    | command line                |
 | GDAL         | 3.4.0   | Raster and vector data translation and manipulation              | command line                |
@@ -58,7 +58,7 @@ module load grass/8.0-2021-06-24
 ```
 
 | Software     | Version | Description                                                      | Interfaces                  |
-| ------------ | ------- | ---------------------------------------------------------------- | --------------------------- |
+|--------------|---------|------------------------------------------------------------------|-----------------------------|
 | GRASS GIS    | 8.0.dev | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
 | PDAL         | 2.3.0   | Point cloud data translation and manipulation                    | command line                |
 | GDAL         | 3.3.0   | Raster and vector data translation and manipulation              | command line                |
@@ -81,7 +81,7 @@ module load grass/7.8.6
 ```
 
 | Software     | Version | Description                                                      | Interfaces                  |
-| ------------ | ------- | ---------------------------------------------------------------- | --------------------------- |
+|--------------|---------|------------------------------------------------------------------|-----------------------------|
 | GRASS GIS    | 7.8.6   | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
 | PDAL         | 2.3.0   | Point cloud data translation and manipulation                    | command line                |
 | GDAL         | 3.4.0   | Raster and vector data translation and manipulation              | command line                |
@@ -105,7 +105,7 @@ module load grass/7.8-2021-06-24
 ```
 
 | Software     | Version  | Description                                                      | Interfaces                  |
-| ------------ | -------- | ---------------------------------------------------------------- | --------------------------- |
+|--------------|----------|------------------------------------------------------------------|-----------------------------|
 | GRASS GIS    | 7.8.6dev | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
 | PDAL         | 2.3.0    | Point cloud data translation and manipulation                    | command line                |
 | GDAL         | 3.3.0    | Raster and vector data translation and manipulation              | command line                |
