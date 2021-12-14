@@ -63,6 +63,46 @@ def write_installed_versions(paths, file):
         write_version_info(version, file)
 
 
+def software_versions_to_doc(paths, filename):
+    """Generate documentation for installed software"""
+    with open(filename, "w") as file:
+        file.write("# Available software\n\n")
+        for version in reversed(paths):
+            meta_file = version / "metadata.yml"
+            if meta_file.exists():
+                meta = yaml.safe_load(meta_file.read_text())
+                file.write(f"## Module {meta['module_load']}\n\n")
+                file.write("Activate module using:\n")
+                file.write("\n```sh\n")
+                file.write(f"{meta['module_example']}")
+                file.write("```\n\n")
+            else:
+                default_module_name = "grass"
+                file.write(f"## Module {default_module_name}/{version.name}\n")
+            software_file = version / "software.yml"
+            if software_file.exists():
+                file.write("| Software | Version | Description | Interfaces |\n")
+                file.write("| --- | --- | --- | --- |\n")
+                softwares = yaml.safe_load(software_file.read_text())
+                for software in softwares["software"]:
+                    software_version = software["version"]
+                    if not software_version:
+                        continue
+                    software_description = software["description"]
+                    if not software_description:
+                        software_description = ""
+                    software_interfaces = software["interfaces"]
+                    if not software_interfaces:
+                        software_interfaces = ""
+                    file.write(
+                        f"| {software['name']} |"
+                        f" {software_version} |"
+                        f" {software_description} |"
+                        f" {software_interfaces} |\n"
+                    )
+                file.write("\n")
+
+
 def meta_to_doc(path, filename):
     """Read metadata from a directory and write documentation to a Markdown file"""
     path = Path(path)
@@ -79,6 +119,7 @@ def meta_to_doc(path, filename):
             write_shortcuts(shortcuts, file)
         dirs = sorted([x for x in path.iterdir() if x.is_dir()])
         write_installed_versions(dirs, file)
+        software_versions_to_doc(dirs, "docs/software.md")
         file.write("\n")
         file.write("## See also\n\n")
         file.write(
