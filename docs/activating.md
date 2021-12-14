@@ -50,7 +50,7 @@ Additionally, see the specifics of the Henry2 installation in the
 
 ## See also
 
-- [Available Versions](available.md) for all installed versions and available shortcuts
-- [available](../available) directory for detailed metadata on installed versions
+- [Available Software](software.md) for all installed software
+- [Available Versions](available.md) for all installed versions of GRASS GIS and available shortcuts
 
 Next: [Running jobs](jobs.md)

@@ -132,6 +132,14 @@ def meta_to_doc(meta_path, doc_path):
             "- [available](../available) "
             "directory for all information about installed versions\n"
         )
+        file.write(
+            "- [Available Software](software.md) "
+            "for versions of installed software\n"
+        )
+        file.write(
+            "- [available](../available/environment.yml) "
+            "for exact versions of all installed software\n"
+        )
 
 
 def main():

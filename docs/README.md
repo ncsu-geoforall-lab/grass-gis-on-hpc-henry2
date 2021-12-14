@@ -6,10 +6,11 @@ Start here: [Activating](activating.md)
 
 ## Table of Contents
 
-Getting GRASS GIS:
+Getting GRASS GIS and other software:
 
 - [Activating](activating.md)
-- [Available versions](available.md)
+- [Available GRASS GIS versions](available.md)
+- [Available software](software.md)
 
 Running jobs:
 
