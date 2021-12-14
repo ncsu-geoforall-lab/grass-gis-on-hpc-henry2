@@ -102,6 +102,10 @@ def software_versions_to_doc(paths, filename):
                     f" {software_interfaces} |\n"
                 )
             file.write("\n")
+            file.write(
+                f"See [environment file](../available/{version.name}/environment.yml) "
+                "for exact versions of all installed software.\n"
+            )
 
 
 def meta_to_doc(meta_path, doc_path):
@@ -135,10 +139,6 @@ def meta_to_doc(meta_path, doc_path):
         file.write(
             "- [Available Software](software.md) "
             "for versions of installed software\n"
-        )
-        file.write(
-            "- [available](../available/environment.yml) "
-            "for exact versions of all installed software\n"
         )
 
 

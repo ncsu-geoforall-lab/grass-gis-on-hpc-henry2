@@ -35,4 +35,3 @@ These are all the currently installed (available) versions. (New versions are in
 - [Activating](activating.md) for information on activating specific versions
 - [available](../available) directory for all information about installed versions
 - [Available Software](software.md) for versions of installed software
-- [available](../available/environment.yml) for exact versions of all installed software

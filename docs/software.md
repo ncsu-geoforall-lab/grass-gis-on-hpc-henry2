@@ -24,6 +24,8 @@ module load grass/8.1-2021-12-10
 | JupyterLab   | 3.2.5   | Computational notebook environment                               | GUI in web browser          |
 | SQLite       | 3.37.0  | File-based database                                              | command line                |
 
+See [environment file](../available/8.1-2021-12-10/environment.yml) for exact versions of all installed software.
+
 ## Module grass/8.0-2021-12-10
 
 Activate module using:
@@ -48,6 +50,8 @@ module load grass/8.0-2021-12-10
 | JupyterLab   | 3.2.4   | Computational notebook environment                               | GUI in web browser          |
 | SQLite       | 3.37.0  | File-based database                                              | command line                |
 
+See [environment file](../available/8.0-2021-12-10/environment.yml) for exact versions of all installed software.
+
 ## Module grass/8.0-2021-06-24
 
 Activate module using:
@@ -70,6 +74,8 @@ module load grass/8.0-2021-06-24
 | scikit-learn | 0.24.2  | Machine learning                                                 | Python                      |
 | JupyterLab   | 3.0.16  | Computational notebook environment                               | GUI in web browser          |
 | SQLite       | 3.36.0  | File-based database                                              | command line                |
+
+See [environment file](../available/8.0-2021-06-24/environment.yml) for exact versions of all installed software.
 
 ## Module grass/7.8.6
 
@@ -95,6 +101,8 @@ module load grass/7.8.6
 | JupyterLab   | 3.2.5   | Computational notebook environment                               | GUI in web browser          |
 | SQLite       | 3.37.0  | File-based database                                              | command line                |
 
+See [environment file](../available/7.8.6/environment.yml) for exact versions of all installed software.
+
 ## Module grass/7.8-2021-06-24
 
 Activate module using:
@@ -117,3 +125,5 @@ module load grass/7.8-2021-06-24
 | scikit-learn | 0.24.2   | Machine learning                                                 | Python                      |
 | JupyterLab   | 3.0.16   | Computational notebook environment                               | GUI in web browser          |
 | SQLite       | 3.36.0   | File-based database                                              | command line                |
+
+See [environment file](../available/7.8-2021-06-24/environment.yml) for exact versions of all installed software.
