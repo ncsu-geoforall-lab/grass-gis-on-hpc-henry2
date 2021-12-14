@@ -68,6 +68,9 @@ def software_versions_to_doc(paths, filename):
     with open(filename, "w") as file:
         file.write("# Available software\n\n")
         for version in reversed(paths):
+            software_file = version / "software.yml"
+            if not software_file.exists():
+                continue
             meta_file = version / "metadata.yml"
             if meta_file.exists():
                 meta = yaml.safe_load(meta_file.read_text())
@@ -79,35 +82,34 @@ def software_versions_to_doc(paths, filename):
             else:
                 default_module_name = "grass"
                 file.write(f"## Module {default_module_name}/{version.name}\n")
-            software_file = version / "software.yml"
-            if software_file.exists():
-                file.write("| Software | Version | Description | Interfaces |\n")
-                file.write("| --- | --- | --- | --- |\n")
-                softwares = yaml.safe_load(software_file.read_text())
-                for software in softwares["software"]:
-                    software_version = software["version"]
-                    if not software_version:
-                        continue
-                    software_description = software["description"]
-                    if not software_description:
-                        software_description = ""
-                    software_interfaces = software["interfaces"]
-                    if not software_interfaces:
-                        software_interfaces = ""
-                    file.write(
-                        f"| {software['name']} |"
-                        f" {software_version} |"
-                        f" {software_description} |"
-                        f" {software_interfaces} |\n"
-                    )
-                file.write("\n")
+            file.write("| Software | Version | Description | Interfaces |\n")
+            file.write("| --- | --- | --- | --- |\n")
+            softwares = yaml.safe_load(software_file.read_text())
+            for software in softwares["software"]:
+                software_version = software["version"]
+                if not software_version:
+                    continue
+                software_description = software["description"]
+                if not software_description:
+                    software_description = ""
+                software_interfaces = software["interfaces"]
+                if not software_interfaces:
+                    software_interfaces = ""
+                file.write(
+                    f"| {software['name']} |"
+                    f" {software_version} |"
+                    f" {software_description} |"
+                    f" {software_interfaces} |\n"
+                )
+            file.write("\n")
 
 
-def meta_to_doc(path, filename):
+def meta_to_doc(meta_path, doc_path):
     """Read metadata from a directory and write documentation to a Markdown file"""
-    path = Path(path)
+    path = Path(meta_path)
     shortcuts_file = path / "shortcuts.yml"
-    filename = Path(filename)
+    doc_path = Path(doc_path)
+    filename = doc_path / "available.md"
 
     with open(filename, "w") as file:
         file.write(
@@ -119,7 +121,7 @@ def meta_to_doc(path, filename):
             write_shortcuts(shortcuts, file)
         dirs = sorted([x for x in path.iterdir() if x.is_dir()])
         write_installed_versions(dirs, file)
-        software_versions_to_doc(dirs, "docs/software.md")
+        software_versions_to_doc(dirs, doc_path / "software.md")
         file.write("\n")
         file.write("## See also\n\n")
         file.write(
@@ -136,13 +138,13 @@ def main():
     """Process command line parameters and run the conversion"""
     if len(sys.argv) == 1:
         metadata_dir = Path("available")
-        doc_file = Path("docs/available.md")
+        doc_dir = Path("docs")
     elif len(sys.argv) == 3:
         metadata_dir = Path(sys.argv[1])
-        doc_file = Path(sys.argv[2])
+        doc_dir = Path(sys.argv[2])
     else:
-        sys.exit(f"Usage: {sys.argv[0]} [DIR FILE]")
-    meta_to_doc(metadata_dir, doc_file)
+        sys.exit(f"Usage: {sys.argv[0]} [AVAILABLE_DIR DOC_DIR]")
+    meta_to_doc(metadata_dir, doc_dir)
 
 
 if __name__ == "__main__":
