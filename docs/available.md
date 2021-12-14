@@ -4,14 +4,14 @@ There are GRASS GIS versions current available on Henry2.
 
 ## Shortcuts
 
-These are the available shortcuts as of 2021-12-13. Each shortcut points to a specific installed version.
+These are the available shortcuts as of 2021-12-14. Each shortcut points to a specific installed version.
 The shortcuts are provided for convenience in addition to the installed versions.
 (Some shortcuts change as new versions are introduced.)
 
 | Shortcut  | module load             | Translates to  |
 | --------- | ----------------------- | -------------- |
 | grass     | `module load grass`     | 8.0-2021-12-10 |
-| grass/7.8 | `module load grass/7.8` | 7.8-2021-07-29 |
+| grass/7.8 | `module load grass/7.8` | 7.8.6          |
 | grass/8.0 | `module load grass/8.0` | 8.0-2021-12-10 |
 | grass/8.1 | `module load grass/8.1` | 8.1-2021-12-10 |
 
