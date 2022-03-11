@@ -82,7 +82,7 @@ if __name__ == '__main__':
 In the BSUB script call this script with parameters (in this case input vector name and output raster name
 
 ```sh
-grass /share/path/to/grassdata/albers/mymapset --exec python ~/tiling.py roads roads_rasterized
+grass /share/path/to/grassdata/albers/my_mapset --exec python ~/tiling.py roads roads_rasterized
 ```
 
 Make sure the number of cores you specify match the number of processes in the script.
