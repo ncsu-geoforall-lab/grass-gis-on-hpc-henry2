@@ -1,6 +1,6 @@
 software:
   - name: GRASS GIS
-    version: "8.0.dev"
+    version: "8.1.dev"
     description: GIS, geospatial modeling, analysis, and remote sensing
     interfaces: Python, command line, GUI
   - name: PDAL
