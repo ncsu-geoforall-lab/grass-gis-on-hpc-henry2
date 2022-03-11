@@ -31,3 +31,5 @@ g.gui
 ```
 
 Do not run any computations on the login node.
+
+Next: [Running parallel processes](parallel.md)

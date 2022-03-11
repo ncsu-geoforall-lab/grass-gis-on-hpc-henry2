@@ -265,4 +265,4 @@ i.e., small computational region and just a couple of commands in the
 Testing the rest of the workflow, should be easy as long as you made it adaptable
 to a subset of data.
 
-Next: [Data](data.md)
+Next: [Managing data](data.md)
