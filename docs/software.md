@@ -1,5 +1,31 @@
 # Available software
 
+## Module grass/8.1-2022-03-11
+
+Activate module using:
+
+```sh
+module use --append /usr/local/usrapps/geospatial/modulefiles
+module load grass/8.1-2022-03-11
+```
+
+| Software     | Version | Description                                                      | Interfaces                  |
+|--------------|---------|------------------------------------------------------------------|-----------------------------|
+| GRASS GIS    | 8.1.dev | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
+| PDAL         | 2.3.0   | Point cloud data translation and manipulation                    | command line                |
+| GDAL         | 3.4.1   | Raster and vector data translation and manipulation              | command line                |
+| PROJ         | 8.2.1   | Conversions between cartographic projections                     | command line                |
+| Python       | 3.10.2  | Scripting language                                               | python, ipython, JupyterLab |
+| NumPy        | 1.22.3  | Multi-dimensional arrays and matrices and mathematical functions | Python                      |
+| SciPy        | 1.8.0   | Scientific computing and technical computing                     | Python                      |
+| pandas       | 1.4.1   | Data analysis and manipulation                                   | Python                      |
+| scikit-learn | 1.0.2   | Machine learning                                                 | Python                      |
+| Matplotlib   | 3.5.1   | Plotting                                                         | Python                      |
+| JupyterLab   | 3.3.1   | Computational notebook environment                               | GUI in web browser          |
+| SQLite       | 3.37.0  | File-based database                                              | command line                |
+
+See [environment file](../available/8.1-2022-03-11/environment.yml) for exact versions of all installed software.
+
 ## Module grass/8.1-2021-12-10
 
 Activate module using:
@@ -11,7 +37,7 @@ module load grass/8.1-2021-12-10
 
 | Software     | Version | Description                                                      | Interfaces                  |
 |--------------|---------|------------------------------------------------------------------|-----------------------------|
-| GRASS GIS    | 8.0.dev | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
+| GRASS GIS    | 8.1.dev | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
 | PDAL         | 2.3.0   | Point cloud data translation and manipulation                    | command line                |
 | GDAL         | 3.4.0   | Raster and vector data translation and manipulation              | command line                |
 | PROJ         | 8.2.0   | Conversions between cartographic projections                     | command line                |
@@ -25,6 +51,58 @@ module load grass/8.1-2021-12-10
 | SQLite       | 3.37.0  | File-based database                                              | command line                |
 
 See [environment file](../available/8.1-2021-12-10/environment.yml) for exact versions of all installed software.
+
+## Module grass/8.0.1
+
+Activate module using:
+
+```sh
+module use --append /usr/local/usrapps/geospatial/modulefiles
+module load grass/8.0.1
+```
+
+| Software     | Version | Description                                                      | Interfaces                  |
+|--------------|---------|------------------------------------------------------------------|-----------------------------|
+| GRASS GIS    | 8.0.1   | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
+| PDAL         | 2.3.0   | Point cloud data translation and manipulation                    | command line                |
+| GDAL         | 3.4.1   | Raster and vector data translation and manipulation              | command line                |
+| PROJ         | 8.2.1   | Conversions between cartographic projections                     | command line                |
+| Python       | 3.10.2  | Scripting language                                               | python, ipython, JupyterLab |
+| NumPy        | 1.22.3  | Multi-dimensional arrays and matrices and mathematical functions | Python                      |
+| SciPy        | 1.8.0   | Scientific computing and technical computing                     | Python                      |
+| pandas       | 1.4.1   | Data analysis and manipulation                                   | Python                      |
+| scikit-learn | 1.0.2   | Machine learning                                                 | Python                      |
+| Matplotlib   | 3.5.1   | Plotting                                                         | Python                      |
+| JupyterLab   | 3.3.1   | Computational notebook environment                               | GUI in web browser          |
+| SQLite       | 3.37.0  | File-based database                                              | command line                |
+
+See [environment file](../available/8.0.1/environment.yml) for exact versions of all installed software.
+
+## Module grass/8.0-2022-03-11
+
+Activate module using:
+
+```sh
+module use --append /usr/local/usrapps/geospatial/modulefiles
+module load grass/8.0-2022-03-11
+```
+
+| Software     | Version  | Description                                                      | Interfaces                  |
+|--------------|----------|------------------------------------------------------------------|-----------------------------|
+| GRASS GIS    | 8.0.2dev | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
+| PDAL         | 2.3.0    | Point cloud data translation and manipulation                    | command line                |
+| GDAL         | 3.4.1    | Raster and vector data translation and manipulation              | command line                |
+| PROJ         | 8.2.1    | Conversions between cartographic projections                     | command line                |
+| Python       | 3.10.2   | Scripting language                                               | python, ipython, JupyterLab |
+| NumPy        | 1.22.3   | Multi-dimensional arrays and matrices and mathematical functions | Python                      |
+| SciPy        | 1.8.0    | Scientific computing and technical computing                     | Python                      |
+| pandas       | 1.4.1    | Data analysis and manipulation                                   | Python                      |
+| scikit-learn | 1.0.2    | Machine learning                                                 | Python                      |
+| Matplotlib   | 3.5.1    | Plotting                                                         | Python                      |
+| JupyterLab   | 3.3.1    | Computational notebook environment                               | GUI in web browser          |
+| SQLite       | 3.37.0   | File-based database                                              | command line                |
+
+See [environment file](../available/8.0-2022-03-11/environment.yml) for exact versions of all installed software.
 
 ## Module grass/8.0-2021-12-10
 
@@ -76,6 +154,32 @@ module load grass/8.0-2021-06-24
 | SQLite       | 3.36.0  | File-based database                                              | command line                |
 
 See [environment file](../available/8.0-2021-06-24/environment.yml) for exact versions of all installed software.
+
+## Module grass/7.8.7
+
+Activate module using:
+
+```sh
+module use --append /usr/local/usrapps/geospatial/modulefiles
+module load grass/7.8.7
+```
+
+| Software     | Version | Description                                                      | Interfaces                  |
+|--------------|---------|------------------------------------------------------------------|-----------------------------|
+| GRASS GIS    | 7.8.7   | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
+| PDAL         | 2.3.0   | Point cloud data translation and manipulation                    | command line                |
+| GDAL         | 3.4.1   | Raster and vector data translation and manipulation              | command line                |
+| PROJ         | 8.2.1   | Conversions between cartographic projections                     | command line                |
+| Python       | 3.10.2  | Scripting language                                               | python, ipython, JupyterLab |
+| NumPy        | 1.22.3  | Multi-dimensional arrays and matrices and mathematical functions | Python                      |
+| SciPy        | 1.8.0   | Scientific computing and technical computing                     | Python                      |
+| pandas       | 1.4.1   | Data analysis and manipulation                                   | Python                      |
+| scikit-learn | 1.0.2   | Machine learning                                                 | Python                      |
+| Matplotlib   | 3.5.1   | Plotting                                                         | Python                      |
+| JupyterLab   | 3.3.1   | Computational notebook environment                               | GUI in web browser          |
+| SQLite       | 3.37.0  | File-based database                                              | command line                |
+
+See [environment file](../available/7.8.7/environment.yml) for exact versions of all installed software.
 
 ## Module grass/7.8.6
 

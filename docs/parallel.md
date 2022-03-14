@@ -82,7 +82,7 @@ if __name__ == '__main__':
 In the BSUB script call this script with parameters (in this case input vector name and output raster name
 
 ```sh
-grass /share/path/to/grassdata/albers/mymapset --exec python ~/tiling.py roads roads_rasterized
+grass /share/path/to/grassdata/albers/my_mapset --exec python ~/tiling.py roads roads_rasterized
 ```
 
 Make sure the number of cores you specify match the number of processes in the script.
@@ -265,4 +265,4 @@ i.e., small computational region and just a couple of commands in the
 Testing the rest of the workflow, should be easy as long as you made it adaptable
 to a subset of data.
 
-Next: [Data](data.md)
+Next: [Managing data](data.md)

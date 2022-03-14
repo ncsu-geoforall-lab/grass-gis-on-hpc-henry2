@@ -1,0 +1,13 @@
+module_name: grass
+module_version: 7.8.7
+module_use: /usr/local/usrapps/geospatial/modulefiles
+module_load: grass/7.8.7
+module_example: |
+  module use --append /usr/local/usrapps/geospatial/modulefiles
+  module load grass/7.8.7
+cloned_version: 7.8.7
+branch: HEAD
+commit: ed6d8dd7a01630eb364dcf00aabce78794274754
+repo: https://github.com/OSGeo/grass.git
+local_changes: |
+  M include/Make/Platform.make.in

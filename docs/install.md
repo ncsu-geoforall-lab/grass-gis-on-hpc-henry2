@@ -17,10 +17,10 @@ than your home otherwise you will run out of space.
 Create a directory for the installation and enter that directory:
 
 ```sh
-cd /share/usrapps/geospatial/
+cd /usr/local/usrapps/geospatial
 ```
 
-Start by cloning this repository:
+Start by cloning this repository (if not cloned already):
 
 ```sh
 git clone https://github.com/ncsu-geoforall-lab/grass-gis-on-hpc-henry2.git
@@ -30,6 +30,14 @@ Then enter the directory created by the above command:
 
 ```sh
 cd grass-gis-on-hpc-henry2
+```
+
+If you are not using a fresh clone, ensure you are using the latest _main_ branch:
+
+```sh
+git checkout main
+git fetch origin
+git rebase origin/main
 ```
 
 Pick a install directory and GRASS GIS version your want to use.
@@ -46,10 +54,25 @@ For the version, you need:
 When ready, run the `install_grass.sh` script:
 
 ```sh
-./install_grass.sh /usr/local/usrapps/geospatial/ 7.9 79 e5379bbd7e534071eae392bf416865fdbf109f01
+./install_grass.sh /usr/local/usrapps/geospatial/ 8.1 81 fdff46c1a39ff41a6f805bee0dc74fb2bf246eb5
 ```
 
 The process will take roughly 30 minutes and it is using only one core.
+
+## Updating all versions
+
+The following versions are currently being updated when appropriate.
+The builds for branches can be used as is. For the builds of tags,
+replace `x` with the current minor version.
+
+```sh
+time ./install_grass.sh /usr/local/usrapps/geospatial 8.1-$(date -I) 81 main
+time ./install_grass.sh /usr/local/usrapps/geospatial 8.0-$(date -I) 80 releasebranch_8_0
+time ./install_grass.sh /usr/local/usrapps/geospatial 8.0.1 80 8.0.1
+time ./install_grass.sh /usr/local/usrapps/geospatial 7.8.x 78 7.8.x
+```
+
+The _time_ command is used just to get some more information about the build.
 
 ## Test
 
@@ -64,16 +87,16 @@ module avail
 ```
 
 ```sh
-module load grass/7.9
+module load grass/8.1
 ```
 
-Then run the test scripts with the executable and directory
-with source code as parameters:
+Then run the test scripts with the executable name and source code directory
+as parameters:
 
 ```bash
 grass --version
 ./test_quick.sh grass
-./test_thorough.sh grass grass-code-7.9 .
+./test_thorough.sh grass grass-code-8.1 .
 ```
 
 The `grass-code-` part is hardcoded in the `compile.sh` script the second part is
@@ -98,31 +121,60 @@ which is `modulefiles/grass` under your installation directory.
 Here, we would run:
 
 ```sh
-./set_default_module_version.sh /usr/local/usrapps/geospatial/modulefiles/grass 7.9
+./set_default_module_version.sh /usr/local/usrapps/geospatial/modulefiles/grass 8.0.1
 ```
 
 ## Whole workflow
 
-```sh
-time ./install_grass.sh /usr/local/usrapps/geospatial 7.8.6 78 7.8.6
-module use --append /usr/local/usrapps/geospatial/modulefiles
-module load grass/7.8.6
-./test_quick.sh grass
-time ./test_thorough.sh grass grass-code-7.8.6/ .
-```
+Build and test:
 
 ```sh
-./set_default_module_version.sh /usr/local/usrapps/geospatial/modulefiles/grass 7.9
+time ./install_grass.sh /usr/local/usrapps/geospatial 8.0.1 80 8.0.1
+module use --append /usr/local/usrapps/geospatial/modulefiles
+module load grass/8.0.1
+grass --version
+./test_quick.sh grass
+time ./test_thorough.sh grass grass-code-8.0.1/ .
 ```
+
+Record versions of all relevant software packages installed
+(requires the module to be loaded):
+
+```sh
+./record_software_versions.sh 8.0.1
+```
+
+Optionally, set the version as the default module version:
+
+```sh
+./set_default_module_version.sh /usr/local/usrapps/geospatial/modulefiles/grass 8.0.1
+```
+
+For each minor version, create symbolic link to the latest installed version in that
+minor version series:
 
 ```bash
-(cd ../modulefiles/grass/ && ln -sf 7.8.6 7.8 && ls -la)
+(cd ../modulefiles/grass/ && ln -sf 8.0.1 8.0 && ls -la)
+```
+
+Record the current defaults and symbolic links as shortcuts
+(collects information for all installed version):
+
+```sh
 ./record_shortcuts.py ../modulefiles/grass/
 ```
 
+Add the available directory to Git, to record the new subdirectories
+and updated shortcuts:
+
 ```sh
-./record_software_versions.sh 8.0-2021-06-24
+git add available/
+git checkout -b add-8.0.1
+git commit -m "Add version 8.0.1"
+git push --set-upstream origin add-8.0.1
 ```
+
+Additionally, on a local machine, generate documentation:
 
 ```sh
 ./generate_available_docs.py
