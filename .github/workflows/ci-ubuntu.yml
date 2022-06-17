@@ -28,6 +28,8 @@ jobs:
         include:
           - version: main
             command: grass
+          - version: releasebranch_8_2
+            command: grass
           - version: releasebranch_8_0
             command: grass
           - version: releasebranch_7_8
@@ -95,4 +97,4 @@ jobs:
         run: ./test_quick.sh ${{ matrix.command }}
       - name: Thorough test of GRASS GIS
         shell: bash -l {0}
-        run: ./test_thorough.sh ${{ matrix.command }} grass-code .
+        run: ./test_thorough.sh ${{ matrix.command }} grass-code . no_cache_dir
