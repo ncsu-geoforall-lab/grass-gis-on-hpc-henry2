@@ -41,7 +41,7 @@ install_version() {
     local CONDA_PREFIX="$BASE_DIR/grass-$GRASS_DOT_VERSION"
     local INSTALL_PREFIX="$CONDA_PREFIX"
 
-    conda env create --file "$GRASS_INSTALL_REPO/environment.yml" --prefix "$CONDA_PREFIX"
+    conda env create --file "$GRASS_INSTALL_REPO/available/8.3-2022-05-25/environment.yml" --prefix "$CONDA_PREFIX"
     export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
     conda activate "$CONDA_PREFIX"
     "$GRASS_INSTALL_REPO/compile.sh" \

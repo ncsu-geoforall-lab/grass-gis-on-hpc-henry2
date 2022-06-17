@@ -1,0 +1,24 @@
+diff --git a/include/Make/Platform.make.in b/include/Make/Platform.make.in
+index 710e9ee..e31e187 100644
+--- a/include/Make/Platform.make.in
++++ b/include/Make/Platform.make.in
+@@ -62,7 +62,7 @@ STLIB_SUFFIX        = @STLIB_SUFFIX@
+ 
+ #shared libs
+ SHLIB_PREFIX        = lib
+-SHLIB_LD            = @SHLIB_LD@
++SHLIB_LD            = @SHLIB_LD@ -liconv
+ SHLIB_LDFLAGS       = @SHLIB_LD_FLAGS@
+ SHLIB_CFLAGS        = @SHLIB_CFLAGS@
+ SHLIB_SUFFIX        = @SHLIB_SUFFIX@
+@@ -84,8 +84,8 @@ XLIB                = @X_PRE_LIBS@ @XLIB@
+ XEXTRALIBS          = @X_EXTRA_LIBS@
+ USE_X11             = @USE_X11@
+ 
+-MATHLIB             = @MATHLIB@ 
+-ICONVLIB            = @ICONVLIB@
++MATHLIB             = @MATHLIB@ -liconv
++ICONVLIB            = @ICONVLIB@ -liconv
+ INTLLIB             = @INTLLIB@
+ SOCKLIB             = @SOCKLIB@
+ 
