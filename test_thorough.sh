@@ -33,4 +33,4 @@ cd "$GRASS_SOURCE_CODE"
     python3 -m grass.gunittest.main \
     --grassdata "$DATABASE" --location nc_spm_full_v2alpha2 --location-type nc \
     --min-success 50 \
-    --output "$DATABASE/testreport-$(basename $GRASS_SOURCE_CODE)"
+    --output "$DATABASE/testreport-$(basename "$GRASS_SOURCE_CODE")"
