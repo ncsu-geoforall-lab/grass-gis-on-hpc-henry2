@@ -1,2 +1,5 @@
 # Mega-Linter report directory
 report/
+
+# Downloaded source code
+grass-code-*

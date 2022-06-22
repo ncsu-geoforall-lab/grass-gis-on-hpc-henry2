@@ -1,5 +1,5 @@
-date: 2022-03-11
-default: "8.0.1"
+date: 2022-06-17
+default: "8.2.0"
 symbolic_links:
   - name: "7.8"
     points_to: "7.8.7"
@@ -7,3 +7,7 @@ symbolic_links:
     points_to: "8.0.1"
   - name: "8.1"
     points_to: "8.1-2022-03-11"
+  - name: "8.2"
+    points_to: "8.2.0"
+  - name: "8.3"
+    points_to: "8.3-2022-06-08"

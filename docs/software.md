@@ -1,5 +1,31 @@
 # Available software
 
+## Module grass/8.3-2022-05-25
+
+Activate module using:
+
+```sh
+module use --append /usr/local/usrapps/geospatial/modulefiles
+module load grass/8.3-2022-05-25
+```
+
+| Software     | Version | Description                                                      | Interfaces                  |
+|--------------|---------|------------------------------------------------------------------|-----------------------------|
+| GRASS GIS    | 8.3.dev | GIS, geospatial modeling, analysis, and remote sensing           | Python, command line, GUI   |
+| PDAL         | 2.4.1   | Point cloud data translation and manipulation                    | command line                |
+| GDAL         | 3.4.3   | Raster and vector data translation and manipulation              | command line                |
+| PROJ         | 9.0.0   | Conversions between cartographic projections                     | command line                |
+| Python       | 3.10.4  | Scripting language                                               | python, ipython, JupyterLab |
+| NumPy        | 1.22.4  | Multi-dimensional arrays and matrices and mathematical functions | Python                      |
+| SciPy        | 1.8.1   | Scientific computing and technical computing                     | Python                      |
+| pandas       | 1.4.2   | Data analysis and manipulation                                   | Python                      |
+| scikit-learn | 1.1.1   | Machine learning                                                 | Python                      |
+| Matplotlib   | 3.5.2   | Plotting                                                         | Python                      |
+| JupyterLab   | 3.4.2   | Computational notebook environment                               | GUI in web browser          |
+| SQLite       | 3.38.5  | File-based database                                              | command line                |
+
+See [environment file](../available/8.3-2022-05-25/environment.yml) for exact versions of all installed software.
+
 ## Module grass/8.1-2022-03-11
 
 Activate module using:
