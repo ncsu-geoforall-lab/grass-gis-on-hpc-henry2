@@ -63,12 +63,14 @@ The process will take roughly 30 minutes and it is using only one core.
 
 The following versions are currently being updated when appropriate.
 The builds for branches can be used as is. For the builds of tags,
-replace `x` with the current minor version.
+replace `x` with the current minor version. For the builds of release branches,
+replace `x` with the future minor version.
 
 ```sh
-time ./install_grass.sh /usr/local/usrapps/geospatial 8.1-$(date -I) 81 main
+time ./install_grass.sh /usr/local/usrapps/geospatial 8.3.0-dev.$(date -I) 83 main
+time ./install_grass.sh /usr/local/usrapps/geospatial 8.3.x-dev.$(date -I) 83 releasebranch_8_3
 time ./install_grass.sh /usr/local/usrapps/geospatial 8.0-$(date -I) 80 releasebranch_8_0
-time ./install_grass.sh /usr/local/usrapps/geospatial 8.0.1 80 8.0.1
+time ./install_grass.sh /usr/local/usrapps/geospatial 8.0.x 80 8.0.x
 time ./install_grass.sh /usr/local/usrapps/geospatial 7.8.x 78 7.8.x
 ```
 
@@ -96,7 +98,7 @@ as parameters:
 ```bash
 grass --version
 ./test_quick.sh grass
-./test_thorough.sh grass grass-code-8.1 .
+./test_thorough.sh grass grass-code-8.1 . .
 ```
 
 The `grass-code-` part is hardcoded in the `compile.sh` script the second part is
@@ -134,10 +136,21 @@ module use --append /usr/local/usrapps/geospatial/modulefiles
 module load grass/8.0.1
 grass --version
 ./test_quick.sh grass
-time ./test_thorough.sh grass grass-code-8.0.1/ .
 ```
 
-Record versions of all relevant software packages installed
+Get an interactive job on a compute node:
+
+```sh
+bsub -Is -n 1 -x -W 240 bash
+```
+
+Run on a compute node:
+
+```sh
+time ./test_thorough.sh grass /usr/local/usrapps/geospatial/grass-gis-on-hpc-henry2/grass-code-8.0.1/ /share/.../.../post-install-tests/ /usr/local/usrapps/geospatial/grass-gis-on-hpc-henry2/
+```
+
+Back on login node, record versions of all relevant software packages installed
 (requires the module to be loaded):
 
 ```sh
