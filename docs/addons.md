@@ -5,10 +5,22 @@ Other tools can be installed from downloaded files or from individual repositori
 
 The new tools are installed by the _g.extension_ tool. Many addon tools are in Python, but some are C and C++.
 The addons are compiled during installation. For addons which are using C++ or modern C such as C99,
-you will need to setup a recent GCC version by loading the _gcc_ module on HPC:
+you will need to setup a recent GCC version by loading the _gcc_ module on HPC (9.3.0 is what the current build of GRASS GIS is using).
 
 ```sh
-module load gcc
+module load gcc/9.3.0
+```
+
+You also need to get the same version of GNU libc, the dependencies (such as GDAL) are using by loading conda:
+
+```sh
+module load conda
+```
+
+The order is important and only after this, you can load the version of GRASS GIS you are using:
+
+```sh
+module load grass/{version}
 ```
 
 This will allow you to compile (and thus install) these new addons using:
