@@ -1,4 +1,4 @@
-date: 2022-06-17
+date: 2022-11-08
 default: "8.2.0"
 symbolic_links:
   - name: "7.8"
@@ -10,4 +10,4 @@ symbolic_links:
   - name: "8.2"
     points_to: "8.2.0"
   - name: "8.3"
-    points_to: "8.3-2022-06-08"
+    points_to: "8.3.0-dev.2022-11-08"
