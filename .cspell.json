@@ -160,6 +160,7 @@
     "libspatialite",
     "libsqlite",
     "libssh",
+    "libstdc",
     "libstdcxx",
     "libtiff",
     "libuuid",

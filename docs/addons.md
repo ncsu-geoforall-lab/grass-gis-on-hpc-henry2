@@ -11,7 +11,8 @@ you will need to setup a recent GCC version by loading the _gcc_ module on HPC (
 module load gcc/9.3.0
 ```
 
-You also need to get the same version of GNU libc, the dependencies (such as GDAL) are using by loading conda:
+You also need to have the same versions of standard C++ libraries the dependencies are using
+(such as GDAL using the right libstdc++). For this, load conda:
 
 ```sh
 module load conda
