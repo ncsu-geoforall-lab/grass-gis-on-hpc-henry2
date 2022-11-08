@@ -76,7 +76,7 @@ install_version() {
         "$GRASS_GIT_VERSION"
 }
 
-module load gcc
+module load gcc/9.3.0
 module load conda
 
 eval "$(conda shell.bash hook)"
