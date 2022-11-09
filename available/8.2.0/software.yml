@@ -1,0 +1,49 @@
+software:
+  - name: GRASS GIS
+    version: "8.2.0"
+    description: GIS, geospatial modeling, analysis, and remote sensing
+    interfaces: Python, command line, GUI
+  - name: PDAL
+    version: "2.4.1"
+    description: Point cloud data translation and manipulation
+    interfaces: command line
+  - name: GDAL
+    version: "3.4.3"
+    description: Raster and vector data translation and manipulation
+    interfaces: command line
+  - name: PROJ
+    version: "9.0.0"
+    description: Conversions between cartographic projections
+    interfaces: command line
+  - name: Python
+    version: "3.10.4"
+    description: Scripting language
+    interfaces: python, ipython, JupyterLab
+  - name: NumPy
+    version: "1.22.4"
+    description: Multi-dimensional arrays and matrices and mathematical functions
+    interfaces: Python
+  - name: SciPy
+    version: "1.8.1"
+    description: Scientific computing and technical computing
+    interfaces: Python
+  - name: pandas
+    version: "1.4.2"
+    description: Data analysis and manipulation
+    interfaces: Python
+  - name: scikit-learn
+    version: "1.1.1"
+    description: Machine learning
+    interfaces: Python
+  - name: Matplotlib
+    version: "3.5.2"
+    description: Plotting
+    interfaces: Python
+  - name: JupyterLab
+    version: "3.4.2"
+    description: Computational notebook environment
+    interfaces: GUI in web browser
+  - name: SQLite
+    version: "3.38.5"
+    description: File-based database
+    interfaces: command line

@@ -3,3 +3,5 @@ report/
 
 # Downloaded source code
 grass-code-*
+
+megalinter-reports/
