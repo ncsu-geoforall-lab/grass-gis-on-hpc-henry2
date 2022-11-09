@@ -238,6 +238,7 @@
     "pygrass",
     "pyha",
     "pyhd",
+    "pylintrc",
     "pynodelauncher",
     "pyopenssl",
     "pyparsing",
