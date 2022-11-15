@@ -22,7 +22,7 @@ cd "$CODE_DIR"
 
 # Apply patches to GRASS GIS source code
 
-for FILE in ../patches/*.patch; do
+for FILE in ../patches/"$GRASS_VERSION"/*.patch; do
     patch -p0 <"$FILE"
 done
 

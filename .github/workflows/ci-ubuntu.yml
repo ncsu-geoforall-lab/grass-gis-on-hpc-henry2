@@ -29,11 +29,15 @@ jobs:
         include:
           - version: main
             command: grass
+            environment: environment.yml
           - version: releasebranch_8_2
+            environment: available/8.2.0/environment.yml
             command: grass
           - version: releasebranch_8_0
+            environment: available/8.0.1/environment.yml
             command: grass
           - version: releasebranch_7_8
+            environment: available/7.8.7/environment.yml
             command: grass78
       fail-fast: false
 
@@ -64,7 +68,7 @@ jobs:
           echo "CONDA_PREFIX=$HOME/grass-conda-env" >> "$GITHUB_ENV"
       - uses: conda-incubator/setup-miniconda@v2
         with:
-          environment-file: environment.yml
+          environment-file: ${{ matrix.environment }}
           activate-environment: ${{ env.CONDA_PREFIX }}
       - name: Examine the new conda environment
         run: |
