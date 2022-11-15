@@ -1,0 +1,21 @@
+--- include/Make/Platform.make.in
++++ include/Make/Platform.make.in
+@@ -62,7 +62,7 @@ STLIB_SUFFIX        = @STLIB_SUFFIX@
+ 
+ #shared libs
+ SHLIB_PREFIX        = lib
+-SHLIB_LD            = @SHLIB_LD@
++SHLIB_LD            = @SHLIB_LD@ -liconv
+ SHLIB_LDX           = @SHLIB_LDX@
+ SHLIB_LDFLAGS       = @SHLIB_LD_FLAGS@
+ SHLIB_CFLAGS        = @SHLIB_CFLAGS@
+@@ -85,8 +85,8 @@ XLIB                = @X_PRE_LIBS@ @XLIB@
+ XEXTRALIBS          = @X_EXTRA_LIBS@
+ USE_X11             = @USE_X11@
+ 
+-MATHLIB             = @MATHLIB@ 
+-ICONVLIB            = @ICONVLIB@
++MATHLIB             = @MATHLIB@ -liconv
++ICONVLIB            = @ICONVLIB@ -liconv
+ INTLLIB             = @INTLLIB@
+ SOCKLIB             = @SOCKLIB@
